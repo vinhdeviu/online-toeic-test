@@ -1,0 +1,13 @@
+{
+    "users": [{
+        "id": 1,
+        "username": "dohungcuongdev",
+        "address": "24/7",
+        "role": "user"
+    }, {
+        "id": 2,
+        "username": "do-cuong-mulodo",
+        "address": "Tran Nao",
+        "role": "admin"
+    }]
+}
