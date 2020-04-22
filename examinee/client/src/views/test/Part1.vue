@@ -2,207 +2,50 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-2">
-        <h5>Listening</h5>
+        <h5>{{part1Data.part.type == 1?"Listening":"Reading"}}</h5>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-8">
-        <h5>Part 1: Photographs</h5>Directions: For each question in this part, you will hear four statements about a picture in your test
-        book. When you hear the statements, you must select the one statement that best describes what you see
-        in the picture. Then find the number of the question on your answer sheet and mark your answer. The
-        statements
-        will not be printed.
+        <h5>{{part1Data.part.tittle}}</h5>
+        {{part1Data.part.direction}}
       </div>
     </div>
-
-    <hr />
-    <div style="margin-top:30px"></div>
-    <div class="row">
-      <div class="col-sm-2">
-        <h5>Question 1:</h5>
+    <div v-for="(question, index) in part1Data.questions" :key="question.id">
+      <hr />
+      <div style="margin-top:30px"></div>
+      <div class="row">
+        <div class="col-sm-2">
+          <h5>Question {{index+1}}:</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <img
+            class="img-q1"
+            v-bind:src="question.imageLink"
+            alt="img-q1"
+            width="280px"
+            height="230px"
+          />
+          <div style="margin-top:10px"></div>
+          <audio controls style="margin-left:-10px">
+            <source v-bind:src="question.audioLink" type="audio/mpeg" />Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
+      <div class="row" v-for="option in ['A','B','C','D']" :key="option">
+        <div class="custom-control custom-radio">
+          <input
+            type="radio"
+            v-bind:id="'q'+(index+1)+option"
+            v-bind:name="'q'+(index+1)"
+            class="custom-control-input"
+          />
+          <label class="custom-control-label" v-bind:for="'q'+(index+1)+option">{{option}}</label>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <img
-          class="img-q1"
-          src="https://www.w3schools.com/bootstrap4/paris.jpg"
-          alt="img-q1"
-          width="280px"
-          height="230px"
-        />
-        <div style="margin-top:10px"></div>
-        <audio controls style="margin-left:-10px">
-          <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q1A" name="q1" class="custom-control-input" />
-        <label class="custom-control-label" for="q1A">A</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q1B" name="q1" class="custom-control-input" />
-        <label class="custom-control-label" for="q1B">B</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q1C" name="q1" class="custom-control-input" />
-        <label class="custom-control-label" for="q1C">C</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q1D" name="q1" class="custom-control-input" />
-        <label class="custom-control-label" for="q1D">D</label>
-      </div>
-    </div>
-
-    <hr />
-    <div style="margin-top:30px"></div>
-    <div class="row">
-      <div class="col-sm-2">
-        <h5>Question 2:</h5>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <img
-          class="img-q1"
-          src="https://www.w3schools.com/bootstrap4/paris.jpg"
-          alt="img-q1"
-          width="280px"
-          height="230px"
-        />
-        <div style="margin-top:10px"></div>
-        <audio controls style="margin-left:-10px">
-          <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q2A" name="q2" class="custom-control-input" />
-        <label class="custom-control-label" for="q2A">A</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q2B" name="q2" class="custom-control-input" />
-        <label class="custom-control-label" for="q2B">B</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q2C" name="q2" class="custom-control-input" />
-        <label class="custom-control-label" for="q2C">C</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q2D" name="q2" class="custom-control-input" />
-        <label class="custom-control-label" for="q2D">D</label>
-      </div>
-    </div>
-
-    <hr />
-    <div style="margin-top:30px"></div>
-    <div class="row">
-      <div class="col-sm-2">
-        <h5>Question 3:</h5>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <img
-          class="img-q1"
-          src="https://www.w3schools.com/bootstrap4/paris.jpg"
-          alt="img-q1"
-          width="280px"
-          height="230px"
-        />
-        <div style="margin-top:10px"></div>
-        <audio controls style="margin-left:-10px">
-          <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q3A" name="q3" class="custom-control-input" />
-        <label class="custom-control-label" for="q3A">A</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q3B" name="q3" class="custom-control-input" />
-        <label class="custom-control-label" for="q3B">B</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q3C" name="q3" class="custom-control-input" />
-        <label class="custom-control-label" for="q3C">C</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q3D" name="q3" class="custom-control-input" />
-        <label class="custom-control-label" for="q3D">D</label>
-      </div>
-    </div>
-
-    <hr />
-    <div style="margin-top:30px"></div>
-    <div class="row">
-      <div class="col-sm-2">
-        <h5>Question 4:</h5>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <img
-          class="img-q1"
-          src="https://www.w3schools.com/bootstrap4/paris.jpg"
-          alt="img-q1"
-          width="280px"
-          height="230px"
-        />
-        <div style="margin-top:10px"></div>
-        <audio controls style="margin-left:-10px">
-          <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />Your browser does not support the audio element.
-        </audio>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q4A" name="q4" class="custom-control-input" />
-        <label class="custom-control-label" for="q4A">A</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q4B" name="q4" class="custom-control-input" />
-        <label class="custom-control-label" for="q4B">B</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q4C" name="q4" class="custom-control-input" />
-        <label class="custom-control-label" for="q4C">C</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-radio">
-        <input type="radio" id="q4D" name="q4" class="custom-control-input" />
-        <label class="custom-control-label" for="q4D">D</label>
-      </div>
-    </div>
-    <hr />
     <div class="row">
       <div class="col-sm-4"></div>
       <div class="col-sm-4">
@@ -215,13 +58,28 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
+import axios from "axios";
 
 export default {
+  data() {
+    return {
+      part1Data: {
+        part: {},
+        questions: [{}, {}, {}, {}]
+      }
+    };
+  },
   computed: {
     ...mapGetters({
-      testProgress: 'getTestProgress'
+      testProgress: "getTestProgress"
     })
+  },
+  mounted() {
+    axios.get("http://localhost:8081/api/parts/1").then(response => {
+      this.part1Data = response.data;
+      console.log(this.part1Data);
+    });
   },
   methods: {
     nextPart() {
