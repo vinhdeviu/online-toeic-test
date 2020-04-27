@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-      <page-header></page-header>
-      <router-view></router-view>
+    <page-header></page-header>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
+import Header from "./components/Header.vue";
 export default {
   components: {
-    'page-header': Header
+    "page-header": Header
   }
 };
 </script>

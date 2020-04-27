@@ -8,8 +8,7 @@ import lombok.RequiredArgsConstructor;
 public class QuestionGroup {
     private int id;
     private int partId;
-    private int groupId;
     private String audioLink;
-    private String paragrapth;
+    private String paragraph;
     private int difficulty;
 }

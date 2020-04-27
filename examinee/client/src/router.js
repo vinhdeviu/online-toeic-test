@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from './views/common/Home.vue';
-import Login from './views/common/Login.vue';
-import SignUp from './views/common/SignUp.vue';
-import Profile from './views/common/Profile.vue';
-import Archivement from './views/common/Archivement.vue';
-import Test from './views/common/Test.vue';
+import Home from './views/Home.vue';
+import Login from './views/Login.vue';
+import SignUp from './views/SignUp.vue';
+import Profile from './views/Profile.vue';
+import Achievement from './views/Achievement.vue';
+import Part from './views/Part.vue';
 
 Vue.use(VueRouter);
 
@@ -16,7 +16,7 @@ export default new VueRouter({
         { path: '/login', component: Login },
         { path: '/sign-up', component: SignUp },
         { path: '/profile', component: Profile },
-        { path: '/archivement', component: Archivement },
-        { path: '/test', component: Test }
+        { path: '/achievement', component: Achievement },
+        { path: '/test', component: Part }
     ]
 });
