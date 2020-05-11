@@ -1,7 +1,7 @@
 <template>
   <div class="col-sm-4">
     <timer :timeInSecond="timeInSecond" v-if="testProgress != 0 && !testSubmitted"></timer>
-    <score :totalScore="totalScore" v-if="testProgress != 0 && testSubmitted"></score>
+    <result :totalAnswer="totalAnswer" v-if="testProgress != 0 && testSubmitted"></result>
   </div>
 </template>
 
@@ -9,18 +9,18 @@
 import { mapGetters } from "vuex";
 import axios from "axios";
 import Timer from "./Timer.vue";
-import Score from "./Score.vue";
+import Result from "./Result.vue";
 
 export default {
   data() {
     return {
       timeInSecond: 0,
-      totalScore: 0
+      totalAnswer: 0
     };
   },
   components: {
     timer: Timer,
-    score: Score
+    result: Result
   },
   computed: {
     ...mapGetters({
@@ -33,7 +33,7 @@ export default {
       axios.get("http://localhost:8081/api/test-information").then(response => {
         console.log(response.data);
         this.timeInSecond = response.data.timeInSecond;
-        this.totalScore = response.data.totalScore;
+        this.totalAnswer = response.data.totalAnswer;
       });
     }
   }

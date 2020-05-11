@@ -8,5 +8,5 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class TestInfor {
     private int timeInSecond;
-    private int totalScore;
+    private int totalAnswer;
 }

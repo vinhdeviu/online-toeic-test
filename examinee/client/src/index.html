@@ -1,21 +1,46 @@
 <html>
-  <head>
-    <title>Vue Hello World</title>
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+
+<head>
+  <title>Vue Hello World</title>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
 </html>
 <script>
-// Only 1 audio run at a time
-document.addEventListener('play', function(e){
+  // Only 1 audio run at a time
+  document.addEventListener('play', function (e) {
     var audios = document.getElementsByTagName('audio');
-    for(var i = 0, len = audios.length; i < len;i++){
-        if(audios[i] != e.target){
-            audios[i].pause();
-        }
+    for (var i = 0, len = audios.length; i < len; i++) {
+      if (audios[i] != e.target) {
+        audios[i].pause();
+      }
     }
-}, true);
+  }, true);
+
+
+  // fixed header
+  // window.onscroll = function () { myFunction() };
+
+  // var header = document.getElementById("header");
+  // var sticky = header.offsetTop;
+
+  // function myFunction() {
+  //   if (window.pageYOffset > sticky) {
+  //     header.classList.add("sticky");
+  //   } else {
+  //     header.classList.remove("sticky");
+  //   }
+  // }
 </script>

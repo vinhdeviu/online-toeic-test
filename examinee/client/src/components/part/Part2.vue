@@ -2,13 +2,13 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-2">
-        <h5>{{partData.part.type == 1?"Listening":"Reading"}}</h5>
+        <h5>{{partData.type == 1?"Listening":"Reading"}}</h5>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-8">
-        <h5>{{partData.part.tittle}}</h5>
-        {{partData.part.direction}}
+        <h5>{{partData.tittle}}</h5>
+        {{partData.direction}}
       </div>
     </div>
     <div v-for="(question, index) in partData.questions" :key="question.id">
@@ -22,9 +22,6 @@
       <div class="row">
         <div class="col-sm-4">
           <div style="margin-top:10px"></div>
-          <audio controls style="margin-left:-10px">
-            <source v-bind:src="question.audioLink" type="audio/mpeg" />Your browser does not support the audio element.
-          </audio>
         </div>
       </div>
       <div class="row" v-for="option in ['A','B','C','D']" :key="option">
@@ -69,13 +66,14 @@ import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
+  props: ['partData', 'beginIndex'],
   data() {
     return {
-      partData: {
-        part: {},
-        questions: [{}, {}, {}, {}]
-      },
-      beginIndex: 1
+      // partData: {
+      //   part: {},
+      //   questions: [{}, {}, {}, {}]
+      // },
+      // beginIndex: 1
     };
   },
   computed: {
@@ -86,12 +84,13 @@ export default {
     })
   },
   mounted() {
-    axios.get("http://localhost:8081/api/generate-part/2").then(response => {
-      this.partData = response.data;
-      console.log(this.partData);
-      this.beginIndex = this.answers.length;
-      this.$store.dispatch("addAnswersFromQuestions", this.partData.questions);
-    });
+    // axios.get("http://localhost:8081/api/generate-part/2").then(response => {
+    //   this.partData = response.data;
+    //   console.log(this.partData);
+    //   this.beginIndex = this.answers.length;
+    //   this.$store.dispatch("addAnswersFromQuestions", this.partData.questions);
+    // });
+    console.log(this.partData);
   },
   methods: {
     prevPart() {

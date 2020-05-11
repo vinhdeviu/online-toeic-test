@@ -1,5 +1,5 @@
 <template>
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-center" id="header">
     <div class="row">
       <div class="col-sm-4">
         <h1 @click="goHome()" style="cursor:pointer">Online Toeic Test</h1>

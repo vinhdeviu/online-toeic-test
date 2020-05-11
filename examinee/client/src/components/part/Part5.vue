@@ -2,21 +2,26 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-2">
-        <h5>{{partData.part.type == 1?"Listening":"Reading"}}</h5>
+        <h5>{{partData.type == 1?"Listening":"Reading"}}</h5>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-8">
-        <h5>{{partData.part.tittle}}</h5>
-        {{partData.part.direction}}
+        <h5>{{partData.tittle}}</h5>
+        {{partData.direction}}
       </div>
     </div>
     <div v-for="(question, index) in partData.questions" :key="question.id">
       <hr />
       <div style="margin-top:30px"></div>
       <div class="row">
-        <div class="col-sm-12">
-          <h5>Question {{index+beginIndex+1}}: {{question.questionTittle}}</h5>
+        <div class="col-sm-2">
+          <h5>Question {{index+beginIndex+1}}:</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div style="margin-top:10px"></div>
         </div>
       </div>
       <div class="row" v-for="option in ['A','B','C','D']" :key="option">
@@ -31,10 +36,7 @@
             :disabled="testSubmitted"
             @change="selectOption(index+beginIndex, option)"
           />
-          <label
-            class="custom-control-label"
-            :for="'q'+(index+beginIndex+1)+option"
-          >{{option}}. {{question['option'+option]}}</label>
+          <label class="custom-control-label" :for="'q'+(index+beginIndex+1)+option">{{option}}. {{question.answers[option].content}}</label>
           <i
             v-if="testSubmitted && option.toUpperCase()==question.answer.toUpperCase() && selectedOptions[index+beginIndex]!=null && selectedOptions[index+beginIndex].toUpperCase()==question.answer.toUpperCase()"
             class="fas fa-check-circle"
@@ -64,13 +66,14 @@ import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
+  props: ['partData', 'beginIndex'],
   data() {
     return {
-      partData: {
-        part: {},
-        questions: [{}, {}, {}, {}]
-      },
-      beginIndex: 1
+      // partData: {
+      //   part: {},
+      //   questions: [{}, {}, {}, {}]
+      // },
+      // beginIndex: 1
     };
   },
   computed: {
@@ -81,12 +84,13 @@ export default {
     })
   },
   mounted() {
-    axios.get("http://localhost:8081/api/generate-part/5").then(response => {
-      this.partData = response.data;
-      console.log(this.partData);
-      this.beginIndex = this.answers.length;
-      this.$store.dispatch("addAnswersFromQuestions", this.partData.questions);
-    });
+    // axios.get("http://localhost:8081/api/generate-part/5").then(response => {
+    //   this.partData = response.data;
+    //   console.log(this.partData);
+    //   this.beginIndex = this.answers.length;
+    //   this.$store.dispatch("addAnswersFromQuestions", this.partData.questions);
+    // });
+    console.log(this.partData);
   },
   methods: {
     prevPart() {

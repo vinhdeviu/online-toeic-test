@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <div class="jumbotron text-center">
+    <div class="row">
+      <div class="col-sm-4">
+        <h1>Online Toeic Test</h1>
+      </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <h2>Profile</h2>
+      </div>
+    </div>
+    <div style="margin-top:30px"></div>
+    <div class="row">
+      <div class="col-sm-4">
+        <form action="/action_page.php">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="enter name"
+              value="Nguyen Duy Vinh">
+          </div>
+          <div class="form-group">
+            <label for="usr">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="enter email"
+              value="dacnhantam1607@gmail.com">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password</label>
+            <input type="password" class="form-control" id="pwd" name="password" placeholder="enter password"
+              value="Nguyen Duy Vinh">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Confirm Password</label>
+            <input type="password" class="form-control" id="confirm-pwd" name="confirm-password"
+              placeholder="confirm password" value="Nguyen Duy Vinh">
+          </div>
+          <button style="width: 140px;" type="submit" class="btn btn-primary btn-lg">Save</button>
+        </form>
+      </div>
+    </div>
+    <div style="margin-top:30px"></div>
+
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <button style="width: 160px;" class="btn btn-primary btn-lg">Logout</button>
+        <button style="width: 160px;" class="btn btn-primary btn-lg">Achivement</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</body>
+
+</html>

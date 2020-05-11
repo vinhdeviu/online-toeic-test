@@ -2,59 +2,59 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-2">
-        <h5>{{partData.part.type == 1?"Listening":"Reading"}}</h5>
+        <h5>{{partData.type == 1?"Listening":"Reading"}}</h5>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-8">
-        <h5>{{partData.part.tittle}}</h5>
-        {{partData.part.direction}}
+        <h5>{{partData.tittle}}</h5>
+        {{partData.direction}}
       </div>
     </div>
 
     <hr />
     <div
-      v-for="(questionGroupOutput, indexGroup) in partData.questionGroupOutputList"
-      :key="questionGroupOutput.questionGroup.id"
+      v-for="(questionGroup, indexGroup) in partData.questionGroups"
+      :key="questionGroup.id"
     >
       <div style="margin-top:30px"></div>
       <div class="row">
         <div class="col-sm-12">
-          <h5>Question {{beginIndex+(questionGroupOutput.questions.length)*indexGroup+1}}-{{beginIndex+(questionGroupOutput.questions.length)*indexGroup+(questionGroupOutput.questions.length)}}:</h5>
-          <div>{{questionGroupOutput.questionGroup.paragraph}}</div>
+          <h4>Paragraph No.{{(indexGroup+1)}}:</h4>
+          <div>{{questionGroup.paragraph}}</div>
         </div>
       </div>
-      <hr />
+      <hr/>
       <div
         class="row"
-        v-for="(question, indexQuestion) in questionGroupOutput.questions"
+        v-for="(question, indexQuestion) in questionGroup.questions"
         :key="question.id"
       >
         <div class="col-sm-8">
-          <h5>Question {{indexQuestion+(questionGroupOutput.questions.length*indexGroup)+beginIndex+1}}: {{question.questionTittle}}</h5>
+          <h5>Question {{increaseQuestionCounter()}}: {{question.questionTittle}}</h5>
           <div class="row" v-for="option in ['A','B','C','D']" :key="option">
             <div class="custom-control custom-radio">
               <input
                 type="radio"
-                :id="'q'+(indexQuestion+(questionGroupOutput.questions.length*indexGroup)+beginIndex+1)+option"
-                :name="'q'+(indexQuestion+(questionGroupOutput.questions.length*indexGroup)+beginIndex+1)"
+                :id="'q'+(indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex+1)+option"
+                :name="'q'+(indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex+1)"
                 class="custom-control-input"
                 :value="option"
-                :ref="'q'+(indexQuestion+(questionGroupOutput.questions.length*indexGroup)+beginIndex+1)"
+                :ref="'q'+(indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex+1)"
                 :disabled="testSubmitted"
-                @change="selectOption(indexQuestion+(questionGroupOutput.questions.length*indexGroup)+beginIndex, option)"
+                @change="selectOption(indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex, option)"
               />
               <label
                 class="custom-control-label"
-                :for="'q'+(indexQuestion+(questionGroupOutput.questions.length*indexGroup)+beginIndex+1)+option"
-              >{{option}}. {{question['option'+option]}}</label>
+                :for="'q'+(indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex+1)+option"
+              >{{option}}. {{question.answers[option].content}}</label>
               <i
-                v-if="testSubmitted && option.toUpperCase()==question.answer.toUpperCase() && selectedOptions[indexQuestion+(questionGroupOutput.questions.length*indexGroup)+beginIndex]!=null && selectedOptions[indexQuestion+(questionGroupOutput.questions.length*indexGroup)+beginIndex].toUpperCase()==question.answer.toUpperCase()"
+                v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && selectedOptions[indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex]!=null && selectedOptions[indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex].toUpperCase()==question.correctAnswer.toUpperCase()"
                 class="fas fa-check-circle"
                 style="font-size:20px;color:green"
               ></i>
               <i
-                v-if="testSubmitted && option.toUpperCase()==question.answer.toUpperCase() && (selectedOptions[indexQuestion+(questionGroupOutput.questions.length*indexGroup)+beginIndex]== null || selectedOptions[indexQuestion+(questionGroupOutput.questions.length*indexGroup)+beginIndex].toUpperCase()!=question.answer.toUpperCase())"
+                v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && (selectedOptions[indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex]== null || selectedOptions[indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex].toUpperCase()!=question.correctAnswer.toUpperCase())"
                 class="fa fa-close"
                 style="font-size:20px;color:red"
               ></i>
@@ -81,22 +81,24 @@ import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
+  props: ['partData', 'beginIndex'],
   data() {
     return {
-      partData: {
-        part: {},
-        questionGroupOutputList: [
-          {
-            questionGroup: {},
-            questions: [{}, {}, {}]
-          },
-          {
-            questionGroup: {},
-            questions: [{}, {}, {}]
-          }
-        ]
-      },
-      beginIndex: 1
+      // partData: {
+      //   part: {},
+      //   questionGroupOutputList: [
+      //     {
+      //       questionGroup: {},
+      //       questions: [{}, {}, {}]
+      //     },
+      //     {
+      //       questionGroup: {},
+      //       questions: [{}, {}, {}]
+      //     }
+      //   ]
+      // },
+      // beginIndex: 1
+      questionCounter: this.beginIndex
     };
   },
   computed: {
@@ -106,16 +108,20 @@ export default {
       selectedOptions: "getSelectedOptions"
     })
   },
+  beforeUpdate() { 
+    this.questionCounter = this.beginIndex 
+  },
   mounted() {
-    axios.get("http://localhost:8081/api/generate-part/7").then(response => {
-      this.partData = response.data;
-      console.log(this.partData);
-      this.beginIndex = this.answers.length;
-      this.$store.dispatch(
-        "addAnswersFromQuestionGroups",
-        this.partData.questionGroupOutputList
-      );
-    });
+    // axios.get("http://localhost:8081/api/generate-part/7").then(response => {
+    //   this.partData = response.data;
+    //   console.log(this.partData);
+    //   this.beginIndex = this.answers.length;
+    //   this.$store.dispatch(
+    //     "addAnswersFromQuestionGroups",
+    //     this.partData.questionGroupOutputList
+    //   );
+    // });
+    console.log(this.partData);
   },
   methods: {
     prevPart() {
@@ -130,6 +136,10 @@ export default {
     },
     retest() {
       this.$router.push("/home");
+    },
+    increaseQuestionCounter() {
+      this.questionCounter++;
+      return this.questionCounter + '';
     }
   }
 };
