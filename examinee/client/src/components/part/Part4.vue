@@ -11,12 +11,12 @@
         {{partData.direction}}
       </div>
     </div>
-    <div v-for="(question, index) in partData.questions" :key="question.id">
+    <div v-for="(question) in partData.questions" :key="question.id">
       <hr />
       <div style="margin-top:30px"></div>
       <div class="row">
         <div class="col-sm-2">
-          <h5>Question {{index+beginIndex+1}}:</h5>
+          <h5>Question {{question.questionNo}}:</h5>
         </div>
       </div>
       <div class="row">
@@ -28,25 +28,17 @@
         <div class="custom-control custom-radio">
           <input
             type="radio"
-            :id="'q'+(index+beginIndex+1)+option"
-            :name="'q'+(index+beginIndex+1)"
+            :id="'q'+(question.questionNo)+option"
+            :name="'q'+(question.questionNo)"
             class="custom-control-input"
             :value="option"
-            :ref="'q'+(index+beginIndex+1)"
+            :ref="'q'+(question.questionNo)"
             :disabled="testSubmitted"
-            @change="selectOption(index+beginIndex, option)"
+            @change="selectOption(question.questionNo-1, option)"
           />
-          <label class="custom-control-label" :for="'q'+(index+beginIndex+1)+option">{{option}}. {{question.answers[option].content}}</label>
-          <i
-            v-if="testSubmitted && option.toUpperCase()==question.answer.toUpperCase() && selectedOptions[index+beginIndex]!=null && selectedOptions[index+beginIndex].toUpperCase()==question.answer.toUpperCase()"
-            class="fas fa-check-circle"
-            style="font-size:20px;color:green"
-          ></i>
-          <i
-            v-if="testSubmitted && option.toUpperCase()==question.answer.toUpperCase() && (selectedOptions[index+beginIndex]== null || selectedOptions[index+beginIndex].toUpperCase()!=question.answer.toUpperCase())"
-            class="fa fa-close"
-            style="font-size:20px;color:red"
-          ></i>
+          <label class="custom-control-label" :for="'q'+(question.questionNo)+option">{{option}}. {{question.answers[option].content}}</label>
+          <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && selectedOptions[question.questionNo-1]!=null && selectedOptions[question.questionNo-1].toUpperCase()==question.correctAnswer.toUpperCase()" class="fas fa-check-circle" style="font-size:20px;color:green"></i>
+          <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && (selectedOptions[question.questionNo-1]== null || selectedOptions[question.questionNo-1].toUpperCase()!=question.correctAnswer.toUpperCase())" class="fa fa-close" style="font-size:20px;color:red"></i>
         </div>
       </div>
     </div>
@@ -66,40 +58,13 @@ import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
-  props: ['partData', 'beginIndex'],
-  data() {
-    return {
-      // partData: {
-      //   part: {},
-      //   questionGroupOutputList: [
-      //     {
-      //       questionGroup: {},
-      //       questions: [{}, {}, {}]
-      //     },
-      //     {
-      //       questionGroup: {},
-      //       questions: [{}, {}, {}]
-      //     }
-      //   ]
-      // },
-      // beginIndex: 1
-    };
-  },
+  props: ['partData'],
   computed: {
     ...mapGetters({
       testSubmitted: "getTestSubmitted",
       answers: "getAnswers",
       selectedOptions: "getSelectedOptions"
     })
-  },
-  mounted() {
-    // axios.get("http://localhost:8081/api/generate-part/4").then(response => {
-    //   this.partData = response.data;
-    //   console.log(this.partData);
-    //   this.beginIndex = this.answers.length;
-    //   this.$store.dispatch("addAnswersFromQuestionGroups", this.partData.questionGroupOutputList);
-    // });
-    console.log(this.partData);
   },
   methods: {
     prevPart() {

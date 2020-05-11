@@ -13,12 +13,12 @@
     </div>
     <keep-alive>
       <part1 :partData="testData.parts['1']" v-if="testProgress==1 && testData.parts['1'] != null"></part1>
-      <part2 :partData="testData.parts['2']" :beginIndex="beginIndexPart2" v-if="testProgress==2 && testData.parts['2'] != null"></part2>
-      <part3 :partData="testData.parts['3']" :beginIndex="beginIndexPart3" v-if="testProgress==3 && testData.parts['3'] != null"></part3>
-      <part4 :partData="testData.parts['4']" :beginIndex="beginIndexPart4" v-if="testProgress==4 && testData.parts['4'] != null"></part4>
-      <part5 :partData="testData.parts['5']" :beginIndex="beginIndexPart5" v-if="testProgress==5 && testData.parts['5'] != null"></part5>
-      <part6 :partData="testData.parts['6']" :beginIndex="beginIndexPart6" v-if="testProgress==6 && testData.parts['6'] != null"></part6>
-      <part7 :partData="testData.parts['7']" :beginIndex="beginIndexPart7" v-if="testProgress==7 && testData.parts['7'] != null"></part7>
+      <part2 :partData="testData.parts['2']" v-if="testProgress==2 && testData.parts['2'] != null"></part2>
+      <part3 :partData="testData.parts['3']" v-if="testProgress==3 && testData.parts['3'] != null"></part3>
+      <part4 :partData="testData.parts['4']" v-if="testProgress==4 && testData.parts['4'] != null"></part4>
+      <part5 :partData="testData.parts['5']" v-if="testProgress==5 && testData.parts['5'] != null"></part5>
+      <part6 :partData="testData.parts['6']" v-if="testProgress==6 && testData.parts['6'] != null"></part6>
+      <part7 :partData="testData.parts['7']" v-if="testProgress==7 && testData.parts['7'] != null"></part7>
     </keep-alive>
   </div>
 </template>
@@ -47,13 +47,7 @@ export default {
   data() {
     return {
       testSubmited: false,
-      testData: {},
-      beginIndexPart2: 0,
-      beginIndexPart3: 0,
-      beginIndexPart4: 0,
-      beginIndexPart5: 0,
-      beginIndexPart6: 0,
-      beginIndexPart7: 0,
+      testData: {}
     };
   },
   computed: {
@@ -66,18 +60,14 @@ export default {
     axios.get("http://localhost:8081/api/generate-test/1").then(response => {
       this.testData = response.data;
       console.log(this.testData);
-      this.beginIndexPart2 = this.testData.parts['1'].questions.length;
-      this.beginIndexPart3 = this.beginIndexPart2+this.testData.parts['2'].questions.length;
-      this.beginIndexPart4 = this.beginIndexPart3+this.testData.parts['3'].questions.length;
-      this.beginIndexPart5 = this.beginIndexPart4+this.testData.parts['4'].questions.length;
-      this.beginIndexPart6 = this.beginIndexPart5+this.testData.parts['5'].questions.length;
-      let numQuestionPart6 = 0;
-      for(let questionGroup of this.testData.parts['6'].questionGroups) {
-        for(let question in questionGroup.questions) {
-          ++numQuestionPart6;
-        }
-      }
-      this.beginIndexPart7 = this.beginIndexPart6+numQuestionPart6;
+      this.$store.dispatch("updateAnswers", []);
+      this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['1'].questions);
+      this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['2'].questions);
+      this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['3'].questions);
+      this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['4'].questions);
+      this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['5'].questions);
+      this.$store.dispatch("addAnswersFromQuestionGroups", this.testData.parts['6'].questionGroups);
+      this.$store.dispatch("addAnswersFromQuestionGroups", this.testData.parts['7'].questionGroups);
     });
   },
   created() {

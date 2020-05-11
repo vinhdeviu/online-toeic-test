@@ -12,7 +12,7 @@ export default {
   props: ['totalAnswer'],
   data() {
     return {
-      score: 0
+      correctAnswer: 0
     }
   },
   computed: {
@@ -22,6 +22,8 @@ export default {
     })
   },
   created () {
+    console.log(this.selectedOptions);
+    console.log(this.answers);
     for(let i = 0; i < this.totalAnswer; i++) {
       if(this.selectedOptions[i] != null && this.answers[i].toUpperCase() == this.selectedOptions[i].toUpperCase()) {
         this.correctAnswer++;

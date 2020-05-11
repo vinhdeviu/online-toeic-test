@@ -27,37 +27,26 @@
       <hr/>
       <div
         class="row"
-        v-for="(question, indexQuestion) in questionGroup.questions"
+        v-for="question in questionGroup.questions"
         :key="question.id"
       >
         <div class="col-sm-8">
-          <h5>Question {{increaseQuestionCounter()}}: {{question.questionTittle}}</h5>
+          <h5>Question {{question.questionNo}}: {{question.questionTittle}}</h5>
           <div class="row" v-for="option in ['A','B','C','D']" :key="option">
             <div class="custom-control custom-radio">
               <input
                 type="radio"
-                :id="'q'+(indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex+1)+option"
-                :name="'q'+(indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex+1)"
+                :id="'q'+(question.questionNo)+option"
+                :name="'q'+(question.questionNo)"
                 class="custom-control-input"
                 :value="option"
-                :ref="'q'+(indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex+1)"
+                :ref="'q'+(question.questionNo)"
                 :disabled="testSubmitted"
-                @change="selectOption(indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex, option)"
+                @change="selectOption(question.questionNo-1, option)"
               />
-              <label
-                class="custom-control-label"
-                :for="'q'+(indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex+1)+option"
-              >{{option}}. {{question.answers[option].content}}</label>
-              <i
-                v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && selectedOptions[indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex]!=null && selectedOptions[indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex].toUpperCase()==question.correctAnswer.toUpperCase()"
-                class="fas fa-check-circle"
-                style="font-size:20px;color:green"
-              ></i>
-              <i
-                v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && (selectedOptions[indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex]== null || selectedOptions[indexQuestion+(questionGroup.questions.length*indexGroup)+beginIndex].toUpperCase()!=question.correctAnswer.toUpperCase())"
-                class="fa fa-close"
-                style="font-size:20px;color:red"
-              ></i>
+              <label class="custom-control-label" :for="'q'+(question.questionNo)+option">{{option}}. {{question.answers[option].content}}</label>
+              <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && selectedOptions[question.questionNo-1]!=null && selectedOptions[question.questionNo-1].toUpperCase()==question.correctAnswer.toUpperCase()" class="fas fa-check-circle" style="font-size:20px;color:green"></i>
+              <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && (selectedOptions[question.questionNo-1]== null || selectedOptions[question.questionNo-1].toUpperCase()!=question.correctAnswer.toUpperCase())" class="fa fa-close" style="font-size:20px;color:red"></i>
             </div>
           </div>
         </div>
@@ -81,47 +70,13 @@ import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
-  props: ['partData', 'beginIndex'],
-  data() {
-    return {
-      // partData: {
-      //   part: {},
-      //   questionGroupOutputList: [
-      //     {
-      //       questionGroup: {},
-      //       questions: [{}, {}, {}]
-      //     },
-      //     {
-      //       questionGroup: {},
-      //       questions: [{}, {}, {}]
-      //     }
-      //   ]
-      // },
-      // beginIndex: 1
-      questionCounter: this.beginIndex
-    };
-  },
+  props: ['partData'],
   computed: {
     ...mapGetters({
       testSubmitted: "getTestSubmitted",
       answers: "getAnswers",
       selectedOptions: "getSelectedOptions"
     })
-  },
-  beforeUpdate() { 
-    this.questionCounter = this.beginIndex 
-  },
-  mounted() {
-    // axios.get("http://localhost:8081/api/generate-part/7").then(response => {
-    //   this.partData = response.data;
-    //   console.log(this.partData);
-    //   this.beginIndex = this.answers.length;
-    //   this.$store.dispatch(
-    //     "addAnswersFromQuestionGroups",
-    //     this.partData.questionGroupOutputList
-    //   );
-    // });
-    console.log(this.partData);
   },
   methods: {
     prevPart() {
@@ -132,14 +87,11 @@ export default {
       this.$store.dispatch("updateTestProgress", 1);
     },
     selectOption(index, option) {
+      console.log(index)
       this.$store.dispatch("updateSingleSelectedOption", { index, option });
     },
     retest() {
       this.$router.push("/home");
-    },
-    increaseQuestionCounter() {
-      this.questionCounter++;
-      return this.questionCounter + '';
     }
   }
 };

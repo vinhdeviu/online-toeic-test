@@ -11,12 +11,12 @@
         {{partData.direction}}
       </div>
     </div>
-    <div v-for="(question, index) in partData.questions" :key="question.id">
+    <div v-for="(question) in partData.questions" :key="question.id">
       <hr />
       <div style="margin-top:30px"></div>
       <div class="row">
         <div class="col-sm-2">
-          <h5>Question {{index+1}}:</h5>
+          <h5>Question {{question.questionNo}}:</h5>
         </div>
       </div>
       <div class="row">
@@ -29,17 +29,17 @@
         <div class="custom-control custom-radio">
           <input
             type="radio"
-            :id="'q'+(index+1)+option"
-            :name="'q'+(index+1)"
+            :id="'q'+(question.questionNo)+option"
+            :name="'q'+(question.questionNo)"
             class="custom-control-input"
             :value="option"
-            :ref="'q'+(index+1)"
+            :ref="'q'+(question.questionNo)"
             :disabled="testSubmitted"
-            @change="selectOption(index, option)"
+            @change="selectOption(question.questionNo-1, option)"
           />
-          <label class="custom-control-label" :for="'q'+(index+1)+option">{{option}}</label>
-          <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && selectedOptions[index]!=null && selectedOptions[index].toUpperCase()==question.correctAnswer.toUpperCase()" class="fas fa-check-circle" style="font-size:20px;color:green"></i>
-          <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && (selectedOptions[index]== null || selectedOptions[index].toUpperCase()!=question.correctAnswer.toUpperCase())" class="fa fa-close" style="font-size:20px;color:red"></i>
+          <label class="custom-control-label" :for="'q'+(question.questionNo)+option">{{option}}</label>
+          <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && selectedOptions[question.questionNo-1]!=null && selectedOptions[question.questionNo-1].toUpperCase()==question.correctAnswer.toUpperCase()" class="fas fa-check-circle" style="font-size:20px;color:green"></i>
+          <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && (selectedOptions[question.questionNo-1]== null || selectedOptions[question.questionNo-1].toUpperCase()!=question.correctAnswer.toUpperCase())" class="fa fa-close" style="font-size:20px;color:red"></i>
         </div>
       </div>
     </div>
@@ -61,28 +61,12 @@ import { myAnswer } from '../../helper/common'
 
 export default {
   props: ['partData'],
-  data() {
-    return {
-      // partData: {
-      //   part: {},
-      //   questions: [{}, {}, {}, {}]
-      // }
-    };
-  },
   computed: {
     ...mapGetters({
       testProgress: "getTestProgress",
       testSubmitted: "getTestSubmitted",
       selectedOptions: "getSelectedOptions",
     })
-  },
-  mounted() {
-    // axios.get("http://localhost:8081/api/generate-part/1").then(response => {
-    //   this.partData = response.data;
-    //   console.log(this.partData);
-    //   this.$store.dispatch("addAnswersFromQuestions", this.partData.questions);
-    // });
-    console.log(this.partData);
   },
   methods: {
     nextPart() {

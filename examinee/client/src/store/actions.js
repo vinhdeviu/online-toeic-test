@@ -23,7 +23,7 @@ export default {
         console.log('action addAnswersFromQuestions is processing with questions', questions);
         let answers = []
         for(let i = 0; i < questions.length; i++) {
-            answers[i] = questions[i].answer;
+            answers[i] = questions[i].correctAnswer;
         }
         commit('mergeAnswers', answers);
     },
@@ -33,7 +33,7 @@ export default {
         let k = 0;
         for(let questionGroup of questionGroups) {
             for(let question of questionGroup.questions) {
-                answers[k] = question.answer;
+                answers[k] = question.correctAnswer;
                 k++;
             }
         }
