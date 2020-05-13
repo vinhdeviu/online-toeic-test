@@ -2,15 +2,12 @@ package online_toeic_test_springboot.infrastructure.repository;
 
 import lombok.RequiredArgsConstructor;
 import online_toeic_test_springboot.domain.model.*;
-import online_toeic_test_springboot.domain.repository.ToeicTestCreateRepository;
 import online_toeic_test_springboot.domain.repository.ToeicTestUpdateRepository;
 import online_toeic_test_springboot.exception.EntityNotFoundException;
 import online_toeic_test_springboot.infrastructure.mapper.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Repository
@@ -27,10 +24,6 @@ public class MyBatisToeicTestUpdateRepository implements ToeicTestUpdateReposito
   private final QuestionCRUDMapper questionCRUDMapper;
 
   private final AnswerCRUDMapper answerCRUDMapper;
-
-  private final AchievementCRUDMapper achievementCRUDMapper;
-
-  private final ExamineeAnswerCRUDMapper examineeAnswerCRUDMapper;
 
   @Override
   public void updateTest(Test test) {
@@ -70,6 +63,7 @@ public class MyBatisToeicTestUpdateRepository implements ToeicTestUpdateReposito
     if(part.getDirection() == null) {
       part.setDirection(oldPart.getDirection());
     }
+    partCRUDMapper.updatePart(part);
   }
   
   @Override
@@ -94,6 +88,7 @@ public class MyBatisToeicTestUpdateRepository implements ToeicTestUpdateReposito
     if(questionGroup.getParagraph() == null) {
       questionGroup.setParagraph(oldQuestionGroup.getParagraph());
     }
+    questionGroupCRUDMapper.updateQuestionGroup(questionGroup);
   }
 
   @Override
@@ -124,11 +119,12 @@ public class MyBatisToeicTestUpdateRepository implements ToeicTestUpdateReposito
     if(question.getCorrectAnswerId() == null) {
       question.setCorrectAnswerId(oldQuestion.getCorrectAnswerId());
     }
+    questionCRUDMapper.updateQuestion(question);
     List<Answer> oldAnswers = answerCRUDMapper.queryAnswersByQuestionId(question.getId());
     Map<Character, Answer> answers = question.getAnswers();
     for (Map.Entry<Character, Answer> answerEntry : answers.entrySet()) {
+      Answer answer = answerEntry.getValue();
       for(Answer oldAnswer: oldAnswers) {
-        Answer answer = answerEntry.getValue();
         if (answer.getId().equals(oldAnswer.getId())) {
           if(answer.getQuestionId() == null) {
             answer.setQuestionId(oldAnswer.getQuestionId());
@@ -138,6 +134,7 @@ public class MyBatisToeicTestUpdateRepository implements ToeicTestUpdateReposito
           }
         }
       }
+      answerCRUDMapper.updateAnswer(answer);
     }
   }
 }

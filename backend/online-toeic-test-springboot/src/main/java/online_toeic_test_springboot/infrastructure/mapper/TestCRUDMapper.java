@@ -24,4 +24,7 @@ public interface TestCRUDMapper {
 
   @Update("UPDATE Test SET test_name=#{testName},audio_link=#{audioLink} WHERE id=#{id}")
   void updateTest(Test test);
+
+  @Delete("DELETE FROM Test WHERE id=#{id}")
+  void deleteTestById(int id);
 }

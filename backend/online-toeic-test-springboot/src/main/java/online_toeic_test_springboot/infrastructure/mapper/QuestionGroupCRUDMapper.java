@@ -1,10 +1,7 @@
 package online_toeic_test_springboot.infrastructure.mapper;
 
 import online_toeic_test_springboot.domain.model.QuestionGroup;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,4 +18,10 @@ public interface QuestionGroupCRUDMapper {
   @Insert("INSERT INTO Question_Group (`index`,part_id,image_link,paragraph,tittle) VALUES (#{index},#{partId},#{imageLink},#{paragraph},#{tittle})")
   @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
   void insertQuestionGroup(QuestionGroup questionGroup);
+
+  @Update("UPDATE Question_Group SET part_id=#{partId},`index`=#{index},image_link=#{imageLink},tittle=#{tittle},paragraph=#{paragraph} WHERE id=#{id}")
+  void updateQuestionGroup(QuestionGroup questionGroup);
+
+  @Delete("DELETE FROM Question_Group WHERE id=#{id}")
+  void deleteQuestionGroupById(int id);
 }
