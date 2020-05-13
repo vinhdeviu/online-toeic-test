@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class TestInfor {
-    private int timeInSecond;
-    private int totalQuestions;
+    private Integer timeInSecond;
+    private Integer totalQuestions;
 }

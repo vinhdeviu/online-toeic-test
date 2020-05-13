@@ -8,14 +8,14 @@ import java.util.Map;
 @Data
 @RequiredArgsConstructor
 public class Question {
-    private int id;
-    private int partId;
-    private int groupId;
-    private int index;
+    private Integer id;
+    private Integer partId;
+    private Integer groupId;
+    private Integer index;
     private String imageLink;
     private String questionTittle;
-    private char correctAnswer;
-    private int correctAnswerId;
-    private int questionNo;
+    private Character correctAnswer;
+    private Integer correctAnswerId;
+    private Integer questionNo;
     private Map<Character, Answer> answers;
 }

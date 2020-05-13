@@ -1,7 +1,7 @@
-package online_toeic_test_springboot.data.repository;
+package online_toeic_test_springboot.infrastructure.repository;
 
 import lombok.RequiredArgsConstructor;
-import online_toeic_test_springboot.data.mapper.*;
+import online_toeic_test_springboot.infrastructure.mapper.*;
 import online_toeic_test_springboot.domain.model.*;
 import online_toeic_test_springboot.domain.repository.ToeicTestRetrieveRepository;
 import online_toeic_test_springboot.exception.EntityNotFoundException;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MyBatisToeicTestRetrieveRepository implements ToeicTestRetrieveRepository {
 

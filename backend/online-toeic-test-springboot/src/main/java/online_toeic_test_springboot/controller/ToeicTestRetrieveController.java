@@ -1,4 +1,4 @@
-package online_toeic_test_springboot.web;
+package online_toeic_test_springboot.controller;
 
 import lombok.RequiredArgsConstructor;
 import online_toeic_test_springboot.domain.model.Achievement;
@@ -22,19 +22,17 @@ public class ToeicTestRetrieveController {
 
   @GetMapping("/tests")
   public ResponseEntity<List<Test>> getAllTests() {
-    List<Test> tests = toeicTestRetrieveService.retrieveAllTests();
-    return ResponseEntity.ok().body(tests);
+    return ResponseEntity.ok().body(toeicTestRetrieveService.retrieveAllTests());
   }
 
   @GetMapping("/generate-test/{id}")
   public ResponseEntity<Test> generateTest(@PathVariable int id) {
-    Test test = toeicTestRetrieveService.generateTest(id);
-    return ResponseEntity.ok().body(test);
+    return ResponseEntity.ok().body(toeicTestRetrieveService.retrieveTestByIdAndShuffle(id));
   }
 
   @GetMapping("/generate-test-achievement/{achievementId}")
   public ResponseEntity<Test> generateTestByAchievementId(@PathVariable int achievementId) {
-    return ResponseEntity.ok().body(toeicTestRetrieveService.generateTestByAchievementId(achievementId));
+    return ResponseEntity.ok().body(toeicTestRetrieveService.retrieveTestByAchievementIdAndShuffle(achievementId));
   }
 
   @GetMapping("/achievements")

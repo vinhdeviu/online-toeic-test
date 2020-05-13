@@ -1,4 +1,4 @@
-package online_toeic_test_springboot.data.mapper;
+package online_toeic_test_springboot.infrastructure.mapper;
 
 import online_toeic_test_springboot.domain.model.Achievement;
 import org.apache.ibatis.annotations.Insert;

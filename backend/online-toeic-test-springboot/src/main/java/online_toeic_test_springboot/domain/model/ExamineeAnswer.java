@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class ExamineeAnswer {
-    private int id;
-    private int achievementId;
-    private int questionId;
-    private char option;
-    private int answerId;
+    private Integer id;
+    private Integer achievementId;
+    private Integer questionId;
+    private Character option;
+    private Integer answerId;
 }

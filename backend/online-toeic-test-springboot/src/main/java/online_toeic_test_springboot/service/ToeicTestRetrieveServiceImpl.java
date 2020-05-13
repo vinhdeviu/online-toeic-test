@@ -59,7 +59,7 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
         Answer answer = answers.get(i);
         char option = (char) (65+i);
         answerMap.put(option, answer);
-        if(answer.getId() == question.getCorrectAnswerId()) {
+        if(answer.getId().equals(question.getCorrectAnswerId())) {
           question.setCorrectAnswer(option);
         }
       }
@@ -68,7 +68,7 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
     return questions;
   }
 
-  public Test generateTest(int testId) {
+  public Test retrieveTestByIdAndShuffle(int testId) {
     questionNoIndex = 0;
     Test test = toeicTestRetrieveRepository.getTestById(testId);
     Part part1 = generatePartWithOnlyQuestions(testId, 1, false, false);
@@ -91,9 +91,9 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
   }
 
   @Override
-  public Test generateTestByAchievementId(int achievementId) {
+  public Test retrieveTestByAchievementIdAndShuffle(int achievementId) {
     Achievement achievement = toeicTestRetrieveRepository.getAchievementById(achievementId);
-    Test test = generateTest(achievement.getTestId());
+    Test test = retrieveTestByIdAndShuffle(achievement.getTestId());
     List<Question> allQuestions = new ArrayList<>();
     for (Map.Entry<Integer, Part> partMap : test.getParts().entrySet()) {
       Part part = partMap.getValue();
@@ -110,17 +110,17 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
     List<ExamineeAnswer> examineeAnswers = achievement.getExamineeAnswers();
     for(ExamineeAnswer examineeAnswer: examineeAnswers) {
       for(Question question: allQuestions) {
-        if(examineeAnswer.getQuestionId() != question.getId()) {
+        if(!examineeAnswer.getQuestionId().equals(question.getId())) {
           continue;
         }
-        if(examineeAnswer.getAnswerId() == 0) {
+        if(examineeAnswer.getAnswerId() == null) {
           examineeSelectedOptions.set(question.getQuestionNo() - 1, examineeAnswer.getOption());
           continue;
         }
         Map<Character, Answer> answers = question.getAnswers();
-        for (Map.Entry<Character, Answer> answerMap : answers.entrySet()) {
-          if(examineeAnswer.getAnswerId() == answerMap.getValue().getId()) {
-            examineeSelectedOptions.set(question.getQuestionNo() - 1, answerMap.getKey());
+        for (Map.Entry<Character, Answer> answerEntry : answers.entrySet()) {
+          if(examineeAnswer.getAnswerId().equals(answerEntry.getValue().getId())) {
+            examineeSelectedOptions.set(question.getQuestionNo() - 1, answerEntry.getKey());
             continue;
           }
         }

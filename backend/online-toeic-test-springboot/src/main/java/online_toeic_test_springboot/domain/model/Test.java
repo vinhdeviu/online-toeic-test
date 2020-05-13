@@ -9,7 +9,7 @@ import java.util.Map;
 @Data
 @RequiredArgsConstructor
 public class Test {
-    private int id;
+    private Integer id;
     private String testName;
     private String audioLink;
     private Map<Integer, Part> parts;

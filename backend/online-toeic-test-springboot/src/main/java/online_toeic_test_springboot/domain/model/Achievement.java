@@ -8,11 +8,11 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 public class Achievement {
-    private int id;
-    private int examineeId;
-    private int testId;
+    private Integer id;
+    private Integer examineeId;
+    private Integer testId;
     private String date;
-    private int totalCorrectAnswer;
+    private Integer totalCorrectAnswer;
     private String testName;
     private List<ExamineeAnswer> examineeAnswers;
 }

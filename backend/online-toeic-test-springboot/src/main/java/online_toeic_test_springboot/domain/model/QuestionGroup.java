@@ -8,11 +8,11 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 public class QuestionGroup {
-    private int id;
+    private Integer id;
     private String tittle;
-    private int partId;
+    private Integer partId;
     private String imageLink;
     private String paragraph;
-    private int index;
+    private Integer index;
     private List<Question> questions;
 }

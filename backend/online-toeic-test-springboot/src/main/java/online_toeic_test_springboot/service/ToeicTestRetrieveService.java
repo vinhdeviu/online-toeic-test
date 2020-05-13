@@ -10,9 +10,9 @@ public interface ToeicTestRetrieveService {
 
     List<Test> retrieveAllTests();
 
-    Test generateTest(int testId);
+    Test retrieveTestByIdAndShuffle(int testId);
 
-    Test generateTestByAchievementId(int achievementId);
+    Test retrieveTestByAchievementIdAndShuffle(int achievementId);
 
     List<Achievement> getAchievementByExamineeId(int examineeId);
 
