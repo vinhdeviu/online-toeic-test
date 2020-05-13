@@ -1,8 +1,7 @@
-package online_toeic_test_springboot.domain;
+package online_toeic_test_springboot.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor

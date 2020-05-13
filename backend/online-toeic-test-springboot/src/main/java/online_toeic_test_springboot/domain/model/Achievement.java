@@ -1,4 +1,4 @@
-package online_toeic_test_springboot.domain;
+package online_toeic_test_springboot.domain.model;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +14,5 @@ public class Achievement {
     private String date;
     private int totalCorrectAnswer;
     private String testName;
-    private Test test;
     private List<ExamineeAnswer> examineeAnswers;
 }

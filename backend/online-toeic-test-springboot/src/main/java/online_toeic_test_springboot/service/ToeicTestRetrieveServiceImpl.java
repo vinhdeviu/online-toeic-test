@@ -1,7 +1,8 @@
 package online_toeic_test_springboot.service;
 
 import lombok.RequiredArgsConstructor;
-import online_toeic_test_springboot.domain.*;
+import online_toeic_test_springboot.domain.model.*;
+import online_toeic_test_springboot.domain.repository.ToeicTestRetrieveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,37 +10,34 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class ToeicTestServiceImpl implements ToeicTestService {
+public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
 
   @Autowired
-  private final ToeicTestRetriveRepository toeicTestRetriveRepository;
-
-  @Autowired
-  private final AchievementRepository achievementRepository;
+  private final ToeicTestRetrieveRepository toeicTestRetrieveRepository;
 
   private int questionNoIndex = 0;
 
   public List<Test> retrieveAllTests() {
-    return toeicTestRetriveRepository.getAllTests();
+    return toeicTestRetrieveRepository.getAllTests();
   }
 
   private Part generatePartWithOnlyQuestions(int testId, int partNum, boolean shuffleQuestionsFlag, boolean shuffleAnswersFlag) {
-    Part part = toeicTestRetriveRepository.getPartByTestIdAndPartNum(testId, partNum);
-    List<Question> questions = toeicTestRetriveRepository.getQuestionsByPartId(part.getId());
+    Part part = toeicTestRetrieveRepository.getPartByTestIdAndPartNum(testId, partNum);
+    List<Question> questions = toeicTestRetrieveRepository.getQuestionsByPartId(part.getId());
     part.setQuestions(shuffleQuestionsWithAnswers(questions, shuffleQuestionsFlag, shuffleAnswersFlag));
     return part;
   }
 
   private Part generatePartWithQuestionGroups(int testId, int partNum, boolean shuffleQuestionGroupsFlag, boolean shuffleQuestionsFlag, boolean shuffleAnswersFlag) {
-    Part part = toeicTestRetriveRepository.getPartByTestIdAndPartNum(testId, partNum);
-    List<QuestionGroup> questionGroups = toeicTestRetriveRepository.getGroupsByPartId(part.getId());
+    Part part = toeicTestRetrieveRepository.getPartByTestIdAndPartNum(testId, partNum);
+    List<QuestionGroup> questionGroups = toeicTestRetrieveRepository.getQuestionGroupsByPartId(part.getId());
     if(shuffleQuestionGroupsFlag) {
       Collections.shuffle(questionGroups);
     }
     for(QuestionGroup questionGroup: questionGroups) {
-      List<Question> questions = toeicTestRetriveRepository.getQuestionsByGroupId(questionGroup.getId());
+      List<Question> questions = toeicTestRetrieveRepository.getQuestionsByGroupId(questionGroup.getId());
       questionGroup.setQuestions(shuffleQuestionsWithAnswers(questions, shuffleQuestionsFlag, shuffleAnswersFlag));
     }
     part.setQuestionGroups(questionGroups);
@@ -52,7 +50,7 @@ public class ToeicTestServiceImpl implements ToeicTestService {
     }
     for(Question question: questions) {
       question.setQuestionNo(++questionNoIndex);
-      List<Answer> answers = toeicTestRetriveRepository.getAnswersByQuestionId(question.getId());
+      List<Answer> answers = toeicTestRetrieveRepository.getAnswersByQuestionId(question.getId());
       if(shuffleAnswersFlag) {
         Collections.shuffle(answers);
       }
@@ -72,7 +70,7 @@ public class ToeicTestServiceImpl implements ToeicTestService {
 
   public Test generateTest(int testId) {
     questionNoIndex = 0;
-    Test test = toeicTestRetriveRepository.getTestById(testId);
+    Test test = toeicTestRetrieveRepository.getTestById(testId);
     Part part1 = generatePartWithOnlyQuestions(testId, 1, false, false);
     Part part2 = generatePartWithOnlyQuestions(testId, 2, false, false);
     Part part3 = generatePartWithOnlyQuestions(testId, 3, false, true);
@@ -94,32 +92,20 @@ public class ToeicTestServiceImpl implements ToeicTestService {
 
   @Override
   public Test generateTestByAchievementId(int achievementId) {
-    Achievement achievement = achievementRepository.getAchievementById(achievementId);
+    Achievement achievement = toeicTestRetrieveRepository.getAchievementById(achievementId);
     Test test = generateTest(achievement.getTestId());
-    achievement.setTest(test);
-    achievement.setTestName(test.getTestName());
     List<Question> allQuestions = new ArrayList<>();
-    List<Question> questionsPart1 = test.getParts().get(1).getQuestions();
-    allQuestions.addAll(questionsPart1);
-    List<Question> questionsPart2 = test.getParts().get(2).getQuestions();
-    allQuestions.addAll(questionsPart2);
-    List<Question> questionsPart3 = test.getParts().get(3).getQuestions();
-    allQuestions.addAll(questionsPart3);
-    List<Question> questionsPart4 = test.getParts().get(4).getQuestions();
-    allQuestions.addAll(questionsPart4);
-    List<Question> questionsPart5 = test.getParts().get(5).getQuestions();
-    allQuestions.addAll(questionsPart5);
-    List<QuestionGroup> questionGroupsPart6 = test.getParts().get(6).getQuestionGroups();
-    for(QuestionGroup questionGroupPart6: questionGroupsPart6) {
-      List<Question> questionsPart6 = questionGroupPart6.getQuestions();
-      allQuestions.addAll(questionsPart6);
+    for (Map.Entry<Integer, Part> partMap : test.getParts().entrySet()) {
+      Part part = partMap.getValue();
+      if(part.getQuestionGroups() != null) {
+        for(QuestionGroup questionGroup: part.getQuestionGroups()) {
+          allQuestions.addAll(questionGroup.getQuestions());
+        }
+      }
+      if(part.getQuestions() != null) {
+        allQuestions.addAll(part.getQuestions());
+      }
     }
-    List<QuestionGroup> questionGroupsPart7 = test.getParts().get(7).getQuestionGroups();
-    for(QuestionGroup questionGroupPart7: questionGroupsPart7) {
-      List<Question> questionsPart7 = questionGroupPart7.getQuestions();
-      allQuestions.addAll(questionsPart7);
-    }
-
     List<Character> examineeSelectedOptions = Arrays.asList(new Character[allQuestions.size()]);
     List<ExamineeAnswer> examineeAnswers = achievement.getExamineeAnswers();
     for(ExamineeAnswer examineeAnswer: examineeAnswers) {
@@ -132,10 +118,9 @@ public class ToeicTestServiceImpl implements ToeicTestService {
           continue;
         }
         Map<Character, Answer> answers = question.getAnswers();
-        for (Map.Entry<Character, Answer> answer : answers.entrySet()) {
-          //System.out.println("Key : " + answer.getKey() + " Value : " + answer.getValue());
-          if(examineeAnswer.getAnswerId() == answer.getValue().getId()) {
-            examineeSelectedOptions.set(question.getQuestionNo() - 1, answer.getKey());
+        for (Map.Entry<Character, Answer> answerMap : answers.entrySet()) {
+          if(examineeAnswer.getAnswerId() == answerMap.getValue().getId()) {
+            examineeSelectedOptions.set(question.getQuestionNo() - 1, answerMap.getKey());
             continue;
           }
         }
@@ -143,6 +128,11 @@ public class ToeicTestServiceImpl implements ToeicTestService {
     }
     test.setExamineeSelectedOptions(examineeSelectedOptions);
     return test;
+  }
+
+  @Override
+  public List<Achievement> getAchievementByExamineeId(int examineeId) {
+    return toeicTestRetrieveRepository.getAchievementByExamineeId(examineeId);
   }
 
   @Override

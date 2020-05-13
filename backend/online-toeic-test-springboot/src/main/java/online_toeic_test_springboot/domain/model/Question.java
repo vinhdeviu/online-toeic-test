@@ -1,4 +1,4 @@
-package online_toeic_test_springboot.domain;
+package online_toeic_test_springboot.domain.model;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,6 @@ public class Question {
     private String questionTittle;
     private char correctAnswer;
     private int correctAnswerId;
-    private boolean switchAble;
     private int questionNo;
     private Map<Character, Answer> answers;
 }

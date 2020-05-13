@@ -1,4 +1,4 @@
-package online_toeic_test_springboot.domain;
+package online_toeic_test_springboot.domain.model;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,6 @@ public class QuestionGroup {
     private int partId;
     private String imageLink;
     private String paragraph;
-    private boolean switchAble;
     private int index;
     private List<Question> questions;
 }
