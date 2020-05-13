@@ -16,77 +16,30 @@ public class ToeicTestServiceImpl implements ToeicTestService {
   @Autowired
   private final ToeicTestRetriveRepository toeicTestRetriveRepository;
 
+  @Autowired
+  private final AchievementRepository achievementRepository;
+
+  private int questionNoIndex = 0;
+
   public List<Test> retrieveAllTests() {
-    return toeicTestRetriveRepository.queryAllTests();
+    return toeicTestRetriveRepository.getAllTests();
   }
 
-//  private PartWithQuestionOutput generatePartWithQuestionOutput(int testId, int partNum) {
-//    Part part = toeicTestRetriveRepository.queryPartByTestIdAndPartNum(testId, partNum);
-//    System.out.println(part);
-//    List<Question> questions = toeicTestRetriveRepository.queryQuestionsByPartId(part.getId());
-//    System.out.println(questions);
-//    List<QuestionOutput> questionOutputList = new ArrayList<>();
-//    for(Question question: questions) {
-//      List<Answer> answers = toeicTestRetriveRepository.queryAnswersByQuestionId(question.getId());
-//      System.out.println(answers);
-//      QuestionOutput questionOutput = new QuestionOutput(question, answers);
-//      questionOutputList.add(questionOutput);
-//    }
-//    return new PartWithQuestionOutput(part, questionOutputList);
-//  }
-//
-//  private PartWithQuestionGroupOutput generatePartWithQuestionGroupOutput(int testId, int partNum) {
-//    Part part = toeicTestRetriveRepository.queryPartByTestIdAndPartNum(testId, partNum);
-//    System.out.println(part);
-//    List<QuestionGroup> questionGroups = toeicTestRetriveRepository.queryGroupsByPartId(part.getId());
-//    System.out.println(questionGroups);
-//    List<QuestionGroupOutput> questionGroupOutputList = new ArrayList<>();
-//    for(QuestionGroup questionGroup: questionGroups) {
-//      List<Question> questions = toeicTestRetriveRepository.queryQuestionsByGroupId(questionGroup.getId());
-//      System.out.println(questions);
-//      List<QuestionOutput> questionOutputList = new ArrayList<>();
-//      for(Question question: questions) {
-//        List<Answer> answers = toeicTestRetriveRepository.queryAnswersByQuestionId(question.getId());
-//        System.out.println(answers);
-//        QuestionOutput questionOutput = new QuestionOutput(question, answers);
-//        questionOutputList.add(questionOutput);
-//      }
-//      QuestionGroupOutput questionGroupOutput = new QuestionGroupOutput(questionGroup, questionOutputList);
-//      questionGroupOutputList.add(questionGroupOutput);
-//    }
-//    return new PartWithQuestionGroupOutput(part, questionGroupOutputList);
-//  }
-//
-//  @Override
-//  public TestOutput generateTest(int testId) {
-//    Test test = toeicTestRetriveRepository.queryTestById(testId);
-//    System.out.println(test);
-//    PartWithQuestionOutput part1 = generatePartWithQuestionOutput(testId, 1);
-//    PartWithQuestionOutput part2 = generatePartWithQuestionOutput(testId, 2);
-//    PartWithQuestionOutput part3 = generatePartWithQuestionOutput(testId, 3);
-//    PartWithQuestionOutput part4 = generatePartWithQuestionOutput(testId, 4);
-//    PartWithQuestionOutput part5 = generatePartWithQuestionOutput(testId, 5);
-//    PartWithQuestionGroupOutput part6 = generatePartWithQuestionGroupOutput(testId, 6);
-//    PartWithQuestionGroupOutput part7 = generatePartWithQuestionGroupOutput(testId, 7);
-//    TestOutput testOutput = new TestOutput(test, part1, part2, part3, part4, part5, part6, part7);
-//    return testOutput;
-//  }
-
   private Part generatePartWithOnlyQuestions(int testId, int partNum, boolean shuffleQuestionsFlag, boolean shuffleAnswersFlag) {
-    Part part = toeicTestRetriveRepository.queryPartByTestIdAndPartNum(testId, partNum);
-    List<Question> questions = toeicTestRetriveRepository.queryQuestionsByPartId(part.getId());
+    Part part = toeicTestRetriveRepository.getPartByTestIdAndPartNum(testId, partNum);
+    List<Question> questions = toeicTestRetriveRepository.getQuestionsByPartId(part.getId());
     part.setQuestions(shuffleQuestionsWithAnswers(questions, shuffleQuestionsFlag, shuffleAnswersFlag));
     return part;
   }
 
   private Part generatePartWithQuestionGroups(int testId, int partNum, boolean shuffleQuestionGroupsFlag, boolean shuffleQuestionsFlag, boolean shuffleAnswersFlag) {
-    Part part = toeicTestRetriveRepository.queryPartByTestIdAndPartNum(testId, partNum);
-    List<QuestionGroup> questionGroups = toeicTestRetriveRepository.queryGroupsByPartId(part.getId());
+    Part part = toeicTestRetriveRepository.getPartByTestIdAndPartNum(testId, partNum);
+    List<QuestionGroup> questionGroups = toeicTestRetriveRepository.getGroupsByPartId(part.getId());
     if(shuffleQuestionGroupsFlag) {
       Collections.shuffle(questionGroups);
     }
     for(QuestionGroup questionGroup: questionGroups) {
-      List<Question> questions = toeicTestRetriveRepository.queryQuestionsByGroupId(questionGroup.getId());
+      List<Question> questions = toeicTestRetriveRepository.getQuestionsByGroupId(questionGroup.getId());
       questionGroup.setQuestions(shuffleQuestionsWithAnswers(questions, shuffleQuestionsFlag, shuffleAnswersFlag));
     }
     part.setQuestionGroups(questionGroups);
@@ -98,7 +51,8 @@ public class ToeicTestServiceImpl implements ToeicTestService {
       Collections.shuffle(questions);
     }
     for(Question question: questions) {
-      List<Answer> answers = toeicTestRetriveRepository.queryAnswersByQuestionId(question.getId());
+      question.setQuestionNo(++questionNoIndex);
+      List<Answer> answers = toeicTestRetriveRepository.getAnswersByQuestionId(question.getId());
       if(shuffleAnswersFlag) {
         Collections.shuffle(answers);
       }
@@ -117,7 +71,8 @@ public class ToeicTestServiceImpl implements ToeicTestService {
   }
 
   public Test generateTest(int testId) {
-    Test test = toeicTestRetriveRepository.queryTestById(testId);
+    questionNoIndex = 0;
+    Test test = toeicTestRetriveRepository.getTestById(testId);
     Part part1 = generatePartWithOnlyQuestions(testId, 1, false, false);
     Part part2 = generatePartWithOnlyQuestions(testId, 2, false, false);
     Part part3 = generatePartWithOnlyQuestions(testId, 3, false, true);
@@ -134,6 +89,59 @@ public class ToeicTestServiceImpl implements ToeicTestService {
     partMap.put(6, part6);
     partMap.put(7, part7);
     test.setParts(partMap);
+    return test;
+  }
+
+  @Override
+  public Test generateTestByAchievementId(int achievementId) {
+    Achievement achievement = achievementRepository.getAchievementById(achievementId);
+    Test test = generateTest(achievement.getTestId());
+    achievement.setTest(test);
+    achievement.setTestName(test.getTestName());
+    List<Question> allQuestions = new ArrayList<>();
+    List<Question> questionsPart1 = test.getParts().get(1).getQuestions();
+    allQuestions.addAll(questionsPart1);
+    List<Question> questionsPart2 = test.getParts().get(2).getQuestions();
+    allQuestions.addAll(questionsPart2);
+    List<Question> questionsPart3 = test.getParts().get(3).getQuestions();
+    allQuestions.addAll(questionsPart3);
+    List<Question> questionsPart4 = test.getParts().get(4).getQuestions();
+    allQuestions.addAll(questionsPart4);
+    List<Question> questionsPart5 = test.getParts().get(5).getQuestions();
+    allQuestions.addAll(questionsPart5);
+    List<QuestionGroup> questionGroupsPart6 = test.getParts().get(6).getQuestionGroups();
+    for(QuestionGroup questionGroupPart6: questionGroupsPart6) {
+      List<Question> questionsPart6 = questionGroupPart6.getQuestions();
+      allQuestions.addAll(questionsPart6);
+    }
+    List<QuestionGroup> questionGroupsPart7 = test.getParts().get(7).getQuestionGroups();
+    for(QuestionGroup questionGroupPart7: questionGroupsPart7) {
+      List<Question> questionsPart7 = questionGroupPart7.getQuestions();
+      allQuestions.addAll(questionsPart7);
+    }
+
+    List<Character> examineeSelectedOptions = Arrays.asList(new Character[allQuestions.size()]);
+    List<ExamineeAnswer> examineeAnswers = achievement.getExamineeAnswers();
+    for(ExamineeAnswer examineeAnswer: examineeAnswers) {
+      for(Question question: allQuestions) {
+        if(examineeAnswer.getQuestionId() != question.getId()) {
+          continue;
+        }
+        if(examineeAnswer.getAnswerId() == 0) {
+          examineeSelectedOptions.set(question.getQuestionNo() - 1, examineeAnswer.getOption());
+          continue;
+        }
+        Map<Character, Answer> answers = question.getAnswers();
+        for (Map.Entry<Character, Answer> answer : answers.entrySet()) {
+          //System.out.println("Key : " + answer.getKey() + " Value : " + answer.getValue());
+          if(examineeAnswer.getAnswerId() == answer.getValue().getId()) {
+            examineeSelectedOptions.set(question.getQuestionNo() - 1, answer.getKey());
+            continue;
+          }
+        }
+      }
+    }
+    test.setExamineeSelectedOptions(examineeSelectedOptions);
     return test;
   }
 

@@ -9,13 +9,13 @@
     <div style="margin-top:80px"></div>
     <div class="row">
       <div class="col-sm-4">
-        <button @click="doTest()" class="btn btn-primary btn-block">Easy</button>
+        <button @click="doTest()" class="btn btn-primary btn-block">Test 1</button>
       </div>
       <div class="col-sm-4">
-        <button @click="doTest()" class="btn btn-primary btn-block">Normal</button>
+        <button @click="doTest()" class="btn btn-primary btn-block">Test 2</button>
       </div>
       <div class="col-sm-4">
-        <button @click="doTest()" class="btn btn-primary btn-block">Hard</button>
+        <button @click="doTest()" class="btn btn-primary btn-block">Test 3</button>
       </div>
     </div>
   </div>

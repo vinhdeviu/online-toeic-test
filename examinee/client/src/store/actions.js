@@ -11,13 +11,17 @@ export default {
         console.log('action updateTestSubmitted is processing with testSubmitted', testSubmitted);
         commit('setTestSubmitted', testSubmitted);
     },
+    updateTestReviewFlag({ commit }, testReviewFlag) {
+        console.log('action updateTestReviewFlag is processing with testReviewFlag', testReviewFlag);
+        commit('setTestReviewFlag', testReviewFlag);
+    },
     updateSelectedOptions({ commit }, selectedOptions) {
         console.log('action updateSelectedOptions is processing with selectedOptions', selectedOptions);
         commit('setSelectedOptions', selectedOptions);
     },
-    updateSingleSelectedOption({ commit }, indexAndOption) {
-        console.log('action updateSingleSelectedOption is processing with indexAndOption', indexAndOption);
-        commit('setSelectedOption', indexAndOption);
+    updateSingleSelectedOption({ commit }, indexAndData) {
+        console.log('action updateSingleSelectedOption is processing with indexAndData', indexAndData);
+        commit('setSelectedOption', indexAndData);
     },
     addAnswersFromQuestions({ commit }, questions) {
         console.log('action addAnswersFromQuestions is processing with questions', questions);
@@ -42,5 +46,13 @@ export default {
     updateAnswers({ commit }, answers) {
         console.log('action updateAnswers is processing with answers', answers)
         commit('setAnswers', answers);
+    },
+    updateExamineeAnswers({ commit }, examineeAnswers) {
+        console.log('action updateExamineeAnswers is processing with examineeAnswers', examineeAnswers);
+        commit('setExamineeAnswers', examineeAnswers);
+    },
+    updateSingleExamineeAnswer({ commit }, indexAndData) {
+        console.log('action updateSingleExamineeAnswer is processing with indexAndData', indexAndData);
+        commit('setExamineeAnswer', indexAndData);
     },
 }

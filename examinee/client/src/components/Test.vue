@@ -1,7 +1,7 @@
 <template>
   <div class="col-sm-4">
     <timer :timeInSecond="timeInSecond" v-if="testProgress != 0 && !testSubmitted"></timer>
-    <result :totalAnswer="totalAnswer" v-if="testProgress != 0 && testSubmitted"></result>
+    <result :totalQuestions="totalQuestions" v-if="testProgress != 0 && testSubmitted"></result>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       timeInSecond: 0,
-      totalAnswer: 0
+      totalQuestions: 0
     };
   },
   components: {
@@ -33,7 +33,7 @@ export default {
       axios.get("http://localhost:8081/api/test-information").then(response => {
         console.log(response.data);
         this.timeInSecond = response.data.timeInSecond;
-        this.totalAnswer = response.data.totalAnswer;
+        this.totalQuestions = response.data.totalQuestions;
       });
     }
   }

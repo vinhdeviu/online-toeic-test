@@ -1,7 +1,5 @@
 <template>
-  <h1 style="color: #007bff">
-    Correct Answer(s) {{correctAnswer}}/{{totalAnswer}}
-  </h1>
+  <h1 style="color: #007bff">Correct Answer(s) {{totalCorrectAnswer}}/{{totalQuestions}}</h1>
 </template>
 
 <script>
@@ -9,40 +7,51 @@ import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
-  props: ['totalAnswer'],
+  props: ["totalQuestions"],
   data() {
     return {
-      correctAnswer: 0
-    }
+      totalCorrectAnswer: 0
+    };
   },
   computed: {
     ...mapGetters({
       answers: "getAnswers",
       selectedOptions: "getSelectedOptions",
+      examineeAnswers: "getExamineeAnswers",
+      examineeId: "getExamineeId",
+      testId: "getTestId",
+      testReviewFlag: "getTestReviewFlag"
     })
   },
-  created () {
+  created() {
     console.log(this.selectedOptions);
     console.log(this.answers);
-    for(let i = 0; i < this.totalAnswer; i++) {
-      if(this.selectedOptions[i] != null && this.answers[i].toUpperCase() == this.selectedOptions[i].toUpperCase()) {
-        this.correctAnswer++;
+    console.log(this.examineeAnswers);
+    for (let i = 0; i < this.totalQuestions; i++) {
+      if (
+        this.selectedOptions[i] != null &&
+        this.answers[i].toUpperCase() == this.selectedOptions[i].toUpperCase()
+      ) {
+        this.totalCorrectAnswer++;
       }
     }
-    let achievement = {
-      examineeId: 1, //temp hard code
-      difficulty : 1, //temp hard code
-      correctAnswer: this.correctAnswer
+    if (this.testReviewFlag == 0) {
+      let achievement = {
+        examineeId: this.examineeId,
+        testId: this.testId,
+        totalCorrectAnswer: this.totalCorrectAnswer,
+        examineeAnswers: this.examineeAnswers
+      };
+      console.log(achievement);
+      console.log(JSON.stringify(achievement));
+      axios
+        .post("http://localhost:8081/api/achievements", achievement)
+        .then(response => {})
+        .catch(e => {
+          //this.errors.push(e)
+        });
     }
-    console.log(achievement)
-    axios.post("http://localhost:8081/api/achievements", achievement)
-    .then(response => {})
-    .catch(e => {
-      //this.errors.push(e)
-    })
   },
-  methods: {
-
-  }
+  methods: {}
 };
 </script>

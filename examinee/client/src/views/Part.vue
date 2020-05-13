@@ -53,28 +53,45 @@ export default {
   computed: {
     ...mapGetters({
       loggedIn: "getLoggedIn",
-      testProgress: "getTestProgress"
+      testId: "getTestId",
+      testProgress: "getTestProgress",
+      testReviewFlag: "getTestReviewFlag"
     })
-  },
-  beforeCreate() {
-    axios.get("http://localhost:8081/api/generate-test/1").then(response => {
-      this.testData = response.data;
-      console.log(this.testData);
-      this.$store.dispatch("updateAnswers", []);
-      this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['1'].questions);
-      this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['2'].questions);
-      this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['3'].questions);
-      this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['4'].questions);
-      this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['5'].questions);
-      this.$store.dispatch("addAnswersFromQuestionGroups", this.testData.parts['6'].questionGroups);
-      this.$store.dispatch("addAnswersFromQuestionGroups", this.testData.parts['7'].questionGroups);
-    });
   },
   created() {
     if (!this.loggedIn) {
       this.$router.push("/login");
     } else {
       this.$store.dispatch("updateTestProgress", 1);
+      if(this.testReviewFlag != 0) {
+        axios.get(`http://localhost:8081/api/generate-test-achievement/${this.testReviewFlag}`).then(response => {
+          this.testData = response.data;
+          console.log(this.testData);
+          this.$store.dispatch("updateAnswers", []);
+          this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['1'].questions);
+          this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['2'].questions);
+          this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['3'].questions);
+          this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['4'].questions);
+          this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['5'].questions);
+          this.$store.dispatch("addAnswersFromQuestionGroups", this.testData.parts['6'].questionGroups);
+          this.$store.dispatch("addAnswersFromQuestionGroups", this.testData.parts['7'].questionGroups);
+          this.$store.dispatch("updateSelectedOptions", this.testData.examineeSelectedOptions);
+          this.$store.dispatch("updateTestSubmitted", true);
+        });
+      } else {
+        axios.get(`http://localhost:8081/api/generate-test/${this.testId}`).then(response => {
+          this.testData = response.data;
+          console.log(this.testData);
+          this.$store.dispatch("updateAnswers", []);
+          this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['1'].questions);
+          this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['2'].questions);
+          this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['3'].questions);
+          this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['4'].questions);
+          this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['5'].questions);
+          this.$store.dispatch("addAnswersFromQuestionGroups", this.testData.parts['6'].questionGroups);
+          this.$store.dispatch("addAnswersFromQuestionGroups", this.testData.parts['7'].questionGroups);
+        });
+      }
     }
   },
   beforeRouteLeave(to, from, next) {
@@ -85,6 +102,8 @@ export default {
         this.$store.dispatch("updateTestSubmitted", false);
         this.$store.dispatch("updateSelectedOptions", []);
         this.$store.dispatch("updateAnswers", []);
+        this.$store.dispatch("updateExamineeAnswers", []);
+        this.$store.dispatch("updateTestReviewFlag", 0);
         next();
       } else {
         next(false);

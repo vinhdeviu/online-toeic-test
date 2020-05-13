@@ -9,9 +9,9 @@ public interface ToeicTestService {
 
     List<Test> retrieveAllTests();
 
-    //TestOutput generateTest(int testId);
-
     Test generateTest(int testId);
+
+    Test generateTestByAchievementId(int achievementId);
 
     TestInfor getTestInfor();
 }

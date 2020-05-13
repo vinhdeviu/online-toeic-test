@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col-sm-12">
           <h4>Paragraph No.{{(indexGroup+1)}}:</h4>
-          <div>{{questionGroup.paragraph}}</div>
+          <div style="white-space: pre-line">{{questionGroup.paragraph}}</div>
         </div>
       </div>
       <hr/>
@@ -42,7 +42,8 @@
                 :value="option"
                 :ref="'q'+(question.questionNo)"
                 :disabled="testSubmitted"
-                @change="selectOption(question.questionNo-1, option)"
+                @change="selectOption(question.questionNo-1, option, question.id, question.answers[option].id)"
+                :checked="selectedOptions[question.questionNo-1]!=null && option.toUpperCase()==selectedOptions[question.questionNo-1].toUpperCase()"
               />
               <label class="custom-control-label" :for="'q'+(question.questionNo)+option">{{option}}. {{question.answers[option].content}}</label>
               <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && selectedOptions[question.questionNo-1]!=null && selectedOptions[question.questionNo-1].toUpperCase()==question.correctAnswer.toUpperCase()" class="fas fa-check-circle" style="font-size:20px;color:green"></i>
@@ -80,12 +81,15 @@ export default {
   methods: {
     prevPart() {
       this.$store.dispatch("updateTestProgress", 5);
+      window.scrollTo(0,0);
     },
     nextPart() {
       this.$store.dispatch("updateTestProgress", 7);
+      window.scrollTo(0,0);
     },
-    selectOption(index, option) {
-      this.$store.dispatch("updateSingleSelectedOption", { index, option });
+    selectOption(index, option, questionId, answerId) {
+      this.$store.dispatch("updateSingleSelectedOption", {index, option});
+      this.$store.dispatch("updateSingleExamineeAnswer", {index, option, questionId, answerId});
     }
   }
 };

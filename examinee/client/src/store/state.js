@@ -1,9 +1,11 @@
 export default {
     loggedIn: false,
-    examinee_id: 0,  // will impl soon
-    difficulty: 0,  // will impl soon
+    examineeId: 1,  // will impl soon
+    testId: 1,  // will impl soon
     testProgress: 0,
     testSubmitted: false,
+    testReviewFlag: false,
     selectedOptions: [],
     answers: [],
+    examineeAnswers: []
 }

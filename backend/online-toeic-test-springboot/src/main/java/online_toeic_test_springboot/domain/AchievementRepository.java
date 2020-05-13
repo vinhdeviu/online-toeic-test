@@ -7,4 +7,6 @@ public interface AchievementRepository {
     void createAchievement(Achievement achievement);
 
     List<Achievement> getAchievementByExamineeId(int examineeId);
+
+    Achievement getAchievementById(int id);
 }

@@ -10,6 +10,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class Test {
     private int id;
+    private String testName;
     private String audioLink;
     private Map<Integer, Part> parts;
+    private List<Character> examineeSelectedOptions;
 }

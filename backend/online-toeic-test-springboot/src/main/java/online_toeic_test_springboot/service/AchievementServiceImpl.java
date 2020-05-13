@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -22,9 +21,6 @@ public class AchievementServiceImpl implements AchievementService {
 
   @Override
   public void createAchievement(Achievement achievement) {
-    Date date = Calendar.getInstance().getTime();
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    achievement.setDate(dateFormat.format(date));
     achievementRepository.createAchievement(achievement);
   }
 

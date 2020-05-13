@@ -17,5 +17,6 @@ public class Question {
     private char correctAnswer;
     private int correctAnswerId;
     private boolean switchAble;
+    private int questionNo;
     private Map<Character, Answer> answers;
 }

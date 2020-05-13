@@ -1,23 +1,21 @@
 package online_toeic_test_springboot.domain;
 
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ToeicTestRetriveRepository {
 
-    List<Test> queryAllTests();
+    List<Test> getAllTests();
 
-    Test queryTestById(int id);
+    Test getTestById(int id);
 
-    Part queryPartByTestIdAndPartNum(int testId, int partNum);
+    Part getPartByTestIdAndPartNum(int testId, int partNum);
 
-    List<Question> queryQuestionsByPartId(int partId);
+    List<Question> getQuestionsByPartId(int partId);
 
-    List<QuestionGroup> queryGroupsByPartId(int partId);
+    List<QuestionGroup> getGroupsByPartId(int partId);
 
-    List<Question> queryQuestionsByGroupId(int groupId);
+    List<Question> getQuestionsByGroupId(int groupId);
 
-    List<Answer> queryAnswersByQuestionId(int questionId);
+    List<Answer> getAnswersByQuestionId(int questionId);
 }

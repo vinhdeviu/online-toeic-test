@@ -17,12 +17,12 @@ public class MyBatisToeicTestRetriveRepository implements ToeicTestRetriveReposi
   private final ToeicTestRetriveMapper toeicTestRetriveMapper;
 
   @Override
-  public List<Test> queryAllTests() {
+  public List<Test> getAllTests() {
     return toeicTestRetriveMapper.queryAllTests();
   }
 
   @Override
-  public Test queryTestById(int id) {
+  public Test getTestById(int id) {
     Optional<Test> test = toeicTestRetriveMapper.queryTestById(id);
     if(!test.isPresent()) {
       throw new EntityNotFoundException("test not found");
@@ -31,7 +31,7 @@ public class MyBatisToeicTestRetriveRepository implements ToeicTestRetriveReposi
   }
 
   @Override
-  public Part queryPartByTestIdAndPartNum(int testId, int partNum) {
+  public Part getPartByTestIdAndPartNum(int testId, int partNum) {
     Optional<Part> part = toeicTestRetriveMapper.queryPartByTestIdAndPartNum(testId, partNum);
     if(!part.isPresent()) {
       throw new EntityNotFoundException("part not found");
@@ -40,22 +40,22 @@ public class MyBatisToeicTestRetriveRepository implements ToeicTestRetriveReposi
   }
 
   @Override
-  public List<Question> queryQuestionsByPartId(int partId) {
+  public List<Question> getQuestionsByPartId(int partId) {
     return toeicTestRetriveMapper.queryQuestionsByPartId(partId);
   }
 
   @Override
-  public List<QuestionGroup> queryGroupsByPartId(int partId) {
+  public List<QuestionGroup> getGroupsByPartId(int partId) {
     return toeicTestRetriveMapper.queryGroupsByPartId(partId);
   }
 
   @Override
-  public List<Question> queryQuestionsByGroupId(int groupId) {
+  public List<Question> getQuestionsByGroupId(int groupId) {
     return toeicTestRetriveMapper.queryQuestionsByGroupId(groupId);
   }
 
   @Override
-  public List<Answer> queryAnswersByQuestionId(int questionId) {
+  public List<Answer> getAnswersByQuestionId(int questionId) {
     return toeicTestRetriveMapper.queryAnswersByQuestionId(questionId);
   }
 }

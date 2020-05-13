@@ -1,14 +1,19 @@
 package online_toeic_test_springboot.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Achievement {
     private int id;
     private int examineeId;
+    private int testId;
     private String date;
-    private int difficulty;
-    private int score;
+    private int totalCorrectAnswer;
+    private String testName;
+    private Test test;
+    private List<ExamineeAnswer> examineeAnswers;
 }
