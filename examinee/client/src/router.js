@@ -5,7 +5,7 @@ import Login from './views/Login.vue';
 import SignUp from './views/SignUp.vue';
 import Profile from './views/Profile.vue';
 import Achievement from './views/Achievement.vue';
-import Part from './views/Part.vue';
+import Test from './views/Test.vue';
 
 Vue.use(VueRouter);
 
@@ -17,6 +17,6 @@ export default new VueRouter({
         { path: '/sign-up', component: SignUp },
         { path: '/profile', component: Profile },
         { path: '/achievement', component: Achievement },
-        { path: '/test', component: Part }
+        { path: '/test', component: Test }
     ]
 });

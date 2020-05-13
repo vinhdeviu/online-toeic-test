@@ -1,0 +1,101 @@
+<template>
+  <div class="container" v-if="testData.audioLink != null">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <audio controls style="width: 100%">
+          <source
+            :src="testData.audioLink"
+            type="audio/mpeg"
+          />Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    <keep-alive>
+      <part :part="1" :partData="testData.parts['1']" v-if="testProgress==1 && testData.parts['1'] != null"></part>
+      <part :part="2" :partData="testData.parts['2']" v-if="testProgress==2 && testData.parts['2'] != null"></part>
+      <part :part="3" :partData="testData.parts['3']" v-if="testProgress==3 && testData.parts['3'] != null"></part>
+      <part :part="4" :partData="testData.parts['4']" v-if="testProgress==4 && testData.parts['4'] != null"></part>
+      <part :part="5" :partData="testData.parts['5']" v-if="testProgress==5 && testData.parts['5'] != null"></part>
+      <part :part="6" :partData="testData.parts['6']" v-if="testProgress==6 && testData.parts['6'] != null"></part>
+      <part :part="7" :partData="testData.parts['7']" v-if="testProgress==7 && testData.parts['7'] != null"></part>
+    </keep-alive>
+  </div>
+</template>
+
+<script>
+import { mapGetters } from "vuex";
+import axios from "axios";
+import Part from "../components/Part.vue";
+
+export default {
+  components: {
+    part: Part
+  },
+  data() {
+    return {
+      testData: {}
+    };
+  },
+  computed: {
+    ...mapGetters({
+      loggedIn: "getLoggedIn",
+      testId: "getTestId",
+      testProgress: "getTestProgress",
+      testReviewFlag: "getTestReviewFlag"
+    })
+  },
+  created() {
+    if (!this.loggedIn) {
+      this.$router.push("/login");
+    } else {
+      this.$store.dispatch("updateTestProgress", 1);
+      if(this.testReviewFlag != 0) {
+        axios.get(`http://localhost:8081/api/generate-test-achievement/${this.testReviewFlag}`).then(response => {
+          this.testData = response.data;
+          console.log(this.testData);
+          this.storeAllAnswers();
+          this.$store.dispatch("updateSelectedOptions", this.testData.examineeSelectedOptions);
+          this.$store.dispatch("updateTestSubmitted", true);
+        });
+      } else {
+        axios.get(`http://localhost:8081/api/generate-test/${this.testId}`).then(response => {
+          this.testData = response.data;
+          console.log(this.testData);
+          this.storeAllAnswers();
+        });
+      }
+    }
+  },
+  beforeRouteLeave(to, from, next) {
+    if (this.loggedIn) {
+      const confirm = window.confirm("Do you really want to leave?");
+      if (confirm) {
+        this.$store.dispatch("updateTestProgress", 0);
+        this.$store.dispatch("updateTestSubmitted", false);
+        this.$store.dispatch("updateSelectedOptions", []);
+        this.$store.dispatch("updateAnswers", []);
+        this.$store.dispatch("updateExamineeAnswers", []);
+        this.$store.dispatch("updateTestReviewFlag", 0);
+        next();
+      } else {
+        next(false);
+      }
+    } else {
+      next();
+    }
+  },
+  methods: {
+    storeAllAnswers() {
+        this.$store.dispatch("updateAnswers", []);
+        this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['1'].questions);
+        this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['2'].questions);
+        this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['3'].questions);
+        this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['4'].questions);
+        this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['5'].questions);
+        this.$store.dispatch("addAnswersFromQuestionGroups", this.testData.parts['6'].questionGroups);
+        this.$store.dispatch("addAnswersFromQuestionGroups", this.testData.parts['7'].questionGroups);
+    }
+  }
+};
+</script>

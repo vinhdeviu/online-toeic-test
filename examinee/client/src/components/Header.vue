@@ -4,7 +4,7 @@
       <div class="col-sm-4">
         <h1 @click="goHome()" style="cursor:pointer">Online Toeic Test</h1>
       </div>
-      <test></test>
+      <testInfor></testInfor>
       <div class="col-sm-4">
         <button v-if="!loggedIn" @click="login()" class="btn btn-primary">Login</button>
         <button v-if="!loggedIn" @click="signUp()" class="btn btn-primary">Sign up</button>
@@ -16,11 +16,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Test from "./Test.vue";
+import TestInfor from "./TestInfor.vue";
 
 export default {
   components: {
-    test: Test
+    testInfor: TestInfor
   },
   computed: {
     ...mapGetters({
