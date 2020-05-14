@@ -30,7 +30,7 @@ export default {
   },
   beforeCreate() {
     if (this.testProgress != 0) {
-      axios.get("http://localhost:8081/api/test-information").then(response => {
+      axios.get(`${process.env.API_URL}/test-information`).then(response => {
         console.log(response.data);
         this.timeInSecond = response.data.timeInSecond;
         this.totalQuestions = response.data.totalQuestions;

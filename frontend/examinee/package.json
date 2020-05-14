@@ -4,7 +4,7 @@
   "description": "vuejs simple project",
   "main": "main.js",
   "scripts": {
-    "serve": "webpack-dev-server --mode development"
+    "serve": "webpack-dev-server --mode development --port 8081"
   },
   "author": "",
   "license": "ISC",

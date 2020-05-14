@@ -2,6 +2,7 @@ package online_toeic_test_springboot.controller;
 
 import lombok.RequiredArgsConstructor;
 import online_toeic_test_springboot.domain.model.Achievement;
+import online_toeic_test_springboot.domain.model.Part;
 import online_toeic_test_springboot.domain.model.Test;
 import online_toeic_test_springboot.domain.model.TestInfor;
 import online_toeic_test_springboot.service.ToeicTestRetrieveService;
@@ -23,6 +24,16 @@ public class ToeicTestRetrieveController {
   @GetMapping("/tests")
   public ResponseEntity<List<Test>> getAllTests() {
     return ResponseEntity.ok().body(toeicTestRetrieveService.retrieveAllTests());
+  }
+
+  @GetMapping("/tests/{id}")
+  public ResponseEntity<Test> getTestById(@PathVariable int id) {
+    return ResponseEntity.ok().body(toeicTestRetrieveService.getTestById(id));
+  }
+
+  @GetMapping("/parts")
+  public ResponseEntity<List<Part>> getPartsByTestId(@RequestParam int testId) {
+    return ResponseEntity.ok().body(toeicTestRetrieveService.getPartsByTestId(testId));
   }
 
   @GetMapping("/generate-test/{id}")

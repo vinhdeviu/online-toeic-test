@@ -51,7 +51,7 @@ export default {
     } else {
       this.$store.dispatch("updateTestProgress", 1);
       if(this.testReviewFlag != 0) {
-        axios.get(`http://localhost:8081/api/generate-test-achievement/${this.testReviewFlag}`).then(response => {
+        axios.get(`${process.env.API_URL}/generate-test-achievement/${this.testReviewFlag}`).then(response => {
           this.testData = response.data;
           console.log(this.testData);
           this.storeAllAnswers();
@@ -59,7 +59,7 @@ export default {
           this.$store.dispatch("updateTestSubmitted", true);
         });
       } else {
-        axios.get(`http://localhost:8081/api/generate-test/${this.testId}`).then(response => {
+        axios.get(`${process.env.API_URL}/generate-test/${this.testId}`).then(response => {
           this.testData = response.data;
           console.log(this.testData);
           this.storeAllAnswers();

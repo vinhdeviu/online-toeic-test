@@ -21,6 +21,9 @@ public interface QuestionCRUDMapper {
   @Select("SELECT COUNT(id) FROM QUESTION WHERE part_id = #{partId}")
   int queryCountQuestionsByPartId(int partId);
 
+  @Select("SELECT COUNT(q.id) FROM Question q INNER JOIN Question_Group qg ON q.group_id = qg.id WHERE qg.part_id = #{partId}")
+  int queryCountQuestionsInQuestionGroupsByPartId(int partId);
+
   @Insert("INSERT INTO Question (`index`,part_id,group_id,image_link,question_tittle,correct_answer,correct_answer_id) VALUES (#{index},#{partId},#{groupId},#{imageLink},#{questionTittle},#{correctAnswer},#{correctAnswerId})")
   @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
   void insertQuestion(Question question);

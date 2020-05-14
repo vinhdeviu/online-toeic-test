@@ -45,8 +45,8 @@ export default {
       console.log(achievement);
       console.log(JSON.stringify(achievement));
       axios
-        .post("http://localhost:8081/api/achievements", achievement)
-        .then(response => {})
+        .patch(`${process.env.API_URL}/achievements`, achievement)
+        .then(response => {console.log(response);})
         .catch(e => {
           //this.errors.push(e)
         });

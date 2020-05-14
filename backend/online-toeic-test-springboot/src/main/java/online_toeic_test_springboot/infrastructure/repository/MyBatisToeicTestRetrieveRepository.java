@@ -45,6 +45,11 @@ public class MyBatisToeicTestRetrieveRepository implements ToeicTestRetrieveRepo
   }
 
   @Override
+  public List<Part> getPartsByTestId(int testId) {
+    return partCRUDMapper.queryPartsByTestId(testId);
+  }
+
+  @Override
   public Part getPartByTestIdAndPartNum(int testId, int partNum) {
     Optional<Part> part = partCRUDMapper.queryPartByTestIdAndPartNum(testId, partNum);
     if(!part.isPresent()) {
@@ -87,5 +92,17 @@ public class MyBatisToeicTestRetrieveRepository implements ToeicTestRetrieveRepo
     Achievement achievement = optionalAchievement.get();
     achievement.setExamineeAnswers(examineeAnswerCRUDMapper.queryExamineeAnswersByAchievementId(achievement.getId()));
     return achievement;
+  }
+
+  @Override
+  public int getTotalQuestionsByPart(Part part) {
+    int totalQuestions = 0;
+    if(TestConfig.PARTS_WITHOUT_QUESTION_GROUP.contains(part.getPartNum())) {
+      totalQuestions += questionCRUDMapper.queryCountQuestionsByPartId(part.getId());
+    }
+    if(TestConfig.PARTS_WITH_QUESTION_GROUP.contains(part.getPartNum())) {
+      totalQuestions += questionCRUDMapper.queryCountQuestionsInQuestionGroupsByPartId(part.getId());
+    }
+    return totalQuestions;
   }
 }

@@ -51,19 +51,20 @@ public class MyBatisToeicTestCreateRepository implements ToeicTestCreateReposito
     testCRUDMapper.insertTest(test);
     int testId = test.getId();
     Optional<Test> optionalTestTemplate = testCRUDMapper.queryTheFirstTest();
-    for(int i = 1; i <= 7; i++) {
+    for(int partNum = 1; partNum <= TestConfig.TOTAL_PARTS; partNum++) {
       Part part = new Part();
       part.setTestId(testId);
-      part.setPartNum(i);
-      if(i <= 4) {
-        part.setType(1);
-      } else {
-        part.setType(2);
+      part.setPartNum(partNum);
+      if(TestConfig.LISTENING_PARTS.contains(partNum)) {
+        part.setType(TestConfig.LISTENING_TYPE_INT_VALUE);
+      }
+      if(TestConfig.READING_PARTS.contains(partNum)) {
+        part.setType(TestConfig.READING_TYPE_INT_VALUE);
       }
       String tittle = "";
       String direction = "";
       if(optionalTestTemplate.isPresent()) {
-        Optional<Part> optionalPartTemplate = partCRUDMapper.queryPartByTestIdAndPartNum(1, i);
+        Optional<Part> optionalPartTemplate = partCRUDMapper.queryPartByTestIdAndPartNum(optionalTestTemplate.get().getId(), partNum);
         if(optionalPartTemplate.isPresent()) {
           Part partTemplate = optionalPartTemplate.get();
           tittle = partTemplate.getTittle();
@@ -89,10 +90,10 @@ public class MyBatisToeicTestCreateRepository implements ToeicTestCreateReposito
       throw new EntityNotFoundException("part not found");
     }
     int partNum = optionalPart.get().getPartNum();
-    if(partNum <= 2) {
+    if(TestConfig.PARTS_WITHOUT_ANSWERS_CONTENT.contains(partNum)) {
       return;
     }
-    for(int i = 0; i < 4; i++) {
+    for(int i = 0; i < TestConfig.MAX_NUM_ANSWERS_PER_QUESTION; i++) {
       Answer answer = new Answer();
       answer.setQuestionId(question.getId());
       answer.setContent("");

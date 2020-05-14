@@ -23,6 +23,16 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
     return toeicTestRetrieveRepository.getAllTests();
   }
 
+  @Override
+  public Test getTestById(int id) {
+    return toeicTestRetrieveRepository.getTestById(id);
+  }
+
+  @Override
+  public List<Part> getPartsByTestId(int testId) {
+    return toeicTestRetrieveRepository.getPartsByTestId(testId);
+  }
+
   private Part generatePartWithOnlyQuestions(int testId, int partNum, boolean shuffleQuestionsFlag, boolean shuffleAnswersFlag) {
     Part part = toeicTestRetrieveRepository.getPartByTestIdAndPartNum(testId, partNum);
     List<Question> questions = toeicTestRetrieveRepository.getQuestionsByPartId(part.getId());
@@ -57,7 +67,7 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
       Map<Character, Answer> answerMap = new HashMap<>();
       for(int i = 0; i < answers.size(); i++) {
         Answer answer = answers.get(i);
-        char option = (char) (65+i);
+        char option = TestConfig.ANSWERS_CHAR_VALUES.get(i);
         answerMap.put(option, answer);
         if(answer.getId().equals(question.getCorrectAnswerId())) {
           question.setCorrectAnswer(option);
@@ -71,21 +81,20 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
   public Test retrieveTestByIdAndShuffle(int testId) {
     questionNoIndex = 0;
     Test test = toeicTestRetrieveRepository.getTestById(testId);
-    Part part1 = generatePartWithOnlyQuestions(testId, 1, false, false);
-    Part part2 = generatePartWithOnlyQuestions(testId, 2, false, false);
-    Part part3 = generatePartWithOnlyQuestions(testId, 3, false, true);
-    Part part4 = generatePartWithOnlyQuestions(testId, 4, false, true);
-    Part part5 = generatePartWithOnlyQuestions(testId, 5, true, true);
-    Part part6 = generatePartWithQuestionGroups(testId, 6,false, false, true);
-    Part part7 = generatePartWithQuestionGroups(testId, 7,true, true, true);
     Map<Integer, Part> partMap = new HashMap<>();
-    partMap.put(1, part1);
-    partMap.put(2, part2);
-    partMap.put(3, part3);
-    partMap.put(4, part4);
-    partMap.put(5, part5);
-    partMap.put(6, part6);
-    partMap.put(7, part7);
+    for(int partNum = 1; partNum <= TestConfig.TOTAL_PARTS; partNum++) {
+      Part part = null;
+      boolean shuffleQuestionsFlag = TestConfig.SHUFFLE_QUESTION_PARTS.contains(partNum);
+      boolean shuffleAnswersFlag = TestConfig.SHUFFLE_ANSWER_PARTS.contains(partNum);
+      if(TestConfig.PARTS_WITHOUT_QUESTION_GROUP.contains(partNum)) {
+        part = generatePartWithOnlyQuestions(testId, partNum, shuffleQuestionsFlag, shuffleAnswersFlag);
+      }
+      if(TestConfig.PARTS_WITH_QUESTION_GROUP.contains(partNum)) {
+        boolean shuffleQuestionGroupsFlag = TestConfig.SHUFFLE_QUESTION_GROUP_PARTS.contains(partNum);
+        part = generatePartWithQuestionGroups(testId, partNum,shuffleQuestionGroupsFlag, shuffleQuestionsFlag, shuffleAnswersFlag);
+      }
+      partMap.put(partNum, part);
+    }
     test.setParts(partMap);
     return test;
   }
@@ -137,6 +146,16 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
 
   @Override
   public TestInfor getTestInfor() {
-    return new TestInfor(120*60, 200);
+    return new TestInfor(TestConfig.TIME_PER_TEST_IN_SECOND, TestConfig.TOTAL_QUESTIONS_PER_TEST);
+  }
+
+  @Override
+  public boolean isAbleToAddNewQuestion(int testId) {
+    int totalQuestions = 0;
+    for(int partNum = 1; partNum <= TestConfig.TOTAL_PARTS; partNum++) {
+      Part part = toeicTestRetrieveRepository.getPartByTestIdAndPartNum(testId, partNum);
+      totalQuestions += toeicTestRetrieveRepository.getTotalQuestionsByPart(part);
+    }
+    return totalQuestions < TestConfig.TOTAL_QUESTIONS_PER_TEST;
   }
 }

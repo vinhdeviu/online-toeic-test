@@ -5,7 +5,7 @@
         <h2>Profile</h2>
       </div>
     </div>
-    <div style="margin-top:30px"></div>
+    <div style="margin-top:10px"></div>
     <div class="row">
       <div class="col-sm-4">
         <form v-on:submit.prevent>
@@ -57,7 +57,7 @@
         </form>
       </div>
     </div>
-    <div style="margin-top:30px"></div>
+    <div style="margin-top:10px"></div>
 
     <div class="row">
       <div class="col-sm-4"></div>

@@ -1,6 +1,7 @@
 package online_toeic_test_springboot.service;
 
 import online_toeic_test_springboot.domain.model.Achievement;
+import online_toeic_test_springboot.domain.model.Part;
 import online_toeic_test_springboot.domain.model.Test;
 import online_toeic_test_springboot.domain.model.TestInfor;
 
@@ -10,6 +11,10 @@ public interface ToeicTestRetrieveService {
 
     List<Test> retrieveAllTests();
 
+    Test getTestById(int id);
+
+    List<Part> getPartsByTestId(int testId);
+
     Test retrieveTestByIdAndShuffle(int testId);
 
     Test retrieveTestByAchievementIdAndShuffle(int achievementId);
@@ -17,4 +22,6 @@ public interface ToeicTestRetrieveService {
     List<Achievement> getAchievementByExamineeId(int examineeId);
 
     TestInfor getTestInfor();
+
+    boolean isAbleToAddNewQuestion(int testId);
 }

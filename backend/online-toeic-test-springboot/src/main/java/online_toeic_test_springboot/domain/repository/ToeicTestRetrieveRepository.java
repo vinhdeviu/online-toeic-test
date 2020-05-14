@@ -10,6 +10,8 @@ public interface ToeicTestRetrieveRepository {
 
     Test getTestById(int id);
 
+    List<Part> getPartsByTestId(int testId);
+
     Part getPartByTestIdAndPartNum(int testId, int partNum);
 
     List<Question> getQuestionsByPartId(int partId);
@@ -23,4 +25,6 @@ public interface ToeicTestRetrieveRepository {
     List<Achievement> getAchievementByExamineeId(int examineeId);
 
     Achievement getAchievementById(int id);
+
+    int getTotalQuestionsByPart(Part part);
 }

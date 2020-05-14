@@ -55,7 +55,7 @@ export default {
       this.$router.push("/login");
     } else {
       let examinee_id = 1;  // temp hard code
-      axios.get(`http://localhost:8081/api/achievements/?examineeId=${this.examineeId}`).then(response => {
+      axios.get(`${process.env.API_URL}/achievements/?examineeId=${this.examineeId}`).then(response => {
         console.log(response.data);
         for(let achievement of response.data) {
           this.dates.push(achievement.date);
