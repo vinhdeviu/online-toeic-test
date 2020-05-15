@@ -2,14 +2,25 @@
   <div>
     <div class="row">
       <div class="col-sm-12">
-        <h1>Test {{ $route.params.testId }}</h1>
+        <h1>Test</h1>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
         <form v-on:submit.prevent>
           <div class="form-group">
-            <label for="testName">Name:</label>
+            <label for="testId">Test Id:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="testId"
+              name="testId"
+              v-model="testId"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="testName">Test Name:</label>
             <input
               type="text"
               class="form-control"
@@ -43,17 +54,19 @@
         <thead>
           <tr>
             <th>Part Id</th>
-            <th>Name</th>
             <th>Part Number</th>
+            <th>Tittle</th>
+            <th>Type</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="part in parts" :key="part.id">
             <td>{{part.id}}</td>
-            <td>{{part.tittle}}</td>
             <td>{{part.partNum}}</td>
+            <td>{{part.tittle}}</td>
+            <td>{{part.type==1?"Listening":"Reading"}}</td>
             <td>
-              <button @click="checkPart(part.id)" class="btn btn-primary btn-sm">Check</button>
+              <button @click="checkPart(part.id)" class="btn btn-primary btn-sm">Check Detail</button>
             </td>
           </tr>
         </tbody>
@@ -112,7 +125,7 @@ export default {
       });
     },
     checkPart(partId) {
-      this.$router.push(`/parts/${partId}`);
+      this.$router.push(`/tests/${this.testId}/parts/${partId}`);
     }
   }
 };

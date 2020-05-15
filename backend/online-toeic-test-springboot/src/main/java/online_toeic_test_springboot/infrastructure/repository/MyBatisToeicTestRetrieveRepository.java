@@ -50,6 +50,15 @@ public class MyBatisToeicTestRetrieveRepository implements ToeicTestRetrieveRepo
   }
 
   @Override
+  public Part getPartById(int id) {
+    Optional<Part> part = partCRUDMapper.queryPartById(id);
+    if(!part.isPresent()) {
+      throw new EntityNotFoundException("part not found");
+    }
+    return part.get();
+  }
+
+  @Override
   public Part getPartByTestIdAndPartNum(int testId, int partNum) {
     Optional<Part> part = partCRUDMapper.queryPartByTestIdAndPartNum(testId, partNum);
     if(!part.isPresent()) {
@@ -66,6 +75,15 @@ public class MyBatisToeicTestRetrieveRepository implements ToeicTestRetrieveRepo
   @Override
   public List<QuestionGroup> getQuestionGroupsByPartId(int partId) {
     return questionGroupCRUDMapper.queryQuestionGroupsByPartId(partId);
+  }
+
+  @Override
+  public QuestionGroup getQuestionGroupById(int id) {
+    Optional<QuestionGroup> questionGroup = questionGroupCRUDMapper.queryQuestionGroupById(id);
+    if(!questionGroup.isPresent()) {
+      throw new EntityNotFoundException("question group not found");
+    }
+    return questionGroup.get();
   }
 
   @Override

@@ -2,79 +2,160 @@
   <div>
     <div class="row">
       <div class="col-sm-12">
-        <h1>Test {{ $route.params.testId }}</h1>
+        <h1>Question Group</h1>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-2">
-        <div class="line"></div>
-      </div>
-      <div class="col-sm-8"></div>
-      <div class="col-sm-2">
-        <div class="md-form mt-0">
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search" />
-        </div>
+      <div class="col-sm-12">
+        <form v-on:submit.prevent>
+          <div class="form-group">
+            <label for="groupId">Group Id:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="groupId"
+              name="groupId"
+              v-model="groupId"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="testId">Test Id:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="testId"
+              name="testId"
+              v-model="testId"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="testId">Part Id:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="testId"
+              name="partId"
+              v-model="partId"
+              disabled
+            />
+          </div>
+          <div class="form-group">
+            <label for="index">Group Index:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="index"
+              name="index"
+              placeholder="Enter Index"
+              v-model="index"
+              :disabled="saved"
+            />
+          </div>
+          <div class="form-group">
+            <label for="tittle">Tittle:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="tittle"
+              placeholder="Enter Tittle"
+              name="tittle"
+              v-model="tittle"
+              :disabled="saved"
+            />
+          </div>
+          <div class="form-group">
+            <label for="paragraph">Paragraph:</label>
+            <textarea
+              rows="5"
+              class="form-control"
+              id="paragraph"
+              placeholder="Enter Paragraph"
+              name="paragraph"
+              v-model="paragraph"
+              :disabled="saved"
+            ></textarea>
+          </div>
+          <button v-if="saved" @click="editQuestionGroup()" class="btn btn-primary">Edit</button>
+          <button v-if="!saved" @click="saveQuestionGroup()" class="btn btn-primary">Save</button>
+        </form>
       </div>
     </div>
-
-    <div class="table-wrapper-scroll-y my-custom-scrollbar">
-      <table class="table table-striped mb-0">
-        <thead>
-          <tr>
-            <th>Part Id</th>
-            <th>Name</th>
-            <th>Part Number</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="part in parts" :key="part.id">
-            <td>{{part.id}}</td>
-            <td>{{part.tittle}}</td>
-            <td>{{part.partNum}}</td>
-            <td>
-              <button @click="viewPart(part.id)" class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button @click="editPart(part.id)" class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button @click="deletePart(part.id)" class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <question
+      :testId="testId"
+      :partId="partId"
+      :groupId="groupId"
+      :questions="questions"
+    ></question>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Question from "../components/Question.vue";
 
 export default {
+  components: {
+    question: Question
+  },
   data() {
     return {
       testId: this.$route.params.testId,
-      parts: []
+      partId: this.$route.params.partId,
+      groupId: this.$route.params.questionGroupId,
+      index: 0,
+      tittle: '',
+      imageLink: '',
+      paragraph: '',
+      questions: [],
+      saved: true
     };
   },
   created() {
-    console.log(`${process.env.API_URL}/parts?testId=${this.testId}`)
-    axios.get(`${process.env.API_URL}/parts?testId=${this.testId}`).then(response => {
-      this.parts = response.data
-      console.log(this.parts);
-    });
+    axios
+      .get(`${process.env.API_URL}/question-groups/${this.groupId}`)
+      .then(response => {
+        console.log(response.data);
+        this.index = response.data.index;
+        this.tittle = response.data.tittle;
+        this.imageLink = response.data.imageLink;
+        this.paragraph = response.data.paragraph;
+      });
+    axios
+      .get(`${process.env.API_URL}/questions?groupId=${this.groupId}`)
+      .then(response => {
+        this.questions = response.data;
+        console.log(this.questions);
+      });
   },
   methods: {
-    viewPart(partId) {
-      this.$router.push(`/parts/${partId}`);
+    editQuestionGroup() {
+      this.saved = false;
     },
-    editTest(partId) {
-      this.$router.push(`/parts/${partId}`);
-    },
-    deleteTest(testId) {
-      // axios.delete(`${process.env.API_URL}/parts/${partId}`).then(response => {
-      //   console.log(response);
-      // });
+    saveQuestionGroup() {
+      let questionGroup = {
+        id: this.groupId,
+        partId: this.partId,
+        index: this.index,
+        tittle: this.tittle,
+        imageLink: this.imageLink,
+        paragraph: this.paragraph
+      };
+      axios
+        .patch(`${process.env.API_URL}/question-groups//${this.groupId}`, questionGroup)
+        .then(response => {
+          console.log(response);
+          if (response.status == 200) {
+            this.saved = true;
+            alert("Saved");
+          } else {
+            alert("response status not OK from server");
+          }
+        })
+        .catch(e => {
+          //this.errors.push(e)
+        });
     }
   }
 };

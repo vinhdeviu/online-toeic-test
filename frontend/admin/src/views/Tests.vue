@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col-sm-12">
-        <h1>Manage Tests</h1>
+        <h1>Test Data</h1>
       </div>
     </div>
     <div class="row">
@@ -32,7 +32,7 @@
             <td>{{test.testName}}</td>
             <td>{{test.audioLink}}</td>
             <td>
-              <button @click="checkTest(test.id)" class="btn btn-primary btn-sm">Check</button>
+              <button @click="checkTest(test.id)" class="btn btn-primary btn-sm">Check Detail</button>
             </td>
             <td>
               <button @click="deleteTest(test.id)" class="btn btn-danger btn-sm">Delete</button>

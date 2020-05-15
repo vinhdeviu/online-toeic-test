@@ -6,28 +6,15 @@
     </div>
 
     <ul class="list-unstyled components">
-      <p>Nguyen Duy Vinh</p>
+      <p style="cursor:pointer" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'"><b>Nguyen Duy Vinh</b></p>
       <li>
-        <a @click="toHomePage()">Home</a>
-      </li>
-      <li class="active">
-        <a
-          href="#pageSubmenu"
-          data-toggle="collapse"
-          aria-expanded="false"
-          class="dropdown-toggle"
-        >Test Data</a>
-        <ul class="collapse list-unstyled" id="pageSubmenu">
-          <li>
-            <a @click="toTestsPage()">Manage Tests</a>
-          </li>
-          <li>
-            <a>Add New Test</a>
-          </li>
-        </ul>
+        <a style="cursor:pointer" @click="toHomePage()">Home</a>
       </li>
       <li>
-        <a @click="toExamineesPage()">Examinee Data</a>
+        <a style="cursor:pointer" @click="toTestsPage()">Test Data</a>
+      </li>
+      <li>
+        <a style="cursor:pointer" @click="toExamineesPage()">Examinee Data</a>
       </li>
     </ul>
   </nav>

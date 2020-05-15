@@ -33,6 +33,31 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
     return toeicTestRetrieveRepository.getPartsByTestId(testId);
   }
 
+  @Override
+  public Part getPartById(int id) {
+    return toeicTestRetrieveRepository.getPartById(id);
+  }
+
+  @Override
+  public List<Question> getQuestionsByPartId(int partId) {
+    return toeicTestRetrieveRepository.getQuestionsByPartId(partId);
+  }
+
+  @Override
+  public List<QuestionGroup> getQuestionGroupsByPartId(int partId) {
+    return toeicTestRetrieveRepository.getQuestionGroupsByPartId(partId);
+  }
+
+  @Override
+  public List<Question> getQuestionsByGroupId(int groupId) {
+    return toeicTestRetrieveRepository.getQuestionsByGroupId(groupId);
+  }
+
+  @Override
+  public QuestionGroup getQuestionGroupById(int id) {
+    return toeicTestRetrieveRepository.getQuestionGroupById(id);
+  }
+
   private Part generatePartWithOnlyQuestions(int testId, int partNum, boolean shuffleQuestionsFlag, boolean shuffleAnswersFlag) {
     Part part = toeicTestRetrieveRepository.getPartByTestIdAndPartNum(testId, partNum);
     List<Question> questions = toeicTestRetrieveRepository.getQuestionsByPartId(part.getId());

@@ -12,11 +12,15 @@ public interface ToeicTestRetrieveRepository {
 
     List<Part> getPartsByTestId(int testId);
 
+    Part getPartById(int id);
+
     Part getPartByTestIdAndPartNum(int testId, int partNum);
 
     List<Question> getQuestionsByPartId(int partId);
 
     List<QuestionGroup> getQuestionGroupsByPartId(int partId);
+
+    QuestionGroup getQuestionGroupById(int id);
 
     List<Question> getQuestionsByGroupId(int groupId);
 

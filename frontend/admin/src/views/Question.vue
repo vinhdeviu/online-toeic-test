@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col-sm-12">
-        <h1>Test {{ $route.params.testId }}</h1>
+        <h1>Question</h1>
       </div>
     </div>
     <div class="row">
