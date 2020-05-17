@@ -54,6 +54,16 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
   }
 
   @Override
+  public Question getQuestionById(int id) {
+    return toeicTestRetrieveRepository.getQuestionById(id);
+  }
+
+  @Override
+  public List<Answer> getAnswersByQuestionId(int questionId) {
+    return toeicTestRetrieveRepository.getAnswersByQuestionId(questionId);
+  }
+
+  @Override
   public QuestionGroup getQuestionGroupById(int id) {
     return toeicTestRetrieveRepository.getQuestionGroupById(id);
   }

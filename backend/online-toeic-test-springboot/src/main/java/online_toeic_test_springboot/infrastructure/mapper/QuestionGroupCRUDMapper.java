@@ -23,5 +23,5 @@ public interface QuestionGroupCRUDMapper {
   void updateQuestionGroup(QuestionGroup questionGroup);
 
   @Delete("DELETE FROM Question_Group WHERE id=#{id}")
-  void deleteQuestionGroupById(int id);
+  boolean deleteQuestionGroupById(int id);
 }

@@ -59,9 +59,22 @@ public class ToeicTestRetrieveController {
     return ResponseEntity.ok().body(toeicTestRetrieveService.getQuestionGroupsByPartId(partId));
   }
 
+  @GetMapping("/answers")
+  public ResponseEntity<List<Answer>> getAnswers(@RequestParam(required = false) Integer questionId) {
+    if(questionId == null) {
+      // get all answers
+    }
+    return ResponseEntity.ok().body(toeicTestRetrieveService.getAnswersByQuestionId(questionId));
+  }
+
   @GetMapping("/question-groups/{id}")
   public ResponseEntity<QuestionGroup> getQuestionGroupById(@PathVariable Integer id) {
     return ResponseEntity.ok().body(toeicTestRetrieveService.getQuestionGroupById(id));
+  }
+
+  @GetMapping("/questions/{id}")
+  public ResponseEntity<Question> getQuestionById(@PathVariable Integer id) {
+    return ResponseEntity.ok().body(toeicTestRetrieveService.getQuestionById(id));
   }
 
   @GetMapping("/parts/{id}")

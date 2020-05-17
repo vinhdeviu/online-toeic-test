@@ -16,25 +16,25 @@ public class ToeicTestDeleteController {
   private final ToeicTestDeleteService toeicTestDeleteService;
 
   @DeleteMapping("/tests/{id}")
-  public ResponseEntity<?> deleteTestById(@PathVariable int id) {
+  public ResponseEntity<?> deleteTestById(@PathVariable Integer id) {
     toeicTestDeleteService.deleteTestById(id);
     return ResponseEntity.noContent().build();
   }
 
   @DeleteMapping("/parts/{id}")
-  public ResponseEntity<?> deletePartById(@PathVariable int id) {
+  public ResponseEntity<?> deletePartById(@PathVariable Integer id) {
     toeicTestDeleteService.deletePartById(id);
     return ResponseEntity.noContent().build();
   }
 
   @DeleteMapping("/question-groups/{id}")
-  public ResponseEntity<?> deleteQuestionGroupById(@PathVariable int id) {
+  public ResponseEntity<?> deleteQuestionGroupById(@PathVariable Integer id) {
     toeicTestDeleteService.deleteQuestionGroupById(id);
     return ResponseEntity.noContent().build();
   }
 
   @DeleteMapping("/questions")
-  public ResponseEntity<?> deleteQuestionById(@PathVariable int id) {
+  public ResponseEntity<?> deleteQuestionById(@PathVariable Integer id) {
     toeicTestDeleteService.deleteQuestionById(id);
     return ResponseEntity.noContent().build();
   }

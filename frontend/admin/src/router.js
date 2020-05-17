@@ -15,9 +15,13 @@ export default new VueRouter({
         { path: '/', redirect: '/home' },
         { path: '/home', component: Home },
         { path: '/tests', component: Tests },
+        { path: '/new-test', component: Test },
         { path: '/tests/:testId', component: Test },
         { path: '/tests/:testId/parts/:partId', component: Part },
+        { path: '/tests/:testId/parts/:partId/new-question-group', component: QuestionGroup },
+        { path: '/tests/:testId/parts/:partId/new-question', component: Question },
         { path: '/tests/:testId/parts/:partId/question-groups/:questionGroupId', component: QuestionGroup },
+        { path: '/tests/:testId/parts/:partId/question-groups/:questionGroupId/new-question', component: Question },
         { path: '/tests/:testId/parts/:partId/questions/:questionId', component: Question },
         { path: '/tests/:testId/parts/:partId/question-groups/:questionGroupId/questions/:questionId', component: Question },
         { path: '/examinees', component: Examinees }

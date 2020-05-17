@@ -92,6 +92,15 @@ public class MyBatisToeicTestRetrieveRepository implements ToeicTestRetrieveRepo
   }
 
   @Override
+  public Question getQuestionById(int id) {
+    Optional<Question> question = questionCRUDMapper.queryQuestionById(id);
+    if(!question.isPresent()) {
+      throw new EntityNotFoundException("question not found");
+    }
+    return question.get();
+  }
+
+  @Override
   public List<Answer> getAnswersByQuestionId(int questionId) {
     return answerCRUDMapper.queryAnswersByQuestionId(questionId);
   }

@@ -12,6 +12,9 @@ public interface TestCRUDMapper {
   @Select("SELECT * FROM TEST")
   List<Test> queryAllTests();
 
+  @Select("SELECT * FROM TEST WHERE test_name = #{testName}")
+  List<Test> queryTestsByName(String testName);
+
   @Select("SELECT * FROM TEST WHERE id = #{id}")
   Optional<Test> queryTestById(int id);
 
@@ -26,5 +29,5 @@ public interface TestCRUDMapper {
   void updateTest(Test test);
 
   @Delete("DELETE FROM Test WHERE id=#{id}")
-  void deleteTestById(int id);
+  boolean deleteTestById(int id);
 }

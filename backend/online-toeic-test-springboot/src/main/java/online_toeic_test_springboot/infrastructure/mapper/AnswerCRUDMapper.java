@@ -19,5 +19,5 @@ public interface AnswerCRUDMapper {
   void updateAnswer(Answer answer);
 
   @Delete("DELETE FROM Answer WHERE question_id=#{questionId}")
-  void deleteAnswersByQuestionId(int questionId);
+  boolean deleteAnswersByQuestionId(int questionId);
 }

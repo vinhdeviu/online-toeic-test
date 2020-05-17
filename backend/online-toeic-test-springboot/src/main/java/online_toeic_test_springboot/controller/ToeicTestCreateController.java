@@ -6,6 +6,7 @@ import online_toeic_test_springboot.domain.model.Question;
 import online_toeic_test_springboot.domain.model.QuestionGroup;
 import online_toeic_test_springboot.domain.model.Test;
 import online_toeic_test_springboot.service.ToeicTestCreateService;
+import online_toeic_test_springboot.validation.RequestBodyValidation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,8 @@ public class ToeicTestCreateController {
 
   private final ToeicTestCreateService toeicTestCreateService;
 
+  private final RequestBodyValidation requestBodyValidation;
+
   @PostMapping("/achievements")
   public ResponseEntity<Achievement> createArchivement(@RequestBody Achievement achievement) throws URISyntaxException {
     System.out.println(achievement);
@@ -31,7 +34,7 @@ public class ToeicTestCreateController {
 
   @PostMapping("/tests")
   public ResponseEntity<Test> createNewToeicTest(@RequestBody Test test) throws URISyntaxException {
-    System.out.println(test);
+    requestBodyValidation.validateTest(test);
     toeicTestCreateService.createNewToeicTest(test);
     return ResponseEntity.created(new URI("/api/tests")).body(test);
   }

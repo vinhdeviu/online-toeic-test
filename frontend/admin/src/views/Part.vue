@@ -55,7 +55,6 @@
               type="text"
               class="form-control"
               id="tittle"
-              placeholder="Enter Tittle"
               name="tittle"
               v-model="tittle"
               :disabled="saved"
@@ -67,7 +66,6 @@
               rows="3"
               class="form-control"
               id="direction"
-              placeholder="Enter Direction"
               name="direction"
               v-model="direction"
               :disabled="saved"
@@ -78,15 +76,17 @@
         </form>
       </div>
     </div>
-    <question :testId="testId" :partId="partId" :questions="questions" v-if="partNum <= 5 && questions!=null"></question>
-    <div class="table-wrapper-scroll-y my-custom-scrollbar" v-if="partNum > 5">
+    <question :testId="testId" :partId="partId" :questions="questions" v-if="partNum<=5"></question>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar"
+      v-if="partNum>5 && questionGroups!=null && questionGroups.length>0"
+      :style="{height: (questionGroups.length>6?450:35+questionGroups.length*100*0.6) + 'px'}"
+    >
       <table class="table table-striped mb-0">
         <thead>
           <tr>
             <th>Question Group Id</th>
             <th v-if="partNum == 6">Group Index</th>
             <th>Tittle</th>
-            <th>Image Link</th>
           </tr>
         </thead>
         <tbody>
@@ -94,7 +94,6 @@
             <td>{{questionGroup.id}}</td>
             <td v-if="partNum == 6">{{questionGroup.index}}</td>
             <td>{{questionGroup.tittle}}</td>
-            <td>{{questionGroup.imageLink}}</td>
             <td>
               <button
                 @click="checkQuestionGroup(questionGroup.id)"
@@ -111,8 +110,7 @@
         </tbody>
       </table>
     </div>
-    <button  v-if="partNum <= 5" @click="addNewQuestion()" class="btn btn-primary">Add New Question</button>
-    <button  v-if="partNum > 5" @click="addNewQuestion()" class="btn btn-primary">Add New Question Group</button>
+    <button style="margin-top:10px" v-if="partNum > 5" @click="addNewQuestionGroup()" class="btn btn-primary">Add New Question Group</button>
   </div>
 </template>
 
@@ -187,15 +185,20 @@ export default {
           }
         })
         .catch(e => {
+          console.log(e.response);
+          alert(e.response.data);
           //this.errors.push(e)
         });
     },
     checkQuestionGroup(questionGroupId) {
       this.$router.push(`/tests/${this.testId}/parts/${this.partId}/question-groups/${questionGroupId}`);
+    },
+    addNewQuestionGroup() {
+      this.$router.push(`/tests/${this.testId}/parts/${this.partId}/new-question-group`);
+    },
+    addNewQuestion() {
+      this.$router.push(`/tests/${this.testId}/parts/${this.partId}/new-question`);
     }
-    // checkQuestions(partId) {
-    //   this.$router.push(`/parts/${partId}`);
-    // }
   }
 };
 </script>

@@ -26,5 +26,5 @@ public interface PartCRUDMapper {
   void updatePart(Part part);
 
   @Delete("DELETE FROM Part WHERE id=#{id}")
-  void deletePartById(int id);
+  boolean deletePartById(int id);
 }

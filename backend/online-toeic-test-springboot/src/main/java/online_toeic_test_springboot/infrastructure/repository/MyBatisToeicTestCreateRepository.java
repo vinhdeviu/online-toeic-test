@@ -2,6 +2,7 @@ package online_toeic_test_springboot.infrastructure.repository;
 
 import lombok.RequiredArgsConstructor;
 import online_toeic_test_springboot.domain.model.*;
+import online_toeic_test_springboot.exception.EntityExistsException;
 import online_toeic_test_springboot.exception.EntityNotFoundException;
 import online_toeic_test_springboot.infrastructure.mapper.*;
 import online_toeic_test_springboot.domain.repository.ToeicTestCreateRepository;
@@ -48,6 +49,9 @@ public class MyBatisToeicTestCreateRepository implements ToeicTestCreateReposito
 
   @Override
   public void createTest(Test test) {
+    if(testCRUDMapper.queryTestsByName(test.getTestName()).size() > 0) {
+      throw new EntityExistsException("test name already existed");
+    }
     testCRUDMapper.insertTest(test);
     int testId = test.getId();
     Optional<Test> optionalTestTemplate = testCRUDMapper.queryTheFirstTest();

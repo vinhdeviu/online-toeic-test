@@ -32,5 +32,5 @@ public interface QuestionCRUDMapper {
   void updateQuestion(Question question);
 
   @Delete("DELETE FROM Question WHERE id=#{id}")
-  void deleteQuestionById(int id);
+  boolean deleteQuestionById(int id);
 }

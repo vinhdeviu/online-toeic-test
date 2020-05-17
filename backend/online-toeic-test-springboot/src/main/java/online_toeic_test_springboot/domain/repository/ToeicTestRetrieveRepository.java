@@ -24,6 +24,8 @@ public interface ToeicTestRetrieveRepository {
 
     List<Question> getQuestionsByGroupId(int groupId);
 
+    Question getQuestionById(int id);
+
     List<Answer> getAnswersByQuestionId(int questionId);
 
     List<Achievement> getAchievementByExamineeId(int examineeId);

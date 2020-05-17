@@ -20,6 +20,10 @@ public interface ToeicTestRetrieveService {
 
     List<Question> getQuestionsByGroupId(int groupId);
 
+    Question getQuestionById(int id);
+
+    List<Answer> getAnswersByQuestionId(int questionId);
+
     Test retrieveTestByIdAndShuffle(int testId);
 
     Test retrieveTestByAchievementIdAndShuffle(int achievementId);

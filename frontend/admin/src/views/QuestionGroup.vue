@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-sm-12">
         <form v-on:submit.prevent>
-          <div class="form-group">
+          <div class="form-group" v-if="!isNew">
             <label for="groupId">Group Id:</label>
             <input
               type="text"
@@ -31,26 +31,25 @@
             />
           </div>
           <div class="form-group">
-            <label for="testId">Part Id:</label>
+            <label for="partId">Part Id:</label>
             <input
               type="text"
               class="form-control"
-              id="testId"
+              id="partId"
               name="partId"
               v-model="partId"
               disabled
             />
           </div>
-          <div class="form-group">
+          <div class="form-group" v-if="partNum == 6">
             <label for="index">Group Index:</label>
             <input
               type="number"
               class="form-control"
               id="index"
               name="index"
-              placeholder="Enter Index"
               v-model="index"
-              :disabled="saved"
+              :disabled="!isNew&&saved"
             />
           </div>
           <div class="form-group">
@@ -59,10 +58,20 @@
               type="text"
               class="form-control"
               id="tittle"
-              placeholder="Enter Tittle"
               name="tittle"
               v-model="tittle"
-              :disabled="saved"
+              :disabled="!isNew&&saved"
+            />
+          </div>
+          <div class="form-group">
+            <label for="imageLink">Image Link:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="imageLink"
+              name="imageLink"
+              v-model="imageLink"
+              :disabled="!isNew&&saved"
             />
           </div>
           <div class="form-group">
@@ -71,18 +80,18 @@
               rows="5"
               class="form-control"
               id="paragraph"
-              placeholder="Enter Paragraph"
               name="paragraph"
               v-model="paragraph"
-              :disabled="saved"
+              :disabled="!isNew&&saved"
             ></textarea>
           </div>
-          <button v-if="saved" @click="editQuestionGroup()" class="btn btn-primary">Edit</button>
-          <button v-if="!saved" @click="saveQuestionGroup()" class="btn btn-primary">Save</button>
+          <button v-if="!isNew&&saved" @click="editQuestionGroup()" class="btn btn-primary">Edit</button>
+          <button v-if="!isNew&&!saved" @click="saveQuestionGroup()" class="btn btn-primary">Save</button>
+          <button v-if="isNew" @click="createNewQuestionGroup()" class="btn btn-primary">Submit</button>
         </form>
       </div>
     </div>
-    <question
+    <question v-if="!isNew"
       :testId="testId"
       :partId="partId"
       :groupId="groupId"
@@ -104,15 +113,25 @@ export default {
       testId: this.$route.params.testId,
       partId: this.$route.params.partId,
       groupId: this.$route.params.questionGroupId,
+      partNum: 0,
       index: 0,
       tittle: '',
-      imageLink: '',
-      paragraph: '',
+      imageLink: null,
+      paragraph: null,
       questions: [],
-      saved: true
+      saved: true,
+      isNew: false
     };
   },
   created() {
+    axios.get(`${process.env.API_URL}/parts/${this.partId}`).then(response => {
+      console.log(response.data);
+      this.partNum = response.data.partNum;
+    });
+    if(this.groupId == null) {
+      this.isNew = true;
+      return;
+    }
     axios
       .get(`${process.env.API_URL}/question-groups/${this.groupId}`)
       .then(response => {
@@ -143,7 +162,7 @@ export default {
         paragraph: this.paragraph
       };
       axios
-        .patch(`${process.env.API_URL}/question-groups//${this.groupId}`, questionGroup)
+        .patch(`${process.env.API_URL}/question-groups/${this.groupId}`, questionGroup)
         .then(response => {
           console.log(response);
           if (response.status == 200) {
@@ -154,8 +173,36 @@ export default {
           }
         })
         .catch(e => {
+          console.log(e.response);
+          alert(e.response.data);
           //this.errors.push(e)
         });
+    },
+    createNewQuestionGroup() {
+      let questionGroup = {
+        partId: this.partId,
+        index: this.index,
+        tittle: this.tittle,
+        imageLink: this.imageLink,
+        paragraph: this.paragraph
+      };
+      axios
+        .post(`${process.env.API_URL}/question-groups`, questionGroup)
+        .then(response => {
+          console.log(response);
+          if(response.status == 201) {
+            this.saved = true;
+            alert("Question Group Added");
+            this.$router.push(`/tests/${this.testId}/parts/${this.partId}`);
+          } else {
+            alert("response status not OK from server");
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+          alert(e.response.data);
+          //this.errors.push(e)
+      });
     }
   }
 };

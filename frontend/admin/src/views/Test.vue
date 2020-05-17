@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-sm-12">
         <form v-on:submit.prevent>
-          <div class="form-group">
+          <div v-if="!isNew" class="form-group">
             <label for="testId">Test Id:</label>
             <input
               type="text"
@@ -25,10 +25,9 @@
               type="text"
               class="form-control"
               id="testName"
-              placeholder="Enter Name"
               name="testName"
               v-model="testName"
-              :disabled="saved"
+              :disabled="!isNew&&saved"
             />
           </div>
           <div class="form-group">
@@ -37,19 +36,19 @@
               type="text"
               class="form-control"
               id="audioLink"
-              placeholder="Enter Audio Link"
               name="audioLink"
               v-model="audioLink"
-              :disabled="saved"
+              :disabled="!isNew&&saved"
             />
           </div>
-          <button v-if="saved" @click="editTest()" class="btn btn-primary">Edit</button>
-          <button v-if="!saved" @click="saveTest()" class="btn btn-primary">Save</button>
+          <button v-if="!isNew&&saved" @click="editTest()" class="btn btn-primary">Edit</button>
+          <button v-if="!isNew&&!saved" @click="saveTest()" class="btn btn-primary">Save</button>
+          <button v-if="isNew" @click="createNewTest()" class="btn btn-primary">Submit</button>
         </form>
       </div>
     </div>
 
-    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <div v-if="!isNew" class="table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table table-striped mb-0">
         <thead>
           <tr>
@@ -85,10 +84,15 @@ export default {
       testName: "",
       audioLink: "",
       parts: [],
-      saved: true
+      saved: true,
+      isNew: false
     };
   },
   created() {
+    if(this.testId == null) {
+      this.isNew = true;
+      return;
+    }
     axios.get(`${process.env.API_URL}/tests/${this.testId}`).then(response => {
       console.log(response);
       this.testName = response.data.testName;
@@ -121,11 +125,36 @@ export default {
           }
         })
         .catch(e => {
+          console.log(e.response);
+          alert(e.response.data);
           //this.errors.push(e)
       });
     },
     checkPart(partId) {
       this.$router.push(`/tests/${this.testId}/parts/${partId}`);
+    },
+    createNewTest() {
+      let test = {
+        testName: this.testName,
+        audioLink: this.audioLink
+      }
+      axios
+        .post(`${process.env.API_URL}/tests`, test)
+        .then(response => {
+          console.log(response);
+          if(response.status == 201) {
+            this.saved = true;
+            alert("Test Added");
+            this.$router.push(`/tests`);
+          } else {
+            alert("response status not OK from server");
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+          alert(e.response.data);
+          //this.errors.push(e)
+      });
     }
   }
 };

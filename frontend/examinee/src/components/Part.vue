@@ -19,8 +19,8 @@
       <div class="row">
         <div class="col-sm-12">
           <h4>Paragraph No.{{(indexGroup+1)}}:</h4>
-          <div style="white-space: pre-line">{{questionGroup.paragraph}}</div>
-          <img v-if="questionGroup.imageLink!==null" class="img" :src="questionGroup.imageLink" alt="img" width="500px" height="500px" />
+          <div  v-if="questionGroup.paragraph!==null&&questionGroup.paragraph!==''" style="white-space: pre-line">{{questionGroup.paragraph}}</div>
+          <img v-if="questionGroup.imageLink!==null&&questionGroup.imageLink!==''" class="img" :src="questionGroup.imageLink" alt="img" width="500px" height="500px" />
         </div>
       </div>
       <div class="row" v-for="question in questionGroup.questions" :key="question.id">

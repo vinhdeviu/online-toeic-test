@@ -40,12 +40,14 @@
           </tr>
         </tbody>
       </table>
+      <button style="margin-top:10px" @click="addNewTest()" class="btn btn-primary">Add New Test</button>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { deleteObjectByIdFromArray } from "../helper";
 
 export default {
   data() {
@@ -55,7 +57,7 @@ export default {
   },
   created() {
     axios.get(`${process.env.API_URL}/tests`).then(response => {
-      this.tests = response.data
+      this.tests = response.data;
       console.log(this.tests);
     });
   },
@@ -64,9 +66,29 @@ export default {
       this.$router.push(`/tests/${testId}`);
     },
     deleteTest(testId) {
-      // axios.delete(`${process.env.API_URL}/tests/${testId}`).then(response => {
-      //   console.log(response);
-      // });
+      const confirm = window.confirm("Are you sure you want to delete it?");
+      if (confirm) {
+        axios
+          .delete(`${process.env.API_URL}/tests/${testId}`)
+          .then(response => {
+            console.log(response);
+            if (response.status == 204) {
+              alert("Test deleted successfully");
+              deleteObjectByIdFromArray(this.tests, testId);
+            } else {
+              alert("response status not OK from server");
+            }
+          })
+          .catch(e => {
+            console.log(e);
+            console.log(e.response);
+            alert(e.response.data);
+            //this.errors.push(e)
+          });
+      }
+    },
+    addNewTest() {
+      this.$router.push(`/new-test`);
     }
   }
 };
