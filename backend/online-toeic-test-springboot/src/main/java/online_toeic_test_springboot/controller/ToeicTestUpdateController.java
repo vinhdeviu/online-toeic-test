@@ -25,7 +25,6 @@ public class ToeicTestUpdateController {
   @PatchMapping("/tests/{id}")
   public ResponseEntity<Test> updateTest(@PathVariable Integer id, @RequestBody Test test) {
     test.setId(id);
-    requestBodyValidation.validateTest(test);
     toeicTestUpdateService.updateTest(test);
     return ResponseEntity.ok().body(test);
   }
@@ -33,8 +32,6 @@ public class ToeicTestUpdateController {
   @PatchMapping("/parts/{id}")
   public ResponseEntity<Part> updatePart(@PathVariable Integer id, @RequestBody Part part) {
     part.setId(id);
-    requestBodyValidation.validatePart(part);
-    System.out.println(part);
     toeicTestUpdateService.updatePart(part);
     return ResponseEntity.ok().body(part);
   }
@@ -42,15 +39,13 @@ public class ToeicTestUpdateController {
   @PatchMapping("/question-groups/{id}")
   public ResponseEntity<QuestionGroup> updateQuestionGroup(@PathVariable Integer id, @RequestBody QuestionGroup questionGroup) {
     questionGroup.setId(id);
-    System.out.println(questionGroup);
     toeicTestUpdateService.updateQuestionGroup(questionGroup);
     return ResponseEntity.ok().body(questionGroup);
   }
 
-  @PatchMapping("/questions")
+  @PatchMapping("/questions/{id}")
   public ResponseEntity<Question> updateQuestion(@PathVariable Integer id, @RequestBody Question question) {
     question.setId(id);
-    System.out.println(question);
     toeicTestUpdateService.updateQuestion(question);
     return ResponseEntity.ok().body(question);
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="col-sm-4">
-    <timer :timeInSecond="timeInSecond" v-if="testProgress != 0 && !testSubmitted"></timer>
-    <result :totalQuestions="totalQuestions" v-if="testProgress != 0 && testSubmitted"></result>
+    <timer :timeInSecond="timeInSecond" v-if="!testSubmitted && timeInSecond != 0"></timer>
+    <result :totalQuestions="totalQuestions" v-if="testSubmitted && totalQuestions != 0"></result>
   </div>
 </template>
 
@@ -28,13 +28,19 @@ export default {
       testSubmitted: "getTestSubmitted"
     })
   },
-  beforeCreate() {
-    if (this.testProgress != 0) {
-      axios.get(`${process.env.API_URL}/test-information`).then(response => {
-        console.log(response.data);
-        this.timeInSecond = response.data.timeInSecond;
-        this.totalQuestions = response.data.totalQuestions;
-      });
+  watch: {
+    $route (to, from){
+      let testId = to.params.testId;
+      if (testId != null) {
+        axios.get(`${process.env.API_URL}/test-information/${testId}`).then(response => {
+          console.log(response.data);
+          this.timeInSecond = response.data.timeInSecond;
+          this.totalQuestions = response.data.totalQuestions;
+        });
+      } else {
+        this.timeInSecond = 0;
+        this.totalQuestions = 0;
+      }
     }
   }
 };

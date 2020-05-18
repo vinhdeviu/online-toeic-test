@@ -30,9 +30,7 @@ public interface ToeicTestRetrieveService {
 
     List<Achievement> getAchievementByExamineeId(int examineeId);
 
-    TestInfor getTestInfor();
-
-    boolean isAbleToAddNewQuestion(int testId);
+    TestInfor getTestInfor(int testId);
 
     QuestionGroup getQuestionGroupById(int id);
 }

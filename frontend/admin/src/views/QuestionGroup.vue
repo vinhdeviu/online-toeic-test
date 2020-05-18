@@ -41,7 +41,7 @@
               disabled
             />
           </div>
-          <div class="form-group" v-if="partNum == 6">
+          <div class="form-group" v-if="PART_NEED_QUESTION_GROUP_INDEX.includes(partNum)">
             <label for="index">Group Index:</label>
             <input
               type="number"
@@ -91,25 +91,28 @@
         </form>
       </div>
     </div>
-    <question v-if="!isNew"
+    <questions v-if="!isNew"
       :testId="testId"
       :partId="partId"
+      :partNum="partNum"
       :groupId="groupId"
       :questions="questions"
-    ></question>
+    ></questions>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import Question from "../components/Question.vue";
+import Questions from "../components/Questions.vue";
+import {PART_NEED_QUESTION_GROUP_INDEX} from "../const.js";
 
 export default {
   components: {
-    question: Question
+    questions: Questions
   },
   data() {
     return {
+      PART_NEED_QUESTION_GROUP_INDEX: PART_NEED_QUESTION_GROUP_INDEX,
       testId: this.$route.params.testId,
       partId: this.$route.params.partId,
       groupId: this.$route.params.questionGroupId,
@@ -124,31 +127,35 @@ export default {
     };
   },
   created() {
-    axios.get(`${process.env.API_URL}/parts/${this.partId}`).then(response => {
-      console.log(response.data);
-      this.partNum = response.data.partNum;
-    });
-    if(this.groupId == null) {
-      this.isNew = true;
-      return;
-    }
-    axios
-      .get(`${process.env.API_URL}/question-groups/${this.groupId}`)
-      .then(response => {
-        console.log(response.data);
-        this.index = response.data.index;
-        this.tittle = response.data.tittle;
-        this.imageLink = response.data.imageLink;
-        this.paragraph = response.data.paragraph;
-      });
-    axios
-      .get(`${process.env.API_URL}/questions?groupId=${this.groupId}`)
-      .then(response => {
-        this.questions = response.data;
-        console.log(this.questions);
-      });
+    this.initData();
   },
   methods: {
+    initData() {
+      axios.get(`${process.env.API_URL}/parts/${this.partId}`).then(response => {
+        console.log(response.data);
+        this.partNum = response.data.partNum;
+      });
+      if(this.groupId == null) {
+        this.isNew = true;
+      } else {
+        axios
+          .get(`${process.env.API_URL}/question-groups/${this.groupId}`)
+          .then(response => {
+            console.log(response.data);
+            this.index = response.data.index;
+            this.tittle = response.data.tittle;
+            this.imageLink = response.data.imageLink;
+            this.paragraph = response.data.paragraph;
+          });
+        axios
+          .get(`${process.env.API_URL}/questions?groupId=${this.groupId}`)
+          .then(response => {
+            this.questions = response.data;
+            console.log(this.questions);
+          });
+      }
+
+    },
     editQuestionGroup() {
       this.saved = false;
     },
@@ -162,7 +169,7 @@ export default {
         paragraph: this.paragraph
       };
       axios
-        .patch(`${process.env.API_URL}/question-groups/${this.groupId}`, questionGroup)
+        .put(`${process.env.API_URL}/question-groups/${this.groupId}`, questionGroup)
         .then(response => {
           console.log(response);
           if (response.status == 200) {
@@ -191,9 +198,13 @@ export default {
         .then(response => {
           console.log(response);
           if(response.status == 201) {
-            this.saved = true;
             alert("Question Group Added");
-            this.$router.push(`/tests/${this.testId}/parts/${this.partId}`);
+            let newQuestionGroup = response.data;
+            this.saved = true;
+            this.isNew = false;
+            this.groupId = newQuestionGroup.id;
+            this.initData();
+            this.$router.push(`/tests/${this.testId}/parts/${this.partId}/question-groups/${this.groupId}`);
           } else {
             alert("response status not OK from server");
           }

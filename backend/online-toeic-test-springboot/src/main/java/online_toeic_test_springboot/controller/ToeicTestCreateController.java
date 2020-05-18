@@ -6,6 +6,7 @@ import online_toeic_test_springboot.domain.model.Question;
 import online_toeic_test_springboot.domain.model.QuestionGroup;
 import online_toeic_test_springboot.domain.model.Test;
 import online_toeic_test_springboot.service.ToeicTestCreateService;
+import online_toeic_test_springboot.validation.HttpMethod;
 import online_toeic_test_springboot.validation.RequestBodyValidation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -34,20 +35,20 @@ public class ToeicTestCreateController {
 
   @PostMapping("/tests")
   public ResponseEntity<Test> createNewToeicTest(@RequestBody Test test) throws URISyntaxException {
-    requestBodyValidation.validateTest(test);
+    requestBodyValidation.validateTest(test, HttpMethod.POST);
     toeicTestCreateService.createNewToeicTest(test);
     return ResponseEntity.created(new URI("/api/tests")).body(test);
   }
 
   @PostMapping("/question-groups")
-  public ResponseEntity<QuestionGroup> createNewToeicTest(@RequestBody QuestionGroup questionGroup) throws URISyntaxException {
-    System.out.println(questionGroup);
+  public ResponseEntity<QuestionGroup> createNewQuestionGroup(@RequestBody QuestionGroup questionGroup) throws URISyntaxException {
+    requestBodyValidation.validateQuestionGroup(questionGroup, HttpMethod.POST);
     toeicTestCreateService.createNewQuestionGroup(questionGroup);
     return ResponseEntity.created(new URI("/api/question-groups")).body(questionGroup);
   }
 
   @PostMapping("/questions")
-  public ResponseEntity<Question> createNewToeicTest(@RequestBody Question question) throws URISyntaxException {
+  public ResponseEntity<Question> createNewQuestion(@RequestBody Question question) throws URISyntaxException {
     System.out.println(question);
     toeicTestCreateService.createNewQuestion(question);
     return ResponseEntity.created(new URI("/api/questions")).body(question);

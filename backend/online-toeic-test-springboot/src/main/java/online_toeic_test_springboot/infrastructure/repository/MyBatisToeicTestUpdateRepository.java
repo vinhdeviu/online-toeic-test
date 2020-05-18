@@ -3,6 +3,7 @@ package online_toeic_test_springboot.infrastructure.repository;
 import lombok.RequiredArgsConstructor;
 import online_toeic_test_springboot.domain.model.*;
 import online_toeic_test_springboot.domain.repository.ToeicTestUpdateRepository;
+import online_toeic_test_springboot.exception.EntityExistsException;
 import online_toeic_test_springboot.exception.EntityNotFoundException;
 import online_toeic_test_springboot.infrastructure.mapper.*;
 import org.springframework.stereotype.Repository;
@@ -27,6 +28,14 @@ public class MyBatisToeicTestUpdateRepository implements ToeicTestUpdateReposito
 
   @Override
   public void updateTest(Test test) {
+    List<Test> testsWithSameName = testCRUDMapper.queryTestsByName(test.getTestName());
+    if(testsWithSameName.size() > 0) {
+      for(Test testWithSameName: testsWithSameName) {
+        if(!testWithSameName.getId().equals(test.getId())) {
+          throw new EntityExistsException("test name is duplicated with another test");
+        }
+      }
+    }
     Optional<Test> optionalOldTest = testCRUDMapper.queryTestById(test.getId());
     if(!optionalOldTest.isPresent()) {
       throw new EntityNotFoundException("test not found");
@@ -120,8 +129,11 @@ public class MyBatisToeicTestUpdateRepository implements ToeicTestUpdateReposito
       question.setCorrectAnswerId(oldQuestion.getCorrectAnswerId());
     }
     questionCRUDMapper.updateQuestion(question);
-    List<Answer> oldAnswers = answerCRUDMapper.queryAnswersByQuestionId(question.getId());
     Map<Character, Answer> answers = question.getAnswers();
+    if(answers == null) {
+      return;
+    }
+    List<Answer> oldAnswers = answerCRUDMapper.queryAnswersByQuestionId(question.getId());
     for (Map.Entry<Character, Answer> answerEntry : answers.entrySet()) {
       Answer answer = answerEntry.getValue();
       for(Answer oldAnswer: oldAnswers) {

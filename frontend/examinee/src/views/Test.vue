@@ -40,7 +40,6 @@ export default {
   computed: {
     ...mapGetters({
       loggedIn: "getLoggedIn",
-      testId: "getTestId",
       testProgress: "getTestProgress",
       testReviewFlag: "getTestReviewFlag"
     })
@@ -59,7 +58,7 @@ export default {
           this.$store.dispatch("updateTestSubmitted", true);
         });
       } else {
-        axios.get(`${process.env.API_URL}/generate-test/${this.testId}`).then(response => {
+        axios.get(`${process.env.API_URL}/generate-test/${this.$route.params.testId}`).then(response => {
           this.testData = response.data;
           console.log(this.testData);
           this.storeAllAnswers();

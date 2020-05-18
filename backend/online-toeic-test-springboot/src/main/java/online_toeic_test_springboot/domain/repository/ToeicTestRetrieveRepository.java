@@ -32,5 +32,5 @@ public interface ToeicTestRetrieveRepository {
 
     Achievement getAchievementById(int id);
 
-    int getTotalQuestionsByPart(Part part);
+    int qetTotalNumQuestionsByTestId(int testId);
 }

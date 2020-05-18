@@ -100,8 +100,8 @@ public class ToeicTestRetrieveController {
     return ResponseEntity.ok().body(toeicTestRetrieveService.getAchievementByExamineeId(examineeId));
   }
 
-  @GetMapping("/test-information")
-  public ResponseEntity<TestInfor> getTestInfor() {
-    return ResponseEntity.ok().body(toeicTestRetrieveService.getTestInfor());
+  @GetMapping("/test-information/{testId}")
+  public ResponseEntity<TestInfor> getTestInfor(@PathVariable Integer testId) {
+    return ResponseEntity.ok().body(toeicTestRetrieveService.getTestInfor(testId));
   }
 }

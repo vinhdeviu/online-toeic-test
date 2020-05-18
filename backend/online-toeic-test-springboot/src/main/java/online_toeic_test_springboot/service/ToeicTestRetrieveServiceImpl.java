@@ -137,7 +137,8 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
   @Override
   public Test retrieveTestByAchievementIdAndShuffle(int achievementId) {
     Achievement achievement = toeicTestRetrieveRepository.getAchievementById(achievementId);
-    Test test = retrieveTestByIdAndShuffle(achievement.getTestId());
+    int testId = achievement.getTestId();
+    Test test = retrieveTestByIdAndShuffle(testId);
     List<Question> allQuestions = new ArrayList<>();
     for (Map.Entry<Integer, Part> partMap : test.getParts().entrySet()) {
       Part part = partMap.getValue();
@@ -165,7 +166,6 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
         for (Map.Entry<Character, Answer> answerEntry : answers.entrySet()) {
           if(examineeAnswer.getAnswerId().equals(answerEntry.getValue().getId())) {
             examineeSelectedOptions.set(question.getQuestionNo() - 1, answerEntry.getKey());
-            continue;
           }
         }
       }
@@ -180,17 +180,7 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
   }
 
   @Override
-  public TestInfor getTestInfor() {
-    return new TestInfor(TestConfig.TIME_PER_TEST_IN_SECOND, TestConfig.TOTAL_QUESTIONS_PER_TEST);
-  }
-
-  @Override
-  public boolean isAbleToAddNewQuestion(int testId) {
-    int totalQuestions = 0;
-    for(int partNum = 1; partNum <= TestConfig.TOTAL_PARTS; partNum++) {
-      Part part = toeicTestRetrieveRepository.getPartByTestIdAndPartNum(testId, partNum);
-      totalQuestions += toeicTestRetrieveRepository.getTotalQuestionsByPart(part);
-    }
-    return totalQuestions < TestConfig.TOTAL_QUESTIONS_PER_TEST;
+  public TestInfor getTestInfor(int testId) {
+    return new TestInfor(TestConfig.TIME_PER_TEST_IN_SECOND, toeicTestRetrieveRepository.qetTotalNumQuestionsByTestId(testId));
   }
 }

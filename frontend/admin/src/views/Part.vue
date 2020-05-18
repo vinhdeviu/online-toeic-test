@@ -76,23 +76,23 @@
         </form>
       </div>
     </div>
-    <question :testId="testId" :partId="partId" :questions="questions" v-if="partNum<=5"></question>
+    <questions :testId="testId" :partId="partId" :partNum="partNum" :questions="questions" v-if="PARTS_WITHOUT_QUESTION_GROUP.includes(partNum)"></questions>
     <div class="table-wrapper-scroll-y my-custom-scrollbar"
-      v-if="partNum>5 && questionGroups!=null && questionGroups.length>0"
+      v-if="!PARTS_WITHOUT_QUESTION_GROUP.includes(partNum) && questionGroups!=null && questionGroups.length>0"
       :style="{height: (questionGroups.length>6?450:35+questionGroups.length*100*0.6) + 'px'}"
     >
       <table class="table table-striped mb-0">
         <thead>
           <tr>
             <th>Question Group Id</th>
-            <th v-if="partNum == 6">Group Index</th>
+            <th v-if="PART_NEED_QUESTION_GROUP_INDEX.includes(partNum)">Group Index</th>
             <th>Tittle</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="questionGroup in questionGroups" :key="questionGroup.id">
             <td>{{questionGroup.id}}</td>
-            <td v-if="partNum == 6">{{questionGroup.index}}</td>
+            <td v-if="PART_NEED_QUESTION_GROUP_INDEX.includes(partNum)">{{questionGroup.index}}</td>
             <td>{{questionGroup.tittle}}</td>
             <td>
               <button
@@ -116,14 +116,17 @@
 
 <script>
 import axios from "axios";
-import Question from "../components/Question.vue";
+import Questions from "../components/Questions.vue";
+import {PARTS_WITHOUT_QUESTION_GROUP, PART_NEED_QUESTION_GROUP_INDEX} from "../const.js";
 
 export default {
   components: {
-    "question": Question
+    "questions": Questions
   },
   data() {
     return {
+      PARTS_WITHOUT_QUESTION_GROUP: PARTS_WITHOUT_QUESTION_GROUP,
+      PART_NEED_QUESTION_GROUP_INDEX: PART_NEED_QUESTION_GROUP_INDEX,
       testId: this.$route.params.testId,
       partId: this.$route.params.partId,
       partNum: 0,
@@ -144,7 +147,7 @@ export default {
       this.direction = response.data.direction;
       this.questionGroups = response.data.questionGroups;
       this.questions = response.data.questions;
-      if (this.partNum > 5) {
+      if (!PARTS_WITHOUT_QUESTION_GROUP.includes(this.partNum)) {
         axios
           .get(`${process.env.API_URL}/question-groups?partId=${this.partId}`)
           .then(response => {
@@ -174,7 +177,7 @@ export default {
         direction: this.direction
       };
       axios
-        .patch(`${process.env.API_URL}/parts/${this.partId}`, part)
+        .put(`${process.env.API_URL}/parts/${this.partId}`, part)
         .then(response => {
           console.log(response);
           if (response.status == 200) {

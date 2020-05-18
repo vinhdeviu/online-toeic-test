@@ -17,6 +17,6 @@ export default new VueRouter({
         { path: '/sign-up', component: SignUp },
         { path: '/profile', component: Profile },
         { path: '/achievement', component: Achievement },
-        { path: '/test', component: Test }
+        { path: '/test/:testId', component: Test }
     ]
 });

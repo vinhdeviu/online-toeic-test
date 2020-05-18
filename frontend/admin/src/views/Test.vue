@@ -89,21 +89,24 @@ export default {
     };
   },
   created() {
-    if(this.testId == null) {
-      this.isNew = true;
-      return;
-    }
-    axios.get(`${process.env.API_URL}/tests/${this.testId}`).then(response => {
-      console.log(response);
-      this.testName = response.data.testName;
-      this.audioLink = response.data.audioLink;
-    });
-    axios.get(`${process.env.API_URL}/parts?testId=${this.testId}`).then(response => {
-      this.parts = response.data;
-      console.log(this.parts);
-    });
+    this.initData();
   },
   methods: {
+    initData() {
+      if(this.testId == null) {
+        this.isNew = true;
+      } else {
+        axios.get(`${process.env.API_URL}/tests/${this.testId}`).then(response => {
+          console.log(response);
+          this.testName = response.data.testName;
+          this.audioLink = response.data.audioLink;
+        });
+        axios.get(`${process.env.API_URL}/parts?testId=${this.testId}`).then(response => {
+          this.parts = response.data;
+          console.log(this.parts);
+        });
+      }
+    },
     editTest() {
       this.saved = false;
     },
@@ -114,7 +117,7 @@ export default {
         audioLink: this.audioLink
       }
       axios
-        .patch(`${process.env.API_URL}/tests/${this.testId}`, test)
+        .put(`${process.env.API_URL}/tests/${this.testId}`, test)
         .then(response => {
           console.log(response);
           if(response.status == 200) {
@@ -143,9 +146,13 @@ export default {
         .then(response => {
           console.log(response);
           if(response.status == 201) {
-            this.saved = true;
             alert("Test Added");
-            this.$router.push(`/tests`);
+            let newtest = response.data;
+            this.saved = true;
+            this.isNew = false;
+            this.testId = newtest.id;
+            this.initData();
+            this.$router.push(`/tests/${this.testId}`);
           } else {
             alert("response status not OK from server");
           }

@@ -122,14 +122,7 @@ public class MyBatisToeicTestRetrieveRepository implements ToeicTestRetrieveRepo
   }
 
   @Override
-  public int getTotalQuestionsByPart(Part part) {
-    int totalQuestions = 0;
-    if(TestConfig.PARTS_WITHOUT_QUESTION_GROUP.contains(part.getPartNum())) {
-      totalQuestions += questionCRUDMapper.queryCountQuestionsByPartId(part.getId());
-    }
-    if(TestConfig.PARTS_WITH_QUESTION_GROUP.contains(part.getPartNum())) {
-      totalQuestions += questionCRUDMapper.queryCountQuestionsInQuestionGroupsByPartId(part.getId());
-    }
-    return totalQuestions;
+  public int qetTotalNumQuestionsByTestId(int testId) {
+    return questionCRUDMapper.queryCountTotalQuestionsByTestId(testId);
   }
 }

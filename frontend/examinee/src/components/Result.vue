@@ -19,7 +19,6 @@ export default {
       selectedOptions: "getSelectedOptions",
       examineeAnswers: "getExamineeAnswers",
       examineeId: "getExamineeId",
-      testId: "getTestId",
       testReviewFlag: "getTestReviewFlag"
     })
   },
@@ -38,7 +37,7 @@ export default {
     if (this.testReviewFlag == 0) {
       let achievement = {
         examineeId: this.examineeId,
-        testId: this.testId,
+        testId: this.$route.params.testId,
         totalCorrectAnswer: this.totalCorrectAnswer,
         examineeAnswers: this.examineeAnswers
       };
