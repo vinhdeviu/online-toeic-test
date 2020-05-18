@@ -6,7 +6,7 @@ import online_toeic_test_springboot.domain.model.Question;
 import online_toeic_test_springboot.domain.model.QuestionGroup;
 import online_toeic_test_springboot.domain.model.Test;
 import online_toeic_test_springboot.service.ToeicTestReplaceService;
-import online_toeic_test_springboot.validation.HttpMethod;
+import online_toeic_test_springboot.domain.model.HttpMethod;
 import online_toeic_test_springboot.validation.RequestBodyValidation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

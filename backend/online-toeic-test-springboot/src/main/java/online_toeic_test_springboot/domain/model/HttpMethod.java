@@ -1,4 +1,4 @@
-package online_toeic_test_springboot.validation;
+package online_toeic_test_springboot.domain.model;
 
 public enum HttpMethod {
     GET,

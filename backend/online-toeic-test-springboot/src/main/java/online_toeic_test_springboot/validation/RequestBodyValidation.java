@@ -1,9 +1,6 @@
 package online_toeic_test_springboot.validation;
 
-import online_toeic_test_springboot.domain.model.Part;
-import online_toeic_test_springboot.domain.model.Question;
-import online_toeic_test_springboot.domain.model.QuestionGroup;
-import online_toeic_test_springboot.domain.model.Test;
+import online_toeic_test_springboot.domain.model.*;
 import online_toeic_test_springboot.exception.BadRequestBodyException;
 import org.springframework.stereotype.Component;
 
