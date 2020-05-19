@@ -9,7 +9,7 @@ public interface UserCRUDRepository {
 
     User getUserById(int id);
 
-    User getUserByEmailAndPassword(String email, String password);
+    User login(String email, String password);
 
     void updateUser(User user);
 

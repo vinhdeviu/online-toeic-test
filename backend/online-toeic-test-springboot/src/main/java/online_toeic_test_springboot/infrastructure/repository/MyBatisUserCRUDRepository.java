@@ -25,34 +25,44 @@ public class MyBatisUserCRUDRepository implements UserCRUDRepository {
 
   @Override
   public User getUserById(int id) {
-    Optional<User> user = userCRUDMapper.queryUserById(id);
-    if(!user.isPresent()) {
+    Optional<User> optionalUser = userCRUDMapper.queryUserById(id);
+    if(!optionalUser.isPresent()) {
       throw new EntityNotFoundException("user not found");
     }
-    return user.get();
+    return optionalUser.get();
   }
 
   @Override
-  public User getUserByEmailAndPassword(String email, String password) {
-    Optional<User> user = userCRUDMapper.queryUserByEmailAndPassword(email, password);
-    if(!user.isPresent()) {
+  public User login(String email, String password) {
+    Optional<User> optionalUser = userCRUDMapper.queryUserByEmailAndPassword(email, password);
+    if(!optionalUser.isPresent()) {
       throw new EntityNotFoundException("wrong email or password");
     }
-    return user.get();
+    return optionalUser.get();
   }
 
   @Override
   public void updateUser(User user) {
+    Optional<User> optionalUser = userCRUDMapper.queryUserById(user.getId());
+    if(!optionalUser.isPresent()) {
+      throw new EntityNotFoundException("user not found");
+    }
     userCRUDMapper.updateUser(user);
   }
 
   @Override
   public void createUser(User user) {
+    Optional<User> optionalUser = userCRUDMapper.queryUserByEmail(user.getEmail());
+    if(optionalUser.isPresent()) {
+      throw new EntityNotFoundException("email is already registered");
+    }
     userCRUDMapper.insertUser(user);
   }
 
   @Override
   public void deleteUser(int id) {
-    userCRUDMapper.deleteUserById(id);
+    if(!userCRUDMapper.deleteUserById(id)) {
+      throw new EntityNotFoundException("user not found");
+    }
   }
 }

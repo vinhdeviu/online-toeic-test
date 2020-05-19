@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(User user) {
-        return userCRUDRepository.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
+        return userCRUDRepository.login(user.getEmail(), user.getPassword());
     }
 
     @Override
@@ -33,5 +33,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllExaminees() {
         return userCRUDRepository.getUsersByRole(EXAMINEE_ROLE_INT_VALUE);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userCRUDRepository.updateUser(user);
     }
 }

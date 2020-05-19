@@ -8,7 +8,7 @@
       <div class="col-sm-4">
         <button v-if="!loggedIn" @click="login()" class="btn btn-primary">Login</button>
         <button v-if="!loggedIn" @click="signUp()" class="btn btn-primary">Sign up</button>
-        <button v-if="loggedIn" @click="viewProfile()" class="btn btn-primary">Nguyen Duy Vinh</button>
+        <button v-if="loggedIn" @click="viewProfile()" class="btn btn-primary">{{examinee.name}}</button>
       </div>
     </div>
   </div>
@@ -19,6 +19,11 @@ import { mapGetters } from "vuex";
 import TestInfor from "./TestInfor.vue";
 
 export default {
+  data() {
+    return {
+      examinee: null
+    }
+  },
   components: {
     testInfor: TestInfor
   },
@@ -26,6 +31,9 @@ export default {
     ...mapGetters({
       loggedIn: "getLoggedIn"
     })
+  },
+  created() {
+    this.examinee = JSON.parse(localStorage.getItem('examinee'));
   },
   methods: {
     login() {
@@ -35,10 +43,15 @@ export default {
       this.$router.push("/sign-up");
     },
     viewProfile() {
-      this.$router.push("/profile");
+      this.$router.push(`/profile`);
     },
     goHome() {
       this.$router.push("/home");
+    }
+  },
+  watch: {
+    loggedIn: function (newValue, oldValue) {
+      this.examinee = JSON.parse(localStorage.getItem('examinee'));
     }
   }
 };

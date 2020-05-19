@@ -33,7 +33,7 @@ export default {
     },
     setExamineeAnswer(state, indexAndData) {
         state.examineeAnswers[indexAndData.index] = {
-            examineeId: state.examineeId, 
+            examineeId: JSON.parse(localStorage.getItem('examinee')).id, 
             questionId: indexAndData.questionId, 
             option: indexAndData.option, 
             answerId: indexAndData.answerId, 

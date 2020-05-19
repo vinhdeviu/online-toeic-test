@@ -4,6 +4,8 @@ import online_toeic_test_springboot.domain.model.*;
 import online_toeic_test_springboot.exception.BadRequestBodyException;
 import org.springframework.stereotype.Component;
 
+import java.util.regex.Pattern;
+
 @Component
 public class RequestBodyValidation {
 
@@ -84,5 +86,46 @@ public class RequestBodyValidation {
         if(!badRequestBodyErrorMessage.toString().equals("")) {
             throw new BadRequestBodyException(badRequestBodyErrorMessage.toString());
         }
+    }
+
+    public void validateUser(User user, HttpMethod httpMethod) {
+        System.out.println(user);
+        StringBuilder badRequestBodyErrorMessage = new StringBuilder();
+        if(httpMethod == HttpMethod.PUT) {
+            if(user.getId() == null || user.getId() <= 0) {
+                badRequestBodyErrorMessage.append("id is required. ");
+            }
+        }
+        if(user.getEmail() == null || user.getEmail().equals("")) {
+            badRequestBodyErrorMessage.append("email is required. ");
+        } else if(!isValid(user.getEmail())) {
+            badRequestBodyErrorMessage.append("incorrect email format. ");
+        }
+        if(user.getPassword() == null || user.getPassword().equals("")) {
+            badRequestBodyErrorMessage.append("password is required. ");
+        }
+        if(user.getName() == null || user.getName().equals("")) {
+            badRequestBodyErrorMessage.append("name is required. ");
+        }
+        if(user.getRole() == null || user.getRole() <= 0) {
+            badRequestBodyErrorMessage.append("role is required. ");
+        }
+        if(!user.getPassword().equals(user.getConfirmPassword())) {
+            badRequestBodyErrorMessage.append("password confirm not match. ");
+        }
+        if(!badRequestBodyErrorMessage.toString().equals("")) {
+            throw new BadRequestBodyException(badRequestBodyErrorMessage.toString());
+        }
+    }
+
+    private boolean isValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
     }
 }

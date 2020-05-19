@@ -6,9 +6,10 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class User {
-    private int id;
+    private Integer id;
     private String email;
-    private String password;
     private String name;
-    private int role;
+    private Integer role;
+    private String password;
+    private String confirmPassword;
 }

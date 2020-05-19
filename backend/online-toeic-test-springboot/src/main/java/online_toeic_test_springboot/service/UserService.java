@@ -10,4 +10,6 @@ public interface UserService {
     void register(User user);
 
     List<User> getAllExaminees();
+
+    void updateUser(User user);
 }

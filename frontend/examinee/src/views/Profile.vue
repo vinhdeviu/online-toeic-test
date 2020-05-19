@@ -10,6 +10,18 @@
       <div class="col-sm-4">
         <form v-on:submit.prevent>
           <div class="form-group">
+            <label for="usr">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="enter email"
+              v-model="examinee.email"
+              disabled
+            />
+          </div>
+          <div class="form-group">
             <label for="name">Name</label>
             <input
               type="text"
@@ -17,18 +29,8 @@
               id="name"
               name="name"
               placeholder="enter name"
-              value="Nguyen Duy Vinh"
-            />
-          </div>
-          <div class="form-group">
-            <label for="usr">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              name="email"
-              placeholder="enter email"
-              value="dacnhantam1607@gmail.com"
+              v-model="examinee.name"
+              :disabled="saved"
             />
           </div>
           <div class="form-group">
@@ -39,7 +41,8 @@
               id="pwd"
               name="password"
               placeholder="enter password"
-              value="Nguyen Duy Vinh"
+              v-model="examinee.password"
+              :disabled="saved"
             />
           </div>
           <div class="form-group">
@@ -50,10 +53,12 @@
               id="confirm-pwd"
               name="confirm-password"
               placeholder="confirm password"
-              value="Nguyen Duy Vinh"
+              v-model="examinee.confirmPassword"
+              :disabled="saved"
             />
           </div>
-          <button style="width: 140px;" type="submit" class="btn btn-primary btn-lg">Save</button>
+          <button v-if="saved" style="width: 140px;" type="submit" @click="edit()" class="btn btn-primary btn-lg">Edit</button>
+          <button v-if="!saved" style="width: 140px;" type="submit" @click="save()" class="btn btn-primary btn-lg">Save</button>
         </form>
       </div>
     </div>
@@ -71,8 +76,15 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import axios from "axios";
 
-export default {
+export default {  
+  data() {
+    return {
+      examinee: null,
+      saved: true
+    }
+  },
   computed: {
     ...mapGetters({
       loggedIn: 'getLoggedIn',
@@ -80,13 +92,41 @@ export default {
   },
   created() {
     if(!this.loggedIn) {
-      this.$router.push('/login')
+      this.$router.push('/login');
+    } else {
+      this.examinee = JSON.parse(localStorage.getItem('examinee'));
+      this.examinee.confirmPassword = this.examinee.password;
     }
   },
   methods: {
+    edit() {
+      this.saved = false;
+    },
+    save() {
+      axios
+        .put(`${process.env.API_URL}/edit-profile/${this.examinee.id}`, this.examinee)
+        .then(response => {
+          console.log(response);
+          if (response.status == 200) {
+            this.saved = true;
+            localStorage.setItem('examinee', JSON.stringify(this.examinee));
+            alert("Saved");
+            this.$router.go(0);
+          } else {
+            alert("response status not OK from server");
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+          alert(e.response.data);
+          //this.errors.push(e)
+        });
+    },
     logout() {
-      this.$store.dispatch('updateLoggedIn', false)
-      this.$router.push('/home')
+      localStorage.removeItem('examinee');
+      this.$store.dispatch('updateLoggedIn', false);
+      this.$router.push('/home');
+      this.$router.go(0);
     },
     viewAchivement() {
       this.$router.push('/achievement')

@@ -15,6 +15,9 @@ public interface UserCRUDMapper {
   @Select("SELECT * FROM User WHERE id = #{id}")
   Optional<User> queryUserById(int id);
 
+  @Select("SELECT * FROM User WHERE email = #{email}")
+  Optional<User> queryUserByEmail(String email);
+
   @Select("SELECT * FROM User WHERE email = #{email} AND password = #{password}")
   Optional<User> queryUserByEmailAndPassword(String email, String password);
 

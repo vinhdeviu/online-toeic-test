@@ -46,16 +46,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      loggedIn: "getLoggedIn",
-      examineeId: "getExamineeId"
+      loggedIn: "getLoggedIn"
     })
   },
   created() {
     if (!this.loggedIn) {
       this.$router.push("/login");
     } else {
-      let examinee_id = 1;  // temp hard code
-      axios.get(`${process.env.API_URL}/achievements/?examineeId=${this.examineeId}`).then(response => {
+      axios.get(`${process.env.API_URL}/achievements/?examineeId=${JSON.parse(localStorage.getItem('examinee')).id}`).then(response => {
         console.log(response.data);
         for(let achievement of response.data) {
           this.dates.push(achievement.date);

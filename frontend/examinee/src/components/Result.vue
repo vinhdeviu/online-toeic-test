@@ -18,7 +18,6 @@ export default {
       answers: "getAnswers",
       selectedOptions: "getSelectedOptions",
       examineeAnswers: "getExamineeAnswers",
-      examineeId: "getExamineeId",
       testReviewFlag: "getTestReviewFlag"
     })
   },
@@ -36,7 +35,7 @@ export default {
     }
     if (this.testReviewFlag == 0) {
       let achievement = {
-        examineeId: this.examineeId,
+        examineeId: JSON.parse(localStorage.getItem('examinee')).id,
         testId: this.$route.params.testId,
         totalCorrectAnswer: this.totalCorrectAnswer,
         examineeAnswers: this.examineeAnswers

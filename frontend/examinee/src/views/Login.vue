@@ -42,6 +42,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from "axios";
 
 export default {
   computed: {
@@ -56,13 +57,28 @@ export default {
   },
   methods: {
     login() {
-      let loginCondition = this.$refs.email.value == 'vinh@gmail.com' && this.$refs.pwd.value == '123'; // TODO: will implement in future
-      if (loginCondition) {
-        this.$store.dispatch("updateLoggedIn", true);
-        this.$router.push("/home");
-      } else {
-        alert("wrong username or password");
+      let user = {
+        email: this.$refs.email.value,
+        password: this.$refs.pwd.value
       }
+      axios
+        .post(`${process.env.API_URL}/login`, user)
+        .then(response => {
+          if(response.status == 200) {
+            console.log(response);
+            let examinee = response.data;
+            localStorage.setItem('examinee', JSON.stringify(examinee));
+            this.$store.dispatch("updateLoggedIn", true);
+            this.$router.push("/home");
+          } else {
+            alert("Response status not OK from server");
+          }
+        })
+        .catch(e => {
+          console.log(e.response);
+          alert(e.response.data);
+          //this.errors.push(e)
+        });
     }
   }
 };

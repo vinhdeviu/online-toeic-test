@@ -1,40 +1,53 @@
-//package online_toeic_test_springboot.web;
-//
-//import lombok.RequiredArgsConstructor;
-//import online_toeic_test_springboot.domain.TestInfor;
-//import online_toeic_test_springboot.domain.User;
-//import online_toeic_test_springboot.service.ToeicTestService;
-//import online_toeic_test_springboot.service.UserService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.validation.annotation.Validated;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.List;
-//
-//@Validated
-//@RestController
-//@RequestMapping("/api")
-//@RequiredArgsConstructor
-//@CrossOrigin
-//public class UserController {
-//
-//  @Autowired
-//  private final UserService userService;
-//
-//  @RequestMapping(value = "/user", method = RequestMethod.GET)
-//  public List<User> listUser() {
-//    return userService.findAll();
-//  }
-//
-//  @RequestMapping(value = "/user", method = RequestMethod.POST)
-//  public User create(@RequestBody User user) {
-//    return userService.save(user);
-//  }
-//
-//  @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-//  public String delete(@PathVariable(value = "id") int id) {
-//    userService.delete(id);
-//    return "success";
-//  }
-//}
+package online_toeic_test_springboot.controller;
+
+import lombok.RequiredArgsConstructor;
+import online_toeic_test_springboot.domain.model.HttpMethod;
+import online_toeic_test_springboot.domain.model.User;
+import online_toeic_test_springboot.service.UserService;
+import online_toeic_test_springboot.validation.RequestBodyValidation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+
+@Validated
+@RestController
+@RequestMapping("/api")
+@RequiredArgsConstructor
+@CrossOrigin
+public class UserController {
+
+    @Autowired
+    private final UserService userService;
+
+    private final RequestBodyValidation requestBodyValidation;
+
+    @PatchMapping("/examinees")
+    public ResponseEntity<List<User>> retrieveExaminees(@RequestBody User user) {
+        return ResponseEntity.ok().body(userService.getAllExaminees());
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody User user) {
+        return ResponseEntity.ok().body(userService.login(user));
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody User user) throws URISyntaxException {
+        requestBodyValidation.validateUser(user, HttpMethod.POST);
+        userService.register(user);
+        return ResponseEntity.created(new URI("/api/register")).body(user);
+    }
+
+    @PutMapping("/edit-profile/{userId}")
+    public ResponseEntity<User> editProfile(@PathVariable Integer userId, @RequestBody User user) {
+        user.setId(userId);
+        requestBodyValidation.validateUser(user, HttpMethod.PUT);
+        userService.updateUser(user);
+        return ResponseEntity.ok().body(user);
+    }
+}
