@@ -28,19 +28,28 @@ export default {
       testSubmitted: "getTestSubmitted"
     })
   },
+  created() {
+    let testId = this.$route.params.testId;
+    this.initData(testId);
+  },
+  methods: {
+      initData(testId) {
+        if (testId != null) {
+          axios.get(`${process.env.API_URL}/test-information/${testId}`).then(response => {
+            console.log(response.data);
+            this.timeInSecond = response.data.timeInSecond;
+            this.totalQuestions = response.data.totalQuestions;
+          });
+        } else {
+          this.timeInSecond = 0;
+          this.totalQuestions = 0;
+        }
+      }
+  },
   watch: {
     $route (to, from){
       let testId = to.params.testId;
-      if (testId != null) {
-        axios.get(`${process.env.API_URL}/test-information/${testId}`).then(response => {
-          console.log(response.data);
-          this.timeInSecond = response.data.timeInSecond;
-          this.totalQuestions = response.data.totalQuestions;
-        });
-      } else {
-        this.timeInSecond = 0;
-        this.totalQuestions = 0;
-      }
+      this.initData(testId);
     }
   }
 };

@@ -21,7 +21,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+            <a style="cursor:pointer" class="nav-link" @click="logout()">Logout</a>
           </li>
         </ul>
       </div>
@@ -30,5 +30,15 @@
 </template>
 
 <script>
-export default {};
+
+export default {
+  methods: {
+    logout() {
+      this.$router.push("/login");
+      localStorage.removeItem('admin');
+      this.$store.dispatch("updateLoggedIn", false);
+      this.$store.dispatch("updateAdmin", {});
+    }
+  }
+};
 </script>

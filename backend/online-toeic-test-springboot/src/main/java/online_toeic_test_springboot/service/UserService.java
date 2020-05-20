@@ -12,4 +12,6 @@ public interface UserService {
     List<User> getAllExaminees();
 
     void updateUser(User user);
+
+    User getUserById(int userId);
 }

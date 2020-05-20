@@ -17,364 +17,25 @@
       </div>
     </div>
 
-    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar"
+      :style="{height: (examinees.length>6?450:35+examinees.length*100*0.6) + 'px'}"
+      v-if="examinees.length>0"
+    >
       <table class="table table-striped mb-0">
         <thead>
           <tr>
-            <th>Test</th>
+            <th>Examinee Id</th>
             <th>Name</th>
-            <th>Audio Link</th>
+            <th>Email</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Test 1</td>
-            <td>http://localhost:3000/mp3/TEST_1.mp3</td>
-            <td>
-              <button class="btn btn-success btn-sm">View</button>
-            </td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-            </td>
-            <td>
-              <button class="btn btn-danger btn-sm">Delete</button>
+          <tr v-for="examinee in examinees" :key="examinee.id">
+            <td>{{examinee.id}}</td>
+            <td>{{examinee.name}}</td>
+            <td>{{examinee.email}}</td>
+            <td>
+              <button @click="checkExaminee(examinee.id)" class="btn btn-primary btn-sm">Check Detail</button>
             </td>
           </tr>
         </tbody>
@@ -384,5 +45,24 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {  
+  data() {
+    return {
+      examinees: []
+    };
+  },
+  created() {
+    axios.get(`${process.env.API_URL}/examinees`).then(response => {
+      this.examinees = response.data;
+      console.log(this.examinees);
+    });
+  },
+  methods: {
+    checkExaminee(examineeId) {
+      this.$router.push(`/examinees/${examineeId}`);
+    }
+  }
+};
 </script>

@@ -26,9 +26,14 @@ public class UserController {
 
     private final RequestBodyValidation requestBodyValidation;
 
-    @PatchMapping("/examinees")
-    public ResponseEntity<List<User>> retrieveExaminees(@RequestBody User user) {
+    @GetMapping("/examinees")
+    public ResponseEntity<List<User>> retrieveExaminees() {
         return ResponseEntity.ok().body(userService.getAllExaminees());
+    }
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<User> retrieveExamineeById(@PathVariable Integer userId) {
+        return ResponseEntity.ok().body(userService.getUserById(userId));
     }
 
     @PostMapping("/login")

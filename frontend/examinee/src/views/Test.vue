@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
-        <audio controls style="width: 100%">
+        <audio controls :style="audioStyle" id="listeningAudio">
           <source
             :src="testData.audioLink"
             type="audio/mpeg"
@@ -34,14 +34,16 @@ export default {
   },
   data() {
     return {
-      testData: {}
+      testData: {},
+      audioStyle: ''
     };
   },
   computed: {
     ...mapGetters({
       loggedIn: "getLoggedIn",
       testProgress: "getTestProgress",
-      testReviewFlag: "getTestReviewFlag"
+      testReviewFlag: "getTestReviewFlag",
+      testSubmitted: "getTestSubmitted"
     })
   },
   created() {
@@ -50,6 +52,7 @@ export default {
     } else {
       this.$store.dispatch("updateTestProgress", 1);
       if(this.testReviewFlag != 0) {
+        this.audioStyle = 'width: 100%';
         axios.get(`${process.env.API_URL}/generate-test-achievement/${this.testReviewFlag}`).then(response => {
           this.testData = response.data;
           console.log(this.testData);
@@ -58,10 +61,24 @@ export default {
           this.$store.dispatch("updateTestSubmitted", true);
         });
       } else {
+        this.audioStyle = 'display: none';
         axios.get(`${process.env.API_URL}/generate-test/${this.$route.params.testId}`).then(response => {
           this.testData = response.data;
           console.log(this.testData);
           this.storeAllAnswers();
+        });
+      }
+    }
+  },
+  updated() {
+    if(this.testReviewFlag == 0 && !this.testSubmitted) {
+      let playPromise = document.getElementById("listeningAudio").play();
+      var vm = this;
+      if (playPromise !== undefined) {
+        playPromise.then(function() {
+          // Automatic playback started!
+        }).catch(function(error) {
+          vm.$router.go(0);
         });
       }
     }
