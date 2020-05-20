@@ -10,6 +10,9 @@ import Test from './views/Test.vue';
 Vue.use(VueRouter);
 
 export default new VueRouter({
+    scrollBehavior() {
+        return { x: 0, y: 0 };
+    },
     routes: [
         { path: '/', redirect: '/home' },
         { path: '/home', component: Home },

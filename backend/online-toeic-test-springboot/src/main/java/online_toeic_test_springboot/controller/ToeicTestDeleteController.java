@@ -33,7 +33,7 @@ public class ToeicTestDeleteController {
     return ResponseEntity.noContent().build();
   }
 
-  @DeleteMapping("/questions")
+  @DeleteMapping("/questions/{id}")
   public ResponseEntity<?> deleteQuestionById(@PathVariable Integer id) {
     toeicTestDeleteService.deleteQuestionById(id);
     return ResponseEntity.noContent().build();

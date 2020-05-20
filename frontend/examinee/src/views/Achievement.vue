@@ -22,8 +22,8 @@
       </div>
       <div class="col-sm-3">
         <h3 style="color:#007bff">Detail</h3>
-        <div v-for="achievementId in achievementIds" :key="achievementId">
-          <button @click="viewDetail(achievementId)" class="btn btn-primary btn-sm">View</button>
+        <div v-for="achievement in achievements" :key="achievement.id">
+          <button @click="viewDetail(achievement)" class="btn btn-primary btn-sm">View</button>
           <div style="margin-top:8px"></div>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default {
       dates: [],
       testNames: [],
       totalCorrectAnswers: [],
-      achievementIds: []
+      achievements: []
     };
   },
   computed: {
@@ -55,20 +55,20 @@ export default {
     } else {
       axios.get(`${process.env.API_URL}/achievements/?examineeId=${JSON.parse(localStorage.getItem('examinee')).id}`).then(response => {
         console.log(response.data);
-        for(let achievement of response.data) {
+        this.achievements = response.data;
+        for(let achievement of this.achievements) {
           this.dates.push(achievement.date);
           this.testNames.push(achievement.testName);
           this.totalCorrectAnswers.push(achievement.totalCorrectAnswer);
-          this.achievementIds.push(achievement.id);
         }
       });
     }
   },
   methods: {
-    viewDetail(achievementId) {
-      console.log(achievementId);
-      this.$store.dispatch("updateTestReviewFlag", achievementId);
-      this.$router.push("/test");
+    viewDetail(achievement) {
+      console.log(achievement);
+      this.$store.dispatch("updateTestReviewFlag", achievement.id);
+      this.$router.push(`/test/${achievement.testId}`);
     },
   }
 };

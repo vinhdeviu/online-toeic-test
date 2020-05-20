@@ -10,7 +10,6 @@
             <th>Question Id</th>
             <th v-if="PART_NEED_QUESTION_INDEX.includes(partNum)">Question Index</th>
             <th>Tittle</th>
-            <th>Image Link</th>
           </tr>
         </thead>
         <tbody>
@@ -18,7 +17,6 @@
             <td>{{question.id}}</td>
             <td v-if="PART_NEED_QUESTION_INDEX.includes(partNum)">{{question.index}}</td>
             <td>{{question.questionTittle}}</td>
-            <td>{{question.imageLink}}</td>
             <td>
               <button @click="checkQuestion(question.id)" class="btn btn-primary btn-sm">Check Detail</button>
             </td>
@@ -35,6 +33,8 @@
 
 <script>
 import {PART_NEED_QUESTION_INDEX} from "../const.js";
+import axios from "axios";
+import { deleteObjectByIdFromArray } from "../helper";
 
 export default {
   data() {
@@ -49,6 +49,28 @@ export default {
         this.$router.push(`/tests/${this.testId}/parts/${this.partId}/questions/${questionId}`);
       } else {
         this.$router.push(`/tests/${this.testId}/parts/${this.partId}/question-groups/${this.groupId}/questions/${questionId}`);
+      }
+    },
+    deleteQuestion(questionId) {
+      const confirm = window.confirm("Are you sure you want to delete it?");
+      if (confirm) {
+        axios
+          .delete(`${process.env.API_URL}/questions/${questionId}`)
+          .then(response => {
+            console.log(response);
+            if (response.status == 204) {
+              alert("Test deleted successfully");
+              deleteObjectByIdFromArray(this.questions, questionId);
+            } else {
+              alert("response status not OK from server");
+            }
+          })
+          .catch(e => {
+            console.log(e);
+            console.log(e.response);
+            alert(e.response.data);
+            //this.errors.push(e)
+          });
       }
     },
     addNewQuestion(questionId) {

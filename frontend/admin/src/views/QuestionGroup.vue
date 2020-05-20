@@ -98,6 +98,8 @@
       :groupId="groupId"
       :questions="questions"
     ></questions>
+  <hr/>
+  <button @click="$router.push(`/tests/${testId}/parts/${partId}`)" class="btn btn-primary btn-sm">Go Back</button>
   </div>
 </template>
 

@@ -10,14 +10,16 @@
         <div class="line"></div>
       </div>
       <div class="col-sm-8"></div>
-      <div class="col-sm-2">
+      <!-- <div class="col-sm-2">
         <div class="md-form mt-0">
           <input class="form-control" type="text" placeholder="Search" aria-label="Search" />
         </div>
-      </div>
+      </div> -->
     </div>
 
-    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar"
+      :style="{height: (tests.length>6?450:35+tests.length*100*0.6) + 'px'}"
+    >
       <table class="table table-striped mb-0">
         <thead>
           <tr>
@@ -40,8 +42,8 @@
           </tr>
         </tbody>
       </table>
-      <button style="margin-top:10px" @click="addNewTest()" class="btn btn-primary">Add New Test</button>
     </div>
+    <button style="margin-top:10px" @click="addNewTest()" class="btn btn-primary">Add New Test</button>
   </div>
 </template>
 

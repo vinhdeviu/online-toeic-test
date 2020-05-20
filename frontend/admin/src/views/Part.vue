@@ -111,6 +111,8 @@
       </table>
     </div>
     <button style="margin-top:10px" v-if="partNum > 5" @click="addNewQuestionGroup()" class="btn btn-primary">Add New Question Group</button>
+    <hr/>
+    <button @click="$router.push(`/tests/${testId}`)" class="btn btn-primary btn-sm">Go Back</button>
   </div>
 </template>
 
@@ -118,6 +120,7 @@
 import axios from "axios";
 import Questions from "../components/Questions.vue";
 import {PARTS_WITHOUT_QUESTION_GROUP, PART_NEED_QUESTION_GROUP_INDEX} from "../const.js";
+import { deleteObjectByIdFromArray } from "../helper";
 
 export default {
   components: {
@@ -195,6 +198,28 @@ export default {
     },
     checkQuestionGroup(questionGroupId) {
       this.$router.push(`/tests/${this.testId}/parts/${this.partId}/question-groups/${questionGroupId}`);
+    },
+    deleteQuestionGroup(questionGroupId) {
+      const confirm = window.confirm("Are you sure you want to delete it?");
+      if (confirm) {
+        axios
+          .delete(`${process.env.API_URL}/question-groups/${questionGroupId}`)
+          .then(response => {
+            console.log(response);
+            if (response.status == 204) {
+              alert("Question Group deleted successfully");
+              deleteObjectByIdFromArray(this.questionGroups, questionGroupId);
+            } else {
+              alert("response status not OK from server");
+            }
+          })
+          .catch(e => {
+            console.log(e);
+            console.log(e.response);
+            alert(e.response.data);
+            //this.errors.push(e)
+          });
+      }
     },
     addNewQuestionGroup() {
       this.$router.push(`/tests/${this.testId}/parts/${this.partId}/new-question-group`);

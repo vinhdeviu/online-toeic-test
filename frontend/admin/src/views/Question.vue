@@ -118,6 +118,9 @@
         </form>
       </div>
     </div>
+    <hr/>
+    <button v-if="groupId==null" @click="$router.push(`/tests/${testId}/parts/${partId}`)" class="btn btn-primary btn-sm">Go Back</button>
+    <button v-if="groupId!=null" @click="$router.push(`/tests/${testId}/parts/${partId}/question-groups/${groupId}`)" class="btn btn-primary btn-sm">Go Back</button>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Login from './views/Login.vue';
 import Home from './views/Home.vue';
 import Tests from './views/Tests.vue';
 import Test from './views/Test.vue';
@@ -11,9 +12,13 @@ import Examinees from './views/Examinees.vue';
 Vue.use(VueRouter);
 
 export default new VueRouter({
+    scrollBehavior() {
+        return { x: 0, y: 0 };
+    },
     routes: [
         { path: '/', redirect: '/home' },
         { path: '/home', component: Home },
+        { path: '/login', name: 'login', component: Login },
         { path: '/tests', component: Tests },
         { path: '/new-test', component: Test },
         { path: '/tests/:testId', component: Test },

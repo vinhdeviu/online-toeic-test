@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div class="wrapper">
+    <router-view v-if="$route.name === 'login'"></router-view>
+    <div class="wrapper" v-if="$route.name !== 'login'">
       <side-bar></side-bar>
       <div id="content">
         <page-header></page-header>

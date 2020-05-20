@@ -71,6 +71,8 @@
         </tbody>
       </table>
     </div>
+    <hr/>
+    <button @click="$router.push(`/tests`)" class="btn btn-primary btn-sm">Go Back</button>
   </div>
 </template>
 
