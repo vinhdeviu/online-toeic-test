@@ -119,7 +119,7 @@ export default {
       partId: this.$route.params.partId,
       groupId: this.$route.params.questionGroupId,
       partNum: 0,
-      index: 0,
+      index: null,
       tittle: '',
       imageLink: null,
       paragraph: null,

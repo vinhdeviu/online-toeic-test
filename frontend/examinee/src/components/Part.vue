@@ -68,6 +68,9 @@ export default {
     submitTest() {
       this.$store.dispatch("updateTestSubmitted", true);
       this.$store.dispatch("updateTestProgress", 1);
+      let audio = document.getElementById("listeningAudio");
+      audio.pause();
+      audio.currentTime = 0;
       window.scrollTo(0,0);
     },
     retest() {

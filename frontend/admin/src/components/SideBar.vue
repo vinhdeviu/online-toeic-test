@@ -6,7 +6,7 @@
     </div>
 
     <ul class="list-unstyled components">
-      <p style="cursor:pointer" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'"><b>Nguyen Duy Vinh</b></p>
+      <p style="cursor:pointer" @click="toProfilePage()" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'"><b>{{admin.name}}</b></p>
       <li>
         <a style="cursor:pointer" @click="toHomePage()">Home</a>
       </li>
@@ -21,7 +21,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
+  computed: {
+    ...mapGetters({
+      admin: "getAdmin"
+    })
+  },
+  created() {
+    let admin = JSON.parse(localStorage.getItem('admin'));
+    this.$store.dispatch("updateAdmin", admin);
+  },
   methods: {
     toHomePage() {
       this.$router.push("/home");
@@ -31,6 +42,9 @@ export default {
     },
     toExamineesPage() {
       this.$router.push("/examinees");
+    },
+    toProfilePage() {
+      this.$router.push("/profile");
     }
   }
 };
