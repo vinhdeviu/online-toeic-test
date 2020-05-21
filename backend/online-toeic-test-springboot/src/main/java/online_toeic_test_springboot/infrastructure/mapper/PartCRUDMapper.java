@@ -12,6 +12,9 @@ public interface PartCRUDMapper {
   @Select("SELECT * FROM PART WHERE id = #{id}")
   Optional<Part> queryPartById(int id);
 
+  @Select("SELECT * FROM PART")
+  List<Part> queryAllParts();
+
   @Select("SELECT * FROM PART WHERE test_id = #{testId}")
   List<Part> queryPartsByTestId(int testId);
 

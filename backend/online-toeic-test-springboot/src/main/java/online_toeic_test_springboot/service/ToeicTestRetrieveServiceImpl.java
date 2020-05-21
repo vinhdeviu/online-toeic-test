@@ -19,8 +19,28 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
 
   private int questionNoIndex = 0;
 
-  public List<Test> retrieveAllTests() {
+  public List<Test> getAllTests() {
     return toeicTestRetrieveRepository.getAllTests();
+  }
+
+  @Override
+  public List<Part> getAllParts() {
+    return toeicTestRetrieveRepository.getAllParts();
+  }
+
+  @Override
+  public List<QuestionGroup> getAllQuestionGroups() {
+    return toeicTestRetrieveRepository.getAllQuestionGroups();
+  }
+
+  @Override
+  public List<Question> getAllQuestions() {
+    return toeicTestRetrieveRepository.getAllQuestions();
+  }
+
+  @Override
+  public List<Answer> getAllAnswers() {
+    return toeicTestRetrieveRepository.getAllAnswers();
   }
 
   @Override
@@ -68,6 +88,21 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
     return toeicTestRetrieveRepository.getQuestionGroupById(id);
   }
 
+  @Override
+  public List<Achievement> getAllAchievements() {
+    return toeicTestRetrieveRepository.getAllAchievements();
+  }
+
+  @Override
+  public List<ExamineeAnswer> getAllExamineeAnswers() {
+    return toeicTestRetrieveRepository.getAllExamineeAnswers();
+  }
+
+  @Override
+  public Achievement getAchievementById(int id) {
+    return toeicTestRetrieveRepository.getAchievementById(id);
+  }
+
   private Part generatePartWithOnlyQuestions(int testId, int partNum, boolean shuffleQuestionsFlag, boolean shuffleAnswersFlag) {
     Part part = toeicTestRetrieveRepository.getPartByTestIdAndPartNum(testId, partNum);
     List<Question> questions = toeicTestRetrieveRepository.getQuestionsByPartId(part.getId());
@@ -96,6 +131,10 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
     for(Question question: questions) {
       question.setQuestionNo(++questionNoIndex);
       List<Answer> answers = toeicTestRetrieveRepository.getAnswersByQuestionId(question.getId());
+      if(question.getCorrectAnswerId() == null && answers.isEmpty()) {
+        question.setAnswers(null);
+        continue;
+      }
       if(shuffleAnswersFlag) {
         Collections.shuffle(answers);
       }
@@ -138,6 +177,7 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
   public Test retrieveTestByAchievementIdAndShuffle(int achievementId) {
     Achievement achievement = toeicTestRetrieveRepository.getAchievementById(achievementId);
     int testId = achievement.getTestId();
+
     Test test = retrieveTestByIdAndShuffle(testId);
     List<Question> allQuestions = new ArrayList<>();
     for (Map.Entry<Integer, Part> partMap : test.getParts().entrySet()) {
@@ -152,7 +192,7 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
       }
     }
     List<Character> examineeSelectedOptions = Arrays.asList(new Character[allQuestions.size()]);
-    List<ExamineeAnswer> examineeAnswers = achievement.getExamineeAnswers();
+    List<ExamineeAnswer> examineeAnswers = toeicTestRetrieveRepository.getExamineeAnswersByAchievementId(achievement.getId());
     for(ExamineeAnswer examineeAnswer: examineeAnswers) {
       for(Question question: allQuestions) {
         if(!examineeAnswer.getQuestionId().equals(question.getId())) {
@@ -175,12 +215,14 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
   }
 
   @Override
-  public List<Achievement> getAchievementByExamineeId(int examineeId) {
-    return toeicTestRetrieveRepository.getAchievementByExamineeId(examineeId);
+  public List<Achievement> getAchievementsByExamineeId(int examineeId) {
+    return toeicTestRetrieveRepository.getAchievementsByExamineeId(examineeId);
   }
 
   @Override
   public TestInfor getTestInfor(int testId) {
-    return new TestInfor(TestConfig.TIME_PER_TEST_IN_SECOND, toeicTestRetrieveRepository.qetTotalNumQuestionsByTestId(testId));
+    int totalNumQuestions = toeicTestRetrieveRepository.qetTotalNumQuestionsByTestId(testId);
+    int totalTimeInSecond = TestConfig.TIME_PER_QUESTION_IN_SECOND*totalNumQuestions;
+    return new TestInfor(totalTimeInSecond, totalNumQuestions);
   }
 }

@@ -9,6 +9,9 @@ import java.util.Optional;
 @Mapper
 public interface UserCRUDMapper {
 
+  @Select("SELECT * FROM User ORDER BY role")
+  List<User> queryAllUsers();
+
   @Select("SELECT * FROM User where role = #{role}")
   List<User> queryUsersByRole(int role);
 

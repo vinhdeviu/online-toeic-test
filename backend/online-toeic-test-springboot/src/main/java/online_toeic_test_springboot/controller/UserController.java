@@ -27,12 +27,17 @@ public class UserController {
     private final RequestBodyValidation requestBodyValidation;
 
     @GetMapping("/examinees")
-    public ResponseEntity<List<User>> retrieveExaminees() {
+    public ResponseEntity<List<User>> getExaminees() {
         return ResponseEntity.ok().body(userService.getAllExaminees());
     }
 
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getUsers() {
+        return ResponseEntity.ok().body(userService.getAllUsers());
+    }
+
     @GetMapping("/users/{userId}")
-    public ResponseEntity<User> retrieveExamineeById(@PathVariable Integer userId) {
+    public ResponseEntity<User> getUsersById(@PathVariable Integer userId) {
         return ResponseEntity.ok().body(userService.getUserById(userId));
     }
 

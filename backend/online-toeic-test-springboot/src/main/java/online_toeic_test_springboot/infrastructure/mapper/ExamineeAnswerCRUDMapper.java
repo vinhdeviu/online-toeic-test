@@ -17,4 +17,7 @@ public interface ExamineeAnswerCRUDMapper {
 
   @Select("SELECT * FROM examinee_answer WHERE achievement_id = #{achievementId}")
   List<ExamineeAnswer> queryExamineeAnswersByAchievementId(int achievementId);
+
+  @Select("SELECT * FROM examinee_answer ORDER BY achievement_id")
+  List<ExamineeAnswer> queryAllExamineeAnswers();
 }

@@ -1,0 +1,114 @@
+[
+    {
+        "id": 1,
+        "testId": 1,
+        "partNum": 1,
+        "type": 1,
+        "tittle": "Part 1: Photographs",
+        "direction": "Directions: For each question in this part, you will hear four statements about a picture in your test book. When you hear the statements, you must select the one statement that best describes what you see in the picture. Then find the number of the question on your answer sheet and mark your answer. The statements will not be printed.\r\n"
+    },
+    {
+        "id": 2,
+        "testId": 1,
+        "partNum": 2,
+        "type": 1,
+        "tittle": "Part 2: Question-Response",
+        "direction": "Directions: You will hear a question or statement and three responses spoken in English. They will not be printed in your test book and will be spoken only one time. Select the best response to the question or statement and mark the letter (A), (B ), or (C) on your answer sheet."
+    },
+    {
+        "id": 3,
+        "testId": 1,
+        "partNum": 3,
+        "type": 1,
+        "tittle": "Part 3: Conversations",
+        "direction": "Directions: You will hear some conversations between two people. You will be asked to answer three questions about what the speakers say in each conversation. Select the best response to each question and mark the letter (A), (B), (C), or (D) on your answer sheet. The conversations will not be printed in your test book and will be spoken only one time"
+    },
+    {
+        "id": 4,
+        "testId": 1,
+        "partNum": 4,
+        "type": 1,
+        "tittle": "Part 4: Talks",
+        "direction": "Directions: You will hear some talks given by a single speaker. You will be asked to answer three questions about what the speaker says in each talk. Select the best response to each question and mark the letter (A), (B), (C), or (D) on your answer sheet. The talks will not be printed in your test book and will be spoken only one time."
+    },
+    {
+        "id": 5,
+        "testId": 1,
+        "partNum": 5,
+        "type": 2,
+        "tittle": "Part 5: Incomplete Sentences",
+        "direction": "Directions: A word or phrase is missing in each of the following sentences. Four answer choices are given below each sentence. Select the best answer to complete the sentence. Then mark the letter (A), (B), (C), or (D) on your answer sheet."
+    },
+    {
+        "id": 6,
+        "testId": 1,
+        "partNum": 6,
+        "type": 2,
+        "tittle": "Part 6: Text Completion",
+        "direction": "Directions: Read the texts that follow. A word or phrase is missing in some of the sentences. Four answer choices are given below each of the sentences. Select the best answer to complete the text. Then mark the letter (A), (B), (C), or (D) on your answer sheet."
+    },
+    {
+        "id": 7,
+        "testId": 1,
+        "partNum": 7,
+        "type": 2,
+        "tittle": "Part 7: Reading Comprehension",
+        "direction": "Directions: In this part you will read a selection of texts, such as magazine and newspaper articles, letters, and advertisements. Each text is followed by several questions. Select the best answer for each question and mark the letter (A), (B), (C), or (D) on your answer sheet."
+    },
+    {
+        "id": 15,
+        "testId": 5,
+        "partNum": 1,
+        "type": 1,
+        "tittle": "Part 1: Photographs",
+        "direction": "Directions: For each question in this part, you will hear four statements about a picture in your test book. When you hear the statements, you must select the one statement that best describes what you see in the picture. Then find the number of the question on your answer sheet and mark your answer. The statements will not be printed.\r\n"
+    },
+    {
+        "id": 16,
+        "testId": 5,
+        "partNum": 2,
+        "type": 1,
+        "tittle": "Part 2: Question-Response",
+        "direction": "Directions: You will hear a question or statement and three responses spoken in English. They will not be printed in your test book and will be spoken only one time. Select the best response to the question or statement and mark the letter (A), (B ), or (C) on your answer sheet."
+    },
+    {
+        "id": 17,
+        "testId": 5,
+        "partNum": 3,
+        "type": 1,
+        "tittle": "Part 3: Conversations",
+        "direction": "Directions: You will hear some conversations between two people. You will be asked to answer three questions about what the speakers say in each conversation. Select the best response to each question and mark the letter (A), (B), (C), or (D) on your answer sheet. The conversations will not be printed in your test book and will be spoken only one time"
+    },
+    {
+        "id": 18,
+        "testId": 5,
+        "partNum": 4,
+        "type": 1,
+        "tittle": "Part 4: Talks",
+        "direction": "Directions: You will hear some talks given by a single speaker. You will be asked to answer three questions about what the speaker says in each talk. Select the best response to each question and mark the letter (A), (B), (C), or (D) on your answer sheet. The talks will not be printed in your test book and will be spoken only one time."
+    },
+    {
+        "id": 19,
+        "testId": 5,
+        "partNum": 5,
+        "type": 1,
+        "tittle": "Part 5: Incomplete Sentences",
+        "direction": "Directions: A word or phrase is missing in each of the following sentences. Four answer choices are given below each sentence. Select the best answer to complete the sentence. Then mark the letter (A), (B), (C), or (D) on your answer sheet."
+    },
+    {
+        "id": 20,
+        "testId": 5,
+        "partNum": 6,
+        "type": 1,
+        "tittle": "Part 6: Text Completion",
+        "direction": "Directions: Read the texts that follow. A word or phrase is missing in some of the sentences. Four answer choices are given below each of the sentences. Select the best answer to complete the text. Then mark the letter (A), (B), (C), or (D) on your answer sheet."
+    },
+    {
+        "id": 21,
+        "testId": 5,
+        "partNum": 7,
+        "type": 1,
+        "tittle": "Part 7: Reading Comprehension",
+        "direction": "Directions: In this part you will read a selection of texts, such as magazine and newspaper articles, letters, and advertisements. Each text is followed by several questions. Select the best answer for each question and mark the letter (A), (B), (C), or (D) on your answer sheet."
+    }
+]

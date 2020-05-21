@@ -9,7 +9,7 @@
       <div class="col-sm-12">
         <form v-on:submit.prevent>
           <div class="form-group">
-            <label for="usr">Email</label>
+            <label for="email">Email</label>
             <input
               type="text"
               class="form-control"
@@ -33,11 +33,11 @@
             />
           </div>
           <div class="form-group">
-            <label for="pwd">Password</label>
+            <label for="password">Password</label>
             <input
               type="password"
               class="form-control"
-              id="pwd"
+              id="password"
               name="password"
               placeholder="enter password"
               v-model="admin.password"
@@ -45,11 +45,11 @@
             />
           </div>
           <div class="form-group">
-            <label for="pwd">Confirm Password</label>
+            <label for="confirm-password">Confirm Password</label>
             <input
               type="password"
               class="form-control"
-              id="confirm-pwd"
+              id="confirm-password"
               name="confirm-password"
               placeholder="confirm password"
               v-model="admin.confirmPassword"

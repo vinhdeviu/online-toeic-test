@@ -21,6 +21,11 @@ public class UserServiceImpl implements UserService {
     private final UserCRUDRepository userCRUDRepository;
 
     @Override
+    public List<User> getAllUsers() {
+        return userCRUDRepository.getAllUsers();
+    }
+
+    @Override
     public User login(User user) {
         return userCRUDRepository.login(user.getEmail(), user.getPassword());
     }

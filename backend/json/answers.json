@@ -1,0 +1,3242 @@
+[
+    {
+        "id": 5,
+        "questionId": 41,
+        "content": "Salary"
+    },
+    {
+        "id": 6,
+        "questionId": 41,
+        "content": "Work hours"
+    },
+    {
+        "id": 7,
+        "questionId": 41,
+        "content": "Benefits"
+    },
+    {
+        "id": 8,
+        "questionId": 41,
+        "content": "Vacations"
+    },
+    {
+        "id": 9,
+        "questionId": 42,
+        "content": "She has only one child."
+    },
+    {
+        "id": 10,
+        "questionId": 42,
+        "content": "She is looking for a full-time job."
+    },
+    {
+        "id": 11,
+        "questionId": 42,
+        "content": "She does not like to work mornings."
+    },
+    {
+        "id": 12,
+        "questionId": 42,
+        "content": "She wants to work for the man's company."
+    },
+    {
+        "id": 13,
+        "questionId": 43,
+        "content": "It is a religious holiday."
+    },
+    {
+        "id": 14,
+        "questionId": 43,
+        "content": "She has a scheduling conflict."
+    },
+    {
+        "id": 15,
+        "questionId": 43,
+        "content": "Her daughter is ill."
+    },
+    {
+        "id": 16,
+        "questionId": 43,
+        "content": "She has a school class."
+    },
+    {
+        "id": 17,
+        "questionId": 44,
+        "content": "There is a traffic jam."
+    },
+    {
+        "id": 18,
+        "questionId": 44,
+        "content": "She is lost."
+    },
+    {
+        "id": 19,
+        "questionId": 44,
+        "content": "Her car broke down."
+    },
+    {
+        "id": 20,
+        "questionId": 44,
+        "content": "She was in an accident."
+    },
+    {
+        "id": 21,
+        "questionId": 45,
+        "content": "Turn left at the off-ramp"
+    },
+    {
+        "id": 22,
+        "questionId": 45,
+        "content": "Drive faster"
+    },
+    {
+        "id": 23,
+        "questionId": 45,
+        "content": "Use caution"
+    },
+    {
+        "id": 24,
+        "questionId": 45,
+        "content": "Call him later"
+    },
+    {
+        "id": 25,
+        "questionId": 46,
+        "content": "Opposite the supermarket"
+    },
+    {
+        "id": 26,
+        "questionId": 46,
+        "content": "On the right-hand side"
+    },
+    {
+        "id": 27,
+        "questionId": 46,
+        "content": "At the bottom of the ramp"
+    },
+    {
+        "id": 28,
+        "questionId": 46,
+        "content": "On Michigan Street"
+    },
+    {
+        "id": 29,
+        "questionId": 47,
+        "content": "Accountant"
+    },
+    {
+        "id": 30,
+        "questionId": 47,
+        "content": "Manager"
+    },
+    {
+        "id": 31,
+        "questionId": 47,
+        "content": "Travel agent"
+    },
+    {
+        "id": 32,
+        "questionId": 47,
+        "content": "Receptionist"
+    },
+    {
+        "id": 33,
+        "questionId": 48,
+        "content": "He does not like long flights."
+    },
+    {
+        "id": 34,
+        "questionId": 48,
+        "content": "He wants to save money."
+    },
+    {
+        "id": 35,
+        "questionId": 48,
+        "content": "He is an inexperienced traveler."
+    },
+    {
+        "id": 36,
+        "questionId": 48,
+        "content": "He is taking a vacation."
+    },
+    {
+        "id": 37,
+        "questionId": 49,
+        "content": "Change his mind"
+    },
+    {
+        "id": 38,
+        "questionId": 49,
+        "content": "Reconsider his decision"
+    },
+    {
+        "id": 39,
+        "questionId": 49,
+        "content": "Book the 9:30 flight"
+    },
+    {
+        "id": 40,
+        "questionId": 49,
+        "content": "Pay the woman"
+    },
+    {
+        "id": 41,
+        "questionId": 50,
+        "content": "Neighbors"
+    },
+    {
+        "id": 42,
+        "questionId": 50,
+        "content": "Salesmen"
+    },
+    {
+        "id": 43,
+        "questionId": 50,
+        "content": "Reporters"
+    },
+    {
+        "id": 44,
+        "questionId": 50,
+        "content": "Co-worker"
+    },
+    {
+        "id": 45,
+        "questionId": 51,
+        "content": "There are too many hotel rooms."
+    },
+    {
+        "id": 46,
+        "questionId": 51,
+        "content": "The convention center is booked."
+    },
+    {
+        "id": 47,
+        "questionId": 51,
+        "content": "There has been an unexpected change."
+    },
+    {
+        "id": 48,
+        "questionId": 51,
+        "content": "She cannot make it to the airport."
+    },
+    {
+        "id": 49,
+        "questionId": 52,
+        "content": "Scheduling transportation"
+    },
+    {
+        "id": 50,
+        "questionId": 52,
+        "content": "Cancelling the reservations"
+    },
+    {
+        "id": 51,
+        "questionId": 52,
+        "content": "Postponing the convention"
+    },
+    {
+        "id": 52,
+        "questionId": 52,
+        "content": "Telephoning the CEO"
+    },
+    {
+        "id": 53,
+        "questionId": 53,
+        "content": "Get his money back"
+    },
+    {
+        "id": 54,
+        "questionId": 53,
+        "content": "Buy a briefcase"
+    },
+    {
+        "id": 55,
+        "questionId": 53,
+        "content": "Exchange merchandise"
+    },
+    {
+        "id": 56,
+        "questionId": 53,
+        "content": "Find his receipt"
+    },
+    {
+        "id": 57,
+        "questionId": 54,
+        "content": "Perform an exchange"
+    },
+    {
+        "id": 58,
+        "questionId": 54,
+        "content": "Come back tomorrow"
+    },
+    {
+        "id": 59,
+        "questionId": 54,
+        "content": "Photocopy the receipt"
+    },
+    {
+        "id": 60,
+        "questionId": 54,
+        "content": "Make a purchase"
+    },
+    {
+        "id": 61,
+        "questionId": 55,
+        "content": "Buy a new briefcase"
+    },
+    {
+        "id": 62,
+        "questionId": 55,
+        "content": "Go shopping"
+    },
+    {
+        "id": 63,
+        "questionId": 55,
+        "content": "Insist on a refund"
+    },
+    {
+        "id": 64,
+        "questionId": 55,
+        "content": "Leave the store"
+    },
+    {
+        "id": 65,
+        "questionId": 56,
+        "content": "A salesman"
+    },
+    {
+        "id": 66,
+        "questionId": 56,
+        "content": "A real estate developer"
+    },
+    {
+        "id": 67,
+        "questionId": 56,
+        "content": "A landlord"
+    },
+    {
+        "id": 68,
+        "questionId": 56,
+        "content": "A tenant"
+    },
+    {
+        "id": 69,
+        "questionId": 57,
+        "content": "They are poorly constructed."
+    },
+    {
+        "id": 70,
+        "questionId": 57,
+        "content": "They are in a bad location."
+    },
+    {
+        "id": 71,
+        "questionId": 57,
+        "content": "The prices are too high."
+    },
+    {
+        "id": 72,
+        "questionId": 57,
+        "content": "The economy has been depressed."
+    },
+    {
+        "id": 73,
+        "questionId": 58,
+        "content": "They are ready to put on the market."
+    },
+    {
+        "id": 74,
+        "questionId": 58,
+        "content": "They need to be repainted."
+    },
+    {
+        "id": 75,
+        "questionId": 58,
+        "content": "They will be challenging to sell."
+    },
+    {
+        "id": 76,
+        "questionId": 58,
+        "content": "They are a good value for the money."
+    },
+    {
+        "id": 77,
+        "questionId": 59,
+        "content": "Negotiating a sale"
+    },
+    {
+        "id": 78,
+        "questionId": 59,
+        "content": "Arranging financing"
+    },
+    {
+        "id": 79,
+        "questionId": 59,
+        "content": "Debating a product"
+    },
+    {
+        "id": 80,
+        "questionId": 59,
+        "content": "Making small talk"
+    },
+    {
+        "id": 81,
+        "questionId": 60,
+        "content": "He can't find part-time work."
+    },
+    {
+        "id": 82,
+        "questionId": 60,
+        "content": "His wife lost her job."
+    },
+    {
+        "id": 83,
+        "questionId": 60,
+        "content": "He does not make much money."
+    },
+    {
+        "id": 84,
+        "questionId": 60,
+        "content": "His company is going bankrupt."
+    },
+    {
+        "id": 88,
+        "questionId": 61,
+        "content": "Reduce the price"
+    },
+    {
+        "id": 89,
+        "questionId": 61,
+        "content": "Give the man a job"
+    },
+    {
+        "id": 90,
+        "questionId": 61,
+        "content": "Delay monthly payments"
+    },
+    {
+        "id": 91,
+        "questionId": 61,
+        "content": "Sell him a different car"
+    },
+    {
+        "id": 92,
+        "questionId": 62,
+        "content": "In an office"
+    },
+    {
+        "id": 93,
+        "questionId": 62,
+        "content": "At a drive-through"
+    },
+    {
+        "id": 94,
+        "questionId": 62,
+        "content": "In a restaurant"
+    },
+    {
+        "id": 95,
+        "questionId": 62,
+        "content": "In a park"
+    },
+    {
+        "id": 96,
+        "questionId": 63,
+        "content": "Try the swordfish"
+    },
+    {
+        "id": 97,
+        "questionId": 63,
+        "content": "Order crab cakes"
+    },
+    {
+        "id": 98,
+        "questionId": 63,
+        "content": "Pick up the tab"
+    },
+    {
+        "id": 99,
+        "questionId": 63,
+        "content": "Select a beverage"
+    },
+    {
+        "id": 100,
+        "questionId": 64,
+        "content": "He is a teetotaler."
+    },
+    {
+        "id": 101,
+        "questionId": 64,
+        "content": "He does not drink wine often."
+    },
+    {
+        "id": 102,
+        "questionId": 64,
+        "content": "He would prefer to have beer."
+    },
+    {
+        "id": 103,
+        "questionId": 64,
+        "content": "He is treating the woman to lunch."
+    },
+    {
+        "id": 104,
+        "questionId": 65,
+        "content": "Find a section of a hospital."
+    },
+    {
+        "id": 105,
+        "questionId": 65,
+        "content": "Locate a doctor"
+    },
+    {
+        "id": 106,
+        "questionId": 65,
+        "content": "Get driving directions"
+    },
+    {
+        "id": 107,
+        "questionId": 65,
+        "content": "Leave the parking garage."
+    },
+    {
+        "id": 108,
+        "questionId": 66,
+        "content": "She leads him to the red wing."
+    },
+    {
+        "id": 109,
+        "questionId": 66,
+        "content": "She hands him a map."
+    },
+    {
+        "id": 110,
+        "questionId": 66,
+        "content": "She gives him directions."
+    },
+    {
+        "id": 111,
+        "questionId": 66,
+        "content": "She calls for a doctor."
+    },
+    {
+        "id": 112,
+        "questionId": 67,
+        "content": "They are frequently ill."
+    },
+    {
+        "id": 113,
+        "questionId": 67,
+        "content": "They work at the hospital."
+    },
+    {
+        "id": 114,
+        "questionId": 67,
+        "content": "They live near the hospital."
+    },
+    {
+        "id": 115,
+        "questionId": 67,
+        "content": "They will help the man in the future."
+    },
+    {
+        "id": 116,
+        "questionId": 68,
+        "content": "At a meeting"
+    },
+    {
+        "id": 117,
+        "questionId": 68,
+        "content": "In a post office"
+    },
+    {
+        "id": 118,
+        "questionId": 68,
+        "content": "In a library"
+    },
+    {
+        "id": 119,
+        "questionId": 68,
+        "content": "At an airport"
+    },
+    {
+        "id": 120,
+        "questionId": 69,
+        "content": "Compare rates"
+    },
+    {
+        "id": 121,
+        "questionId": 69,
+        "content": "Buy a receipt"
+    },
+    {
+        "id": 122,
+        "questionId": 69,
+        "content": "Mail a package"
+    },
+    {
+        "id": 123,
+        "questionId": 69,
+        "content": "Cancel insurance"
+    },
+    {
+        "id": 124,
+        "questionId": 70,
+        "content": "Insuring the contents"
+    },
+    {
+        "id": 125,
+        "questionId": 70,
+        "content": "Using express delivery"
+    },
+    {
+        "id": 126,
+        "questionId": 70,
+        "content": "Sending it air mail"
+    },
+    {
+        "id": 127,
+        "questionId": 70,
+        "content": "Filing a special form"
+    },
+    {
+        "id": 152,
+        "questionId": 71,
+        "content": "To declare an emergency"
+    },
+    {
+        "id": 153,
+        "questionId": 71,
+        "content": "To publicize an Internet site"
+    },
+    {
+        "id": 154,
+        "questionId": 71,
+        "content": "To inform of to a city project"
+    },
+    {
+        "id": 155,
+        "questionId": 71,
+        "content": "To warn about coming dangers"
+    },
+    {
+        "id": 148,
+        "questionId": 72,
+        "content": "The road will get a new surface."
+    },
+    {
+        "id": 149,
+        "questionId": 72,
+        "content": "All lanes will be closed."
+    },
+    {
+        "id": 150,
+        "questionId": 72,
+        "content": "It will get a new name."
+    },
+    {
+        "id": 151,
+        "questionId": 72,
+        "content": "Drivers will be fined."
+    },
+    {
+        "id": 144,
+        "questionId": 73,
+        "content": "By visiting City Hall."
+    },
+    {
+        "id": 145,
+        "questionId": 73,
+        "content": "By making a phone call."
+    },
+    {
+        "id": 146,
+        "questionId": 73,
+        "content": "By watching TV."
+    },
+    {
+        "id": 147,
+        "questionId": 73,
+        "content": "By sending an e-mail."
+    },
+    {
+        "id": 140,
+        "questionId": 74,
+        "content": "Young women"
+    },
+    {
+        "id": 141,
+        "questionId": 74,
+        "content": "Students"
+    },
+    {
+        "id": 142,
+        "questionId": 74,
+        "content": "Commuters"
+    },
+    {
+        "id": 143,
+        "questionId": 74,
+        "content": "Chief executives"
+    },
+    {
+        "id": 136,
+        "questionId": 75,
+        "content": "It is unusually heavy."
+    },
+    {
+        "id": 137,
+        "questionId": 75,
+        "content": "It is flowing smoothly."
+    },
+    {
+        "id": 138,
+        "questionId": 75,
+        "content": "It is unexpectedly light."
+    },
+    {
+        "id": 139,
+        "questionId": 75,
+        "content": "It is normal for this time of day."
+    },
+    {
+        "id": 132,
+        "questionId": 76,
+        "content": "A news report"
+    },
+    {
+        "id": 133,
+        "questionId": 76,
+        "content": "A weather report"
+    },
+    {
+        "id": 134,
+        "questionId": 76,
+        "content": "An advertisement"
+    },
+    {
+        "id": 135,
+        "questionId": 76,
+        "content": "Music"
+    },
+    {
+        "id": 128,
+        "questionId": 77,
+        "content": "Professional attorneys"
+    },
+    {
+        "id": 129,
+        "questionId": 77,
+        "content": "Media representatives"
+    },
+    {
+        "id": 130,
+        "questionId": 77,
+        "content": "Law school graduates"
+    },
+    {
+        "id": 131,
+        "questionId": 77,
+        "content": "Company clients"
+    },
+    {
+        "id": 156,
+        "questionId": 78,
+        "content": "Send an e-mail to the firm"
+    },
+    {
+        "id": 157,
+        "questionId": 78,
+        "content": "Call back during normal office hours"
+    },
+    {
+        "id": 158,
+        "questionId": 78,
+        "content": "Push a button on their phone"
+    },
+    {
+        "id": 159,
+        "questionId": 78,
+        "content": "Leave a voice mail message"
+    },
+    {
+        "id": 160,
+        "questionId": 79,
+        "content": "On Saturdays and Sundays"
+    },
+    {
+        "id": 161,
+        "questionId": 79,
+        "content": "During regular office hours"
+    },
+    {
+        "id": 162,
+        "questionId": 79,
+        "content": "After they press zero"
+    },
+    {
+        "id": 163,
+        "questionId": 79,
+        "content": "When they need an attorney urgently."
+    },
+    {
+        "id": 164,
+        "questionId": 80,
+        "content": "Manager"
+    },
+    {
+        "id": 165,
+        "questionId": 80,
+        "content": "Editor"
+    },
+    {
+        "id": 166,
+        "questionId": 80,
+        "content": "Sales person"
+    },
+    {
+        "id": 167,
+        "questionId": 80,
+        "content": "Accountant"
+    },
+    {
+        "id": 168,
+        "questionId": 81,
+        "content": "Research results"
+    },
+    {
+        "id": 169,
+        "questionId": 81,
+        "content": "New strategies"
+    },
+    {
+        "id": 170,
+        "questionId": 81,
+        "content": "Financial strength"
+    },
+    {
+        "id": 171,
+        "questionId": 81,
+        "content": "Corporate layoffs"
+    },
+    {
+        "id": 172,
+        "questionId": 82,
+        "content": "Advertising campaign"
+    },
+    {
+        "id": 173,
+        "questionId": 82,
+        "content": "New products"
+    },
+    {
+        "id": 174,
+        "questionId": 82,
+        "content": "Logo re-design"
+    },
+    {
+        "id": 175,
+        "questionId": 82,
+        "content": "Increased prices"
+    },
+    {
+        "id": 176,
+        "questionId": 83,
+        "content": "Technology spending"
+    },
+    {
+        "id": 177,
+        "questionId": 83,
+        "content": "A customer survey"
+    },
+    {
+        "id": 178,
+        "questionId": 83,
+        "content": "Economic recovery"
+    },
+    {
+        "id": 179,
+        "questionId": 83,
+        "content": "Paying down debt"
+    },
+    {
+        "id": 180,
+        "questionId": 84,
+        "content": "They would buy a new computer."
+    },
+    {
+        "id": 181,
+        "questionId": 84,
+        "content": "They would pay off bills."
+    },
+    {
+        "id": 182,
+        "questionId": 84,
+        "content": "They would use more discretion."
+    },
+    {
+        "id": 183,
+        "questionId": 84,
+        "content": "They would put it in the bank"
+    },
+    {
+        "id": 184,
+        "questionId": 85,
+        "content": "The recession has ended."
+    },
+    {
+        "id": 185,
+        "questionId": 85,
+        "content": "It will not improve for another year."
+    },
+    {
+        "id": 186,
+        "questionId": 85,
+        "content": "It is at its historic high point."
+    },
+    {
+        "id": 187,
+        "questionId": 85,
+        "content": "People have confidence in it."
+    },
+    {
+        "id": 188,
+        "questionId": 86,
+        "content": "A credit product"
+    },
+    {
+        "id": 189,
+        "questionId": 86,
+        "content": "An annual sale"
+    },
+    {
+        "id": 190,
+        "questionId": 86,
+        "content": "A grand opening"
+    },
+    {
+        "id": 191,
+        "questionId": 86,
+        "content": "A financial service"
+    },
+    {
+        "id": 192,
+        "questionId": 87,
+        "content": "A free gift"
+    },
+    {
+        "id": 193,
+        "questionId": 87,
+        "content": "A special key"
+    },
+    {
+        "id": 194,
+        "questionId": 87,
+        "content": "A guarantee"
+    },
+    {
+        "id": 195,
+        "questionId": 87,
+        "content": "A discount"
+    },
+    {
+        "id": 196,
+        "questionId": 88,
+        "content": "Make a phone call."
+    },
+    {
+        "id": 197,
+        "questionId": 88,
+        "content": "Get a new credit card."
+    },
+    {
+        "id": 198,
+        "questionId": 88,
+        "content": "Come to the store."
+    },
+    {
+        "id": 199,
+        "questionId": 88,
+        "content": "Check out a website."
+    },
+    {
+        "id": 200,
+        "questionId": 89,
+        "content": "New bus service"
+    },
+    {
+        "id": 201,
+        "questionId": 89,
+        "content": "A bus route change"
+    },
+    {
+        "id": 202,
+        "questionId": 89,
+        "content": "Extended hours"
+    },
+    {
+        "id": 203,
+        "questionId": 89,
+        "content": "Road construction"
+    },
+    {
+        "id": 204,
+        "questionId": 90,
+        "content": "The campus connector route"
+    },
+    {
+        "id": 205,
+        "questionId": 90,
+        "content": "The stop at Marshall Street"
+    },
+    {
+        "id": 206,
+        "questionId": 90,
+        "content": "The hours of service"
+    },
+    {
+        "id": 207,
+        "questionId": 90,
+        "content": "The cost of bus tickets"
+    },
+    {
+        "id": 208,
+        "questionId": 91,
+        "content": "Contact the transit coordinator"
+    },
+    {
+        "id": 209,
+        "questionId": 91,
+        "content": "Ask the bus driver"
+    },
+    {
+        "id": 210,
+        "questionId": 91,
+        "content": "Look in the newspaper"
+    },
+    {
+        "id": 211,
+        "questionId": 91,
+        "content": "E-mail the university president"
+    },
+    {
+        "id": 212,
+        "questionId": 92,
+        "content": "Ray Cheevers"
+    },
+    {
+        "id": 213,
+        "questionId": 92,
+        "content": "Patty Paulson"
+    },
+    {
+        "id": 214,
+        "questionId": 92,
+        "content": "Faulkner Financial Services"
+    },
+    {
+        "id": 215,
+        "questionId": 92,
+        "content": "Tricia Townshend"
+    },
+    {
+        "id": 216,
+        "questionId": 93,
+        "content": "To solicit a sale"
+    },
+    {
+        "id": 217,
+        "questionId": 93,
+        "content": "To answer a question"
+    },
+    {
+        "id": 218,
+        "questionId": 93,
+        "content": "To request a service"
+    },
+    {
+        "id": 219,
+        "questionId": 93,
+        "content": "To arrange a meeting"
+    },
+    {
+        "id": 220,
+        "questionId": 94,
+        "content": "Send an e-mail"
+    },
+    {
+        "id": 221,
+        "questionId": 94,
+        "content": "Return the phone call"
+    },
+    {
+        "id": 222,
+        "questionId": 94,
+        "content": "Meet with Patty"
+    },
+    {
+        "id": 223,
+        "questionId": 94,
+        "content": "Ask for an address"
+    },
+    {
+        "id": 224,
+        "questionId": 95,
+        "content": "On radio"
+    },
+    {
+        "id": 225,
+        "questionId": 95,
+        "content": "On the Internet"
+    },
+    {
+        "id": 226,
+        "questionId": 95,
+        "content": "On television"
+    },
+    {
+        "id": 227,
+        "questionId": 95,
+        "content": "At a theater"
+    },
+    {
+        "id": 228,
+        "questionId": 96,
+        "content": "Stormy"
+    },
+    {
+        "id": 229,
+        "questionId": 96,
+        "content": "Sunny"
+    },
+    {
+        "id": 230,
+        "questionId": 96,
+        "content": "Snowy"
+    },
+    {
+        "id": 231,
+        "questionId": 96,
+        "content": "Overcast"
+    },
+    {
+        "id": 232,
+        "questionId": 97,
+        "content": "It is being broadcast on Friday."
+    },
+    {
+        "id": 233,
+        "questionId": 97,
+        "content": "It is not an accurate forecast."
+    },
+    {
+        "id": 234,
+        "questionId": 97,
+        "content": "It is being broadcast in the morning."
+    },
+    {
+        "id": 235,
+        "questionId": 97,
+        "content": "It was taped the night before."
+    },
+    {
+        "id": 236,
+        "questionId": 98,
+        "content": "A business executive"
+    },
+    {
+        "id": 237,
+        "questionId": 98,
+        "content": "A professor"
+    },
+    {
+        "id": 238,
+        "questionId": 98,
+        "content": "An actress"
+    },
+    {
+        "id": 239,
+        "questionId": 98,
+        "content": "A talk-show host"
+    },
+    {
+        "id": 240,
+        "questionId": 99,
+        "content": "Got married"
+    },
+    {
+        "id": 241,
+        "questionId": 99,
+        "content": "Wrote a novel"
+    },
+    {
+        "id": 242,
+        "questionId": 99,
+        "content": "Became a father"
+    },
+    {
+        "id": 243,
+        "questionId": 99,
+        "content": "Recorded his first song"
+    },
+    {
+        "id": 244,
+        "questionId": 100,
+        "content": "Critics did not like it."
+    },
+    {
+        "id": 245,
+        "questionId": 100,
+        "content": "It is selling surprisingly well."
+    },
+    {
+        "id": 246,
+        "questionId": 100,
+        "content": "It is very well-written."
+    },
+    {
+        "id": 247,
+        "questionId": 100,
+        "content": "He is planning to write a sequel."
+    },
+    {
+        "id": 313,
+        "questionId": 101,
+        "content": "must"
+    },
+    {
+        "id": 314,
+        "questionId": 101,
+        "content": "should"
+    },
+    {
+        "id": 315,
+        "questionId": 101,
+        "content": "can"
+    },
+    {
+        "id": 316,
+        "questionId": 101,
+        "content": "have"
+    },
+    {
+        "id": 317,
+        "questionId": 102,
+        "content": "has gone"
+    },
+    {
+        "id": 318,
+        "questionId": 102,
+        "content": "had left"
+    },
+    {
+        "id": 319,
+        "questionId": 102,
+        "content": "has went"
+    },
+    {
+        "id": 320,
+        "questionId": 102,
+        "content": "had been"
+    },
+    {
+        "id": 321,
+        "questionId": 103,
+        "content": "recommendation"
+    },
+    {
+        "id": 322,
+        "questionId": 103,
+        "content": "package"
+    },
+    {
+        "id": 323,
+        "questionId": 103,
+        "content": "letter"
+    },
+    {
+        "id": 324,
+        "questionId": 103,
+        "content": "deal"
+    },
+    {
+        "id": 325,
+        "questionId": 104,
+        "content": "association"
+    },
+    {
+        "id": 326,
+        "questionId": 104,
+        "content": "associates"
+    },
+    {
+        "id": 327,
+        "questionId": 104,
+        "content": "associate"
+    },
+    {
+        "id": 328,
+        "questionId": 104,
+        "content": "associated"
+    },
+    {
+        "id": 329,
+        "questionId": 105,
+        "content": "cut"
+    },
+    {
+        "id": 330,
+        "questionId": 105,
+        "content": "laid"
+    },
+    {
+        "id": 331,
+        "questionId": 105,
+        "content": "put"
+    },
+    {
+        "id": 332,
+        "questionId": 105,
+        "content": "thrown"
+    },
+    {
+        "id": 333,
+        "questionId": 106,
+        "content": "in"
+    },
+    {
+        "id": 334,
+        "questionId": 106,
+        "content": "at"
+    },
+    {
+        "id": 335,
+        "questionId": 106,
+        "content": "on"
+    },
+    {
+        "id": 336,
+        "questionId": 106,
+        "content": "along"
+    },
+    {
+        "id": 337,
+        "questionId": 107,
+        "content": "boring"
+    },
+    {
+        "id": 338,
+        "questionId": 107,
+        "content": "bored"
+    },
+    {
+        "id": 339,
+        "questionId": 107,
+        "content": "boredom"
+    },
+    {
+        "id": 340,
+        "questionId": 107,
+        "content": "bores"
+    },
+    {
+        "id": 341,
+        "questionId": 108,
+        "content": "good"
+    },
+    {
+        "id": 342,
+        "questionId": 108,
+        "content": "superb"
+    },
+    {
+        "id": 343,
+        "questionId": 108,
+        "content": "well"
+    },
+    {
+        "id": 344,
+        "questionId": 108,
+        "content": "excellent"
+    },
+    {
+        "id": 345,
+        "questionId": 109,
+        "content": "their"
+    },
+    {
+        "id": 346,
+        "questionId": 109,
+        "content": "their"
+    },
+    {
+        "id": 347,
+        "questionId": 109,
+        "content": "their"
+    },
+    {
+        "id": 348,
+        "questionId": 109,
+        "content": "their"
+    },
+    {
+        "id": 349,
+        "questionId": 110,
+        "content": "locally"
+    },
+    {
+        "id": 350,
+        "questionId": 110,
+        "content": "locals"
+    },
+    {
+        "id": 351,
+        "questionId": 110,
+        "content": "local"
+    },
+    {
+        "id": 352,
+        "questionId": 110,
+        "content": "locality"
+    },
+    {
+        "id": 353,
+        "questionId": 111,
+        "content": "exceptional"
+    },
+    {
+        "id": 354,
+        "questionId": 111,
+        "content": "exceptional"
+    },
+    {
+        "id": 355,
+        "questionId": 111,
+        "content": "exceptional"
+    },
+    {
+        "id": 356,
+        "questionId": 111,
+        "content": "exceptionally"
+    },
+    {
+        "id": 357,
+        "questionId": 112,
+        "content": "principal"
+    },
+    {
+        "id": 358,
+        "questionId": 112,
+        "content": "principles"
+    },
+    {
+        "id": 359,
+        "questionId": 112,
+        "content": "principals"
+    },
+    {
+        "id": 360,
+        "questionId": 112,
+        "content": "principle"
+    },
+    {
+        "id": 361,
+        "questionId": 113,
+        "content": "Prospective"
+    },
+    {
+        "id": 362,
+        "questionId": 113,
+        "content": "Prospective"
+    },
+    {
+        "id": 363,
+        "questionId": 113,
+        "content": "Prospective"
+    },
+    {
+        "id": 364,
+        "questionId": 113,
+        "content": "Provocative"
+    },
+    {
+        "id": 365,
+        "questionId": 114,
+        "content": "expand"
+    },
+    {
+        "id": 366,
+        "questionId": 114,
+        "content": "expanding"
+    },
+    {
+        "id": 367,
+        "questionId": 114,
+        "content": "expands"
+    },
+    {
+        "id": 368,
+        "questionId": 114,
+        "content": "to expand"
+    },
+    {
+        "id": 369,
+        "questionId": 115,
+        "content": "Due to"
+    },
+    {
+        "id": 370,
+        "questionId": 115,
+        "content": "Because"
+    },
+    {
+        "id": 371,
+        "questionId": 115,
+        "content": "As"
+    },
+    {
+        "id": 372,
+        "questionId": 115,
+        "content": "Despite"
+    },
+    {
+        "id": 373,
+        "questionId": 116,
+        "content": "him"
+    },
+    {
+        "id": 374,
+        "questionId": 116,
+        "content": "he"
+    },
+    {
+        "id": 375,
+        "questionId": 116,
+        "content": "himself"
+    },
+    {
+        "id": 376,
+        "questionId": 116,
+        "content": "his"
+    },
+    {
+        "id": 377,
+        "questionId": 117,
+        "content": "name"
+    },
+    {
+        "id": 378,
+        "questionId": 117,
+        "content": "signature"
+    },
+    {
+        "id": 379,
+        "questionId": 117,
+        "content": "autograph"
+    },
+    {
+        "id": 380,
+        "questionId": 117,
+        "content": "moniker"
+    },
+    {
+        "id": 381,
+        "questionId": 118,
+        "content": "often"
+    },
+    {
+        "id": 382,
+        "questionId": 118,
+        "content": "seldom"
+    },
+    {
+        "id": 383,
+        "questionId": 118,
+        "content": "occasionally"
+    },
+    {
+        "id": 384,
+        "questionId": 118,
+        "content": "sometimes"
+    },
+    {
+        "id": 385,
+        "questionId": 119,
+        "content": "on"
+    },
+    {
+        "id": 386,
+        "questionId": 119,
+        "content": "at"
+    },
+    {
+        "id": 387,
+        "questionId": 119,
+        "content": "in"
+    },
+    {
+        "id": 388,
+        "questionId": 119,
+        "content": "below"
+    },
+    {
+        "id": 389,
+        "questionId": 120,
+        "content": "important"
+    },
+    {
+        "id": 390,
+        "questionId": 120,
+        "content": "import"
+    },
+    {
+        "id": 391,
+        "questionId": 120,
+        "content": "importance"
+    },
+    {
+        "id": 392,
+        "questionId": 120,
+        "content": "importantly"
+    },
+    {
+        "id": 393,
+        "questionId": 121,
+        "content": "simply"
+    },
+    {
+        "id": 394,
+        "questionId": 121,
+        "content": "simplify"
+    },
+    {
+        "id": 395,
+        "questionId": 121,
+        "content": "simple"
+    },
+    {
+        "id": 396,
+        "questionId": 121,
+        "content": "simplicity"
+    },
+    {
+        "id": 397,
+        "questionId": 122,
+        "content": "until"
+    },
+    {
+        "id": 398,
+        "questionId": 122,
+        "content": "unless"
+    },
+    {
+        "id": 399,
+        "questionId": 122,
+        "content": "except"
+    },
+    {
+        "id": 400,
+        "questionId": 122,
+        "content": "so"
+    },
+    {
+        "id": 401,
+        "questionId": 123,
+        "content": "experience"
+    },
+    {
+        "id": 402,
+        "questionId": 123,
+        "content": "experiencing"
+    },
+    {
+        "id": 403,
+        "questionId": 123,
+        "content": "experiential"
+    },
+    {
+        "id": 404,
+        "questionId": 123,
+        "content": "experienced"
+    },
+    {
+        "id": 405,
+        "questionId": 124,
+        "content": "stable"
+    },
+    {
+        "id": 406,
+        "questionId": 124,
+        "content": "rapid"
+    },
+    {
+        "id": 407,
+        "questionId": 124,
+        "content": "patient"
+    },
+    {
+        "id": 408,
+        "questionId": 124,
+        "content": "stagnant"
+    },
+    {
+        "id": 409,
+        "questionId": 125,
+        "content": "run"
+    },
+    {
+        "id": 410,
+        "questionId": 125,
+        "content": "been"
+    },
+    {
+        "id": 411,
+        "questionId": 125,
+        "content": "lost"
+    },
+    {
+        "id": 412,
+        "questionId": 125,
+        "content": "put"
+    },
+    {
+        "id": 413,
+        "questionId": 126,
+        "content": "receiver"
+    },
+    {
+        "id": 414,
+        "questionId": 126,
+        "content": "receptionist"
+    },
+    {
+        "id": 415,
+        "questionId": 126,
+        "content": "reciprocal"
+    },
+    {
+        "id": 416,
+        "questionId": 126,
+        "content": "recipient"
+    },
+    {
+        "id": 417,
+        "questionId": 127,
+        "content": "definite"
+    },
+    {
+        "id": 418,
+        "questionId": 127,
+        "content": "definition"
+    },
+    {
+        "id": 419,
+        "questionId": 127,
+        "content": "definitely"
+    },
+    {
+        "id": 420,
+        "questionId": 127,
+        "content": "definably"
+    },
+    {
+        "id": 421,
+        "questionId": 128,
+        "content": "his"
+    },
+    {
+        "id": 422,
+        "questionId": 128,
+        "content": "her"
+    },
+    {
+        "id": 423,
+        "questionId": 128,
+        "content": "its"
+    },
+    {
+        "id": 424,
+        "questionId": 128,
+        "content": "himself"
+    },
+    {
+        "id": 425,
+        "questionId": 129,
+        "content": "stolen"
+    },
+    {
+        "id": 426,
+        "questionId": 129,
+        "content": "stealing"
+    },
+    {
+        "id": 427,
+        "questionId": 129,
+        "content": "stole"
+    },
+    {
+        "id": 428,
+        "questionId": 129,
+        "content": "steal"
+    },
+    {
+        "id": 429,
+        "questionId": 130,
+        "content": "work"
+    },
+    {
+        "id": 430,
+        "questionId": 130,
+        "content": "part"
+    },
+    {
+        "id": 431,
+        "questionId": 130,
+        "content": "piece"
+    },
+    {
+        "id": 432,
+        "questionId": 130,
+        "content": "area"
+    },
+    {
+        "id": 249,
+        "questionId": 131,
+        "content": "stock"
+    },
+    {
+        "id": 250,
+        "questionId": 131,
+        "content": "equipment"
+    },
+    {
+        "id": 251,
+        "questionId": 131,
+        "content": "property"
+    },
+    {
+        "id": 252,
+        "questionId": 131,
+        "content": "revenue"
+    },
+    {
+        "id": 253,
+        "questionId": 132,
+        "content": "require"
+    },
+    {
+        "id": 254,
+        "questionId": 132,
+        "content": "requiring"
+    },
+    {
+        "id": 255,
+        "questionId": 132,
+        "content": "are required"
+    },
+    {
+        "id": 256,
+        "questionId": 132,
+        "content": "were required"
+    },
+    {
+        "id": 257,
+        "questionId": 133,
+        "content": "early"
+    },
+    {
+        "id": 258,
+        "questionId": 133,
+        "content": "again"
+    },
+    {
+        "id": 259,
+        "questionId": 133,
+        "content": "more"
+    },
+    {
+        "id": 260,
+        "questionId": 133,
+        "content": "instead"
+    },
+    {
+        "id": 261,
+        "questionId": 134,
+        "content": "Folding bicycles have become more common."
+    },
+    {
+        "id": 262,
+        "questionId": 134,
+        "content": "Additional service fees may apply."
+    },
+    {
+        "id": 263,
+        "questionId": 134,
+        "content": "You can obtain route maps at most stations."
+    },
+    {
+        "id": 264,
+        "questionId": 134,
+        "content": "You must also supply your own bike lock."
+    },
+    {
+        "id": 265,
+        "questionId": 135,
+        "content": "actual"
+    },
+    {
+        "id": 266,
+        "questionId": 135,
+        "content": "future"
+    },
+    {
+        "id": 267,
+        "questionId": 135,
+        "content": "practical"
+    },
+    {
+        "id": 268,
+        "questionId": 135,
+        "content": "effective"
+    },
+    {
+        "id": 269,
+        "questionId": 136,
+        "content": "Similary"
+    },
+    {
+        "id": 270,
+        "questionId": 136,
+        "content": "Therefore"
+    },
+    {
+        "id": 271,
+        "questionId": 136,
+        "content": "However"
+    },
+    {
+        "id": 272,
+        "questionId": 136,
+        "content": "Accordingly"
+    },
+    {
+        "id": 273,
+        "questionId": 137,
+        "content": "We believe you will see that our products are still a great value"
+    },
+    {
+        "id": 274,
+        "questionId": 137,
+        "content": "Our efforts to stay profitable have not been successful"
+    },
+    {
+        "id": 275,
+        "questionId": 137,
+        "content": "Whe hope our competitors will raise their prices too."
+    },
+    {
+        "id": 276,
+        "questionId": 137,
+        "content": "Our products are healthier than traditional baked goods."
+    },
+    {
+        "id": 277,
+        "questionId": 138,
+        "content": "supportive"
+    },
+    {
+        "id": 278,
+        "questionId": 138,
+        "content": "support"
+    },
+    {
+        "id": 279,
+        "questionId": 138,
+        "content": "supporter"
+    },
+    {
+        "id": 280,
+        "questionId": 138,
+        "content": "supports"
+    },
+    {
+        "id": 281,
+        "questionId": 139,
+        "content": "insights"
+    },
+    {
+        "id": 282,
+        "questionId": 139,
+        "content": "surveys"
+    },
+    {
+        "id": 283,
+        "questionId": 139,
+        "content": "improvements"
+    },
+    {
+        "id": 284,
+        "questionId": 139,
+        "content": "revisions"
+    },
+    {
+        "id": 285,
+        "questionId": 140,
+        "content": "resolve"
+    },
+    {
+        "id": 286,
+        "questionId": 140,
+        "content": "predict"
+    },
+    {
+        "id": 287,
+        "questionId": 140,
+        "content": "consider"
+    },
+    {
+        "id": 288,
+        "questionId": 140,
+        "content": "advertise"
+    },
+    {
+        "id": 289,
+        "questionId": 141,
+        "content": "I look forward to networking with other professionals in the field"
+    },
+    {
+        "id": 290,
+        "questionId": 141,
+        "content": "My membership will expire at the end of the year."
+    },
+    {
+        "id": 291,
+        "questionId": 141,
+        "content": "I will be giveing a presentation at the conference"
+    },
+    {
+        "id": 292,
+        "questionId": 141,
+        "content": "I would like to apply for the position soon."
+    },
+    {
+        "id": 293,
+        "questionId": 142,
+        "content": "generosity"
+    },
+    {
+        "id": 294,
+        "questionId": 142,
+        "content": "generous"
+    },
+    {
+        "id": 295,
+        "questionId": 142,
+        "content": "generously"
+    },
+    {
+        "id": 296,
+        "questionId": 142,
+        "content": "generousness"
+    },
+    {
+        "id": 297,
+        "questionId": 143,
+        "content": "The association grants scholarships for those studying zoology"
+    },
+    {
+        "id": 298,
+        "questionId": 143,
+        "content": "Supporters like you help preserve the park for public use."
+    },
+    {
+        "id": 299,
+        "questionId": 143,
+        "content": "We hope you enjoyed your visit to the park today"
+    },
+    {
+        "id": 300,
+        "questionId": 143,
+        "content": "Interested parties can volunteer to clean wildlife habitats"
+    },
+    {
+        "id": 301,
+        "questionId": 144,
+        "content": "generations"
+    },
+    {
+        "id": 302,
+        "questionId": 144,
+        "content": "lifestyles"
+    },
+    {
+        "id": 303,
+        "questionId": 144,
+        "content": "committees"
+    },
+    {
+        "id": 304,
+        "questionId": 144,
+        "content": "planners"
+    },
+    {
+        "id": 305,
+        "questionId": 145,
+        "content": "designer"
+    },
+    {
+        "id": 306,
+        "questionId": 145,
+        "content": "designs"
+    },
+    {
+        "id": 307,
+        "questionId": 145,
+        "content": "designing"
+    },
+    {
+        "id": 308,
+        "questionId": 145,
+        "content": "designed"
+    },
+    {
+        "id": 309,
+        "questionId": 146,
+        "content": "researching"
+    },
+    {
+        "id": 310,
+        "questionId": 146,
+        "content": "organizing"
+    },
+    {
+        "id": 311,
+        "questionId": 146,
+        "content": "leading"
+    },
+    {
+        "id": 312,
+        "questionId": 146,
+        "content": "funding"
+    },
+    {
+        "id": 433,
+        "questionId": 147,
+        "content": "10 percent"
+    },
+    {
+        "id": 434,
+        "questionId": 147,
+        "content": "15 percent"
+    },
+    {
+        "id": 435,
+        "questionId": 147,
+        "content": "20 percent"
+    },
+    {
+        "id": 436,
+        "questionId": 147,
+        "content": "25 percent"
+    },
+    {
+        "id": 437,
+        "questionId": 148,
+        "content": "$80"
+    },
+    {
+        "id": 438,
+        "questionId": 148,
+        "content": "$100"
+    },
+    {
+        "id": 439,
+        "questionId": 148,
+        "content": "$120"
+    },
+    {
+        "id": 440,
+        "questionId": 148,
+        "content": "$140"
+    },
+    {
+        "id": 441,
+        "questionId": 149,
+        "content": "To inform all employees of sick-leave procedures"
+    },
+    {
+        "id": 442,
+        "questionId": 149,
+        "content": "To extend staff members' vacation time"
+    },
+    {
+        "id": 443,
+        "questionId": 149,
+        "content": "To introduce the PR department"
+    },
+    {
+        "id": 444,
+        "questionId": 149,
+        "content": "To inform managers of a policy change"
+    },
+    {
+        "id": 445,
+        "questionId": 150,
+        "content": "Immediately"
+    },
+    {
+        "id": 446,
+        "questionId": 150,
+        "content": "Next week"
+    },
+    {
+        "id": 447,
+        "questionId": 150,
+        "content": "In three months"
+    },
+    {
+        "id": 448,
+        "questionId": 150,
+        "content": "At the start of the new year"
+    },
+    {
+        "id": 449,
+        "questionId": 151,
+        "content": "Dial extension 526"
+    },
+    {
+        "id": 450,
+        "questionId": 151,
+        "content": "Contact a Human Resources director"
+    },
+    {
+        "id": 451,
+        "questionId": 151,
+        "content": "E-mail the company CEO"
+    },
+    {
+        "id": 452,
+        "questionId": 151,
+        "content": "Consult the employee handbook"
+    },
+    {
+        "id": 453,
+        "questionId": 152,
+        "content": "She was unhappy in her job."
+    },
+    {
+        "id": 454,
+        "questionId": 152,
+        "content": "She asked for a promotion."
+    },
+    {
+        "id": 455,
+        "questionId": 152,
+        "content": "She started a new business."
+    },
+    {
+        "id": 456,
+        "questionId": 152,
+        "content": "She lent money to Thomas."
+    },
+    {
+        "id": 457,
+        "questionId": 153,
+        "content": "Organizing conferences"
+    },
+    {
+        "id": 458,
+        "questionId": 153,
+        "content": "Processing business loans"
+    },
+    {
+        "id": 459,
+        "questionId": 153,
+        "content": "Corresponding with clients"
+    },
+    {
+        "id": 460,
+        "questionId": 153,
+        "content": "Maintaining a Web site"
+    },
+    {
+        "id": 461,
+        "questionId": 154,
+        "content": "She is a skillful writer."
+    },
+    {
+        "id": 462,
+        "questionId": 154,
+        "content": "She is a diligent worker."
+    },
+    {
+        "id": 463,
+        "questionId": 154,
+        "content": "She is an excellent teacher."
+    },
+    {
+        "id": 464,
+        "questionId": 154,
+        "content": "She is an experienced supervisor."
+    },
+    {
+        "id": 465,
+        "questionId": 155,
+        "content": "Raise her salary"
+    },
+    {
+        "id": 466,
+        "questionId": 155,
+        "content": "Increase her hours"
+    },
+    {
+        "id": 467,
+        "questionId": 155,
+        "content": "Reduce her workload"
+    },
+    {
+        "id": 468,
+        "questionId": 155,
+        "content": "Recommend her for a job"
+    },
+    {
+        "id": 469,
+        "questionId": 156,
+        "content": "A name"
+    },
+    {
+        "id": 470,
+        "questionId": 156,
+        "content": "An address"
+    },
+    {
+        "id": 471,
+        "questionId": 156,
+        "content": "A telephone number"
+    },
+    {
+        "id": 472,
+        "questionId": 156,
+        "content": "An e-mail address"
+    },
+    {
+        "id": 473,
+        "questionId": 157,
+        "content": "The company's mailing address"
+    },
+    {
+        "id": 474,
+        "questionId": 157,
+        "content": "The amount of time before delivery begins"
+    },
+    {
+        "id": 475,
+        "questionId": 157,
+        "content": "The names of partner companies"
+    },
+    {
+        "id": 476,
+        "questionId": 157,
+        "content": "The cost of a multiple-year subscription"
+    },
+    {
+        "id": 477,
+        "questionId": 158,
+        "content": "A meal"
+    },
+    {
+        "id": 478,
+        "questionId": 158,
+        "content": "A theater ticket"
+    },
+    {
+        "id": 479,
+        "questionId": 158,
+        "content": "Transportation to the city center"
+    },
+    {
+        "id": 480,
+        "questionId": 158,
+        "content": "The first night's lodging"
+    },
+    {
+        "id": 481,
+        "questionId": 159,
+        "content": "Clean rooms"
+    },
+    {
+        "id": 482,
+        "questionId": 159,
+        "content": "Friendly staff"
+    },
+    {
+        "id": 483,
+        "questionId": 159,
+        "content": "Reasonable rates"
+    },
+    {
+        "id": 484,
+        "questionId": 159,
+        "content": "Convenient location"
+    },
+    {
+        "id": 485,
+        "questionId": 160,
+        "content": "It is not as good as Olympic Dreams."
+    },
+    {
+        "id": 486,
+        "questionId": 160,
+        "content": "It does not cover previous centuries in detail."
+    },
+    {
+        "id": 487,
+        "questionId": 160,
+        "content": "It is a well-written work."
+    },
+    {
+        "id": 488,
+        "questionId": 160,
+        "content": "It is currently available online."
+    },
+    {
+        "id": 489,
+        "questionId": 161,
+        "content": "Names of reference sources"
+    },
+    {
+        "id": 490,
+        "questionId": 161,
+        "content": "A listing of historical dates"
+    },
+    {
+        "id": 491,
+        "questionId": 161,
+        "content": "A thorough opening section"
+    },
+    {
+        "id": 492,
+        "questionId": 161,
+        "content": "A schedule of local sporting events"
+    },
+    {
+        "id": 493,
+        "questionId": 162,
+        "content": "Community libraries"
+    },
+    {
+        "id": 494,
+        "questionId": 162,
+        "content": "University students"
+    },
+    {
+        "id": 495,
+        "questionId": 162,
+        "content": "Sports centers"
+    },
+    {
+        "id": 496,
+        "questionId": 162,
+        "content": "Sports players"
+    },
+    {
+        "id": 497,
+        "questionId": 163,
+        "content": "A marketing firm"
+    },
+    {
+        "id": 498,
+        "questionId": 163,
+        "content": "A trading company"
+    },
+    {
+        "id": 499,
+        "questionId": 163,
+        "content": "A research institute"
+    },
+    {
+        "id": 500,
+        "questionId": 163,
+        "content": "A publishing company"
+    },
+    {
+        "id": 501,
+        "questionId": 164,
+        "content": "It was started six years ago."
+    },
+    {
+        "id": 502,
+        "questionId": 164,
+        "content": "It plans to expand its operations to other countries."
+    },
+    {
+        "id": 503,
+        "questionId": 164,
+        "content": "It will be hiring several marketing researchers."
+    },
+    {
+        "id": 504,
+        "questionId": 164,
+        "content": "It has been successful because of its marketing strategies."
+    },
+    {
+        "id": 505,
+        "questionId": 165,
+        "content": "His degree in marketing"
+    },
+    {
+        "id": 506,
+        "questionId": 165,
+        "content": "His overseas travel experience"
+    },
+    {
+        "id": 507,
+        "questionId": 165,
+        "content": "His familiarity with a software program"
+    },
+    {
+        "id": 508,
+        "questionId": 165,
+        "content": "His presentations at professional seminars"
+    },
+    {
+        "id": 509,
+        "questionId": 166,
+        "content": "Its large number of employees"
+    },
+    {
+        "id": 510,
+        "questionId": 166,
+        "content": "Its international reputation"
+    },
+    {
+        "id": 511,
+        "questionId": 166,
+        "content": "Its use of up-to-date computer technology"
+    },
+    {
+        "id": 512,
+        "questionId": 166,
+        "content": "Its high ranking on a list of successful businesses"
+    },
+    {
+        "id": 513,
+        "questionId": 167,
+        "content": "A school"
+    },
+    {
+        "id": 514,
+        "questionId": 167,
+        "content": "A bookstore"
+    },
+    {
+        "id": 515,
+        "questionId": 167,
+        "content": "A library"
+    },
+    {
+        "id": 516,
+        "questionId": 167,
+        "content": "A housing complex"
+    },
+    {
+        "id": 517,
+        "questionId": 168,
+        "content": "Nancy Johnson"
+    },
+    {
+        "id": 518,
+        "questionId": 168,
+        "content": "Les Elder"
+    },
+    {
+        "id": 519,
+        "questionId": 168,
+        "content": "Robert Erwin"
+    },
+    {
+        "id": 520,
+        "questionId": 168,
+        "content": "Max Johnson"
+    },
+    {
+        "id": 521,
+        "questionId": 169,
+        "content": "The performance of the cleaning crew is poor."
+    },
+    {
+        "id": 522,
+        "questionId": 169,
+        "content": "The cost of electricity is very high."
+    },
+    {
+        "id": 523,
+        "questionId": 169,
+        "content": "The December meeting should be rescheduled."
+    },
+    {
+        "id": 524,
+        "questionId": 169,
+        "content": "The doors of the library should be locked during non-business hours."
+    },
+    {
+        "id": 525,
+        "questionId": 170,
+        "content": "Calypso"
+    },
+    {
+        "id": 526,
+        "questionId": 170,
+        "content": "Baroque"
+    },
+    {
+        "id": 527,
+        "questionId": 170,
+        "content": "Mystic"
+    },
+    {
+        "id": 528,
+        "questionId": 170,
+        "content": "Trend"
+    },
+    {
+        "id": 529,
+        "questionId": 171,
+        "content": "It is usually expensive."
+    },
+    {
+        "id": 530,
+        "questionId": 171,
+        "content": "It is an easy way to modernize a room."
+    },
+    {
+        "id": 531,
+        "questionId": 171,
+        "content": "It will increase the resale value of the home or office."
+    },
+    {
+        "id": 532,
+        "questionId": 171,
+        "content": "It should be done only after consulting a designer."
+    },
+    {
+        "id": 533,
+        "questionId": 172,
+        "content": "They are sold in most stores."
+    },
+    {
+        "id": 534,
+        "questionId": 172,
+        "content": "They will soon be discontinued."
+    },
+    {
+        "id": 535,
+        "questionId": 172,
+        "content": "Their prices have been reduced."
+    },
+    {
+        "id": 536,
+        "questionId": 172,
+        "content": "They are the most popular models."
+    },
+    {
+        "id": 537,
+        "questionId": 173,
+        "content": "They last longer than standard lights."
+    },
+    {
+        "id": 538,
+        "questionId": 173,
+        "content": "They use less energy than regular lights do."
+    },
+    {
+        "id": 539,
+        "questionId": 173,
+        "content": "They are more expensive than standard lights."
+    },
+    {
+        "id": 540,
+        "questionId": 173,
+        "content": "They generate less heat than other types of lights do."
+    },
+    {
+        "id": 541,
+        "questionId": 174,
+        "content": "They are floor lamps."
+    },
+    {
+        "id": 542,
+        "questionId": 174,
+        "content": "They come in many sizes."
+    },
+    {
+        "id": 543,
+        "questionId": 174,
+        "content": "hey need to be professionally installed."
+    },
+    {
+        "id": 544,
+        "questionId": 174,
+        "content": "They can be exposed to moisture."
+    },
+    {
+        "id": 545,
+        "questionId": 175,
+        "content": "To help manufacturers increase their profits"
+    },
+    {
+        "id": 546,
+        "questionId": 175,
+        "content": "To create new jobs in the manufacturing sector"
+    },
+    {
+        "id": 547,
+        "questionId": 175,
+        "content": "To teach manufacturers how to reduce waste"
+    },
+    {
+        "id": 548,
+        "questionId": 175,
+        "content": "To lower the retail prices of consumer goods"
+    },
+    {
+        "id": 549,
+        "questionId": 176,
+        "content": "paper"
+    },
+    {
+        "id": 550,
+        "questionId": 176,
+        "content": "money"
+    },
+    {
+        "id": 551,
+        "questionId": 176,
+        "content": "sales"
+    },
+    {
+        "id": 552,
+        "questionId": 176,
+        "content": "coins"
+    },
+    {
+        "id": 553,
+        "questionId": 177,
+        "content": "Author of the article"
+    },
+    {
+        "id": 554,
+        "questionId": 177,
+        "content": "Clear Water CEO"
+    },
+    {
+        "id": 555,
+        "questionId": 177,
+        "content": "President of the MEP"
+    },
+    {
+        "id": 556,
+        "questionId": 177,
+        "content": "Clear Water general manager"
+    },
+    {
+        "id": 557,
+        "questionId": 178,
+        "content": "Clear Water's sales rose by 3 percent"
+    },
+    {
+        "id": 558,
+        "questionId": 178,
+        "content": "Clear Water's production capacity increased 10 percent"
+    },
+    {
+        "id": 559,
+        "questionId": 178,
+        "content": "Clear Water dropped its retail prices"
+    },
+    {
+        "id": 560,
+        "questionId": 178,
+        "content": "Clear Water halved its energy production"
+    },
+    {
+        "id": 561,
+        "questionId": 179,
+        "content": "$10.5 billion"
+    },
+    {
+        "id": 562,
+        "questionId": 179,
+        "content": "$57,000"
+    },
+    {
+        "id": 563,
+        "questionId": 179,
+        "content": "$1,000,000"
+    },
+    {
+        "id": 564,
+        "questionId": 179,
+        "content": "$1.4 billion"
+    },
+    {
+        "id": 565,
+        "questionId": 180,
+        "content": "To confirm delivery"
+    },
+    {
+        "id": 566,
+        "questionId": 180,
+        "content": "To order supplies"
+    },
+    {
+        "id": 567,
+        "questionId": 180,
+        "content": "To request money"
+    },
+    {
+        "id": 568,
+        "questionId": 180,
+        "content": "To rectify mistakes"
+    },
+    {
+        "id": 569,
+        "questionId": 181,
+        "content": "They are in different countries."
+    },
+    {
+        "id": 570,
+        "questionId": 181,
+        "content": "They do business frequently."
+    },
+    {
+        "id": 571,
+        "questionId": 181,
+        "content": "They have a poor relationship."
+    },
+    {
+        "id": 572,
+        "questionId": 181,
+        "content": "They are both new companies."
+    },
+    {
+        "id": 573,
+        "questionId": 182,
+        "content": "differences"
+    },
+    {
+        "id": 574,
+        "questionId": 182,
+        "content": "errors"
+    },
+    {
+        "id": 575,
+        "questionId": 182,
+        "content": "figures"
+    },
+    {
+        "id": 576,
+        "questionId": 182,
+        "content": "calculations"
+    },
+    {
+        "id": 577,
+        "questionId": 183,
+        "content": "50"
+    },
+    {
+        "id": 578,
+        "questionId": 183,
+        "content": "10"
+    },
+    {
+        "id": 579,
+        "questionId": 183,
+        "content": "5"
+    },
+    {
+        "id": 580,
+        "questionId": 183,
+        "content": "6"
+    },
+    {
+        "id": 581,
+        "questionId": 184,
+        "content": "For placing such a large order"
+    },
+    {
+        "id": 582,
+        "questionId": 184,
+        "content": "For referring a new customer"
+    },
+    {
+        "id": 583,
+        "questionId": 184,
+        "content": "For back-ordering ink cartridges"
+    },
+    {
+        "id": 584,
+        "questionId": 184,
+        "content": "For being such a steady client"
+    },
+    {
+        "id": 585,
+        "questionId": 185,
+        "content": "respond"
+    },
+    {
+        "id": 586,
+        "questionId": 185,
+        "content": "renounce"
+    },
+    {
+        "id": 587,
+        "questionId": 185,
+        "content": "receive"
+    },
+    {
+        "id": 588,
+        "questionId": 185,
+        "content": "rejoice"
+    },
+    {
+        "id": 589,
+        "questionId": 186,
+        "content": "To celebrate a birthday"
+    },
+    {
+        "id": 590,
+        "questionId": 186,
+        "content": "To announce a wedding"
+    },
+    {
+        "id": 591,
+        "questionId": 186,
+        "content": "To raise money for charity"
+    },
+    {
+        "id": 592,
+        "questionId": 186,
+        "content": "To solicit lots of presents"
+    },
+    {
+        "id": 593,
+        "questionId": 187,
+        "content": "Father of the bride"
+    },
+    {
+        "id": 594,
+        "questionId": 187,
+        "content": "The groom"
+    },
+    {
+        "id": 595,
+        "questionId": 187,
+        "content": "Father of the groom"
+    },
+    {
+        "id": 596,
+        "questionId": 187,
+        "content": "The minister"
+    },
+    {
+        "id": 597,
+        "questionId": 188,
+        "content": "10 o'clock"
+    },
+    {
+        "id": 598,
+        "questionId": 188,
+        "content": "11 o'clock"
+    },
+    {
+        "id": 599,
+        "questionId": 188,
+        "content": "2 o'clock"
+    },
+    {
+        "id": 600,
+        "questionId": 188,
+        "content": "Noon"
+    },
+    {
+        "id": 601,
+        "questionId": 189,
+        "content": "She used to live with Marilyn Strummers."
+    },
+    {
+        "id": 602,
+        "questionId": 189,
+        "content": "She used to live with Marilyn Strummers."
+    },
+    {
+        "id": 603,
+        "questionId": 189,
+        "content": "She will take photographs at the wedding."
+    },
+    {
+        "id": 604,
+        "questionId": 189,
+        "content": "She will serve food at the lunch and reception."
+    },
+    {
+        "id": 605,
+        "questionId": 190,
+        "content": "To apologize for maintenance work"
+    },
+    {
+        "id": 606,
+        "questionId": 190,
+        "content": "To promote a swimming-diving meet"
+    },
+    {
+        "id": 607,
+        "questionId": 190,
+        "content": "To publicize the information hotline"
+    },
+    {
+        "id": 608,
+        "questionId": 190,
+        "content": "To announce schedule changes"
+    },
+    {
+        "id": 609,
+        "questionId": 191,
+        "content": "One"
+    },
+    {
+        "id": 610,
+        "questionId": 191,
+        "content": "Two"
+    },
+    {
+        "id": 611,
+        "questionId": 191,
+        "content": "Three"
+    },
+    {
+        "id": 612,
+        "questionId": 191,
+        "content": "Four"
+    },
+    {
+        "id": 613,
+        "questionId": 192,
+        "content": "There will be a public swim from 6:30-7:30 p.m. Wednesday, July 16th."
+    },
+    {
+        "id": 614,
+        "questionId": 192,
+        "content": "There will be a Water Fun class from 1:30-2:30 p.m. on Thursday of next week."
+    },
+    {
+        "id": 615,
+        "questionId": 192,
+        "content": "Family swims are scheduled in the summer on Sundays and Thursdays."
+    },
+    {
+        "id": 616,
+        "questionId": 192,
+        "content": "Adult and senior swims are offered twice on Mondays throughout the summer."
+    },
+    {
+        "id": 617,
+        "questionId": 193,
+        "content": "strenuous"
+    },
+    {
+        "id": 618,
+        "questionId": 193,
+        "content": "water"
+    },
+    {
+        "id": 619,
+        "questionId": 193,
+        "content": "adolescent"
+    },
+    {
+        "id": 620,
+        "questionId": 193,
+        "content": "oxygen"
+    },
+    {
+        "id": 621,
+        "questionId": 194,
+        "content": "By calling the pool office"
+    },
+    {
+        "id": 622,
+        "questionId": 194,
+        "content": "By calling the information hot line"
+    },
+    {
+        "id": 623,
+        "questionId": 194,
+        "content": "By visiting the pool website"
+    },
+    {
+        "id": 624,
+        "questionId": 194,
+        "content": "By writing for a special notice"
+    },
+    {
+        "id": 625,
+        "questionId": 195,
+        "content": "A marriage"
+    },
+    {
+        "id": 626,
+        "questionId": 195,
+        "content": "A graduation"
+    },
+    {
+        "id": 627,
+        "questionId": 195,
+        "content": "An engagement"
+    },
+    {
+        "id": 628,
+        "questionId": 195,
+        "content": "A birth"
+    },
+    {
+        "id": 629,
+        "questionId": 196,
+        "content": "Obey"
+    },
+    {
+        "id": 630,
+        "questionId": 196,
+        "content": "Respond"
+    },
+    {
+        "id": 631,
+        "questionId": 196,
+        "content": "Come"
+    },
+    {
+        "id": 632,
+        "questionId": 196,
+        "content": "Affirm"
+    },
+    {
+        "id": 633,
+        "questionId": 197,
+        "content": "Snacks"
+    },
+    {
+        "id": 634,
+        "questionId": 197,
+        "content": "Gifts"
+    },
+    {
+        "id": 635,
+        "questionId": 197,
+        "content": "Dinner"
+    },
+    {
+        "id": 636,
+        "questionId": 197,
+        "content": "Photograhs"
+    },
+    {
+        "id": 637,
+        "questionId": 198,
+        "content": "She has to work."
+    },
+    {
+        "id": 638,
+        "questionId": 198,
+        "content": "Her husband is sick."
+    },
+    {
+        "id": 639,
+        "questionId": 198,
+        "content": "She will be on vacation."
+    },
+    {
+        "id": 640,
+        "questionId": 198,
+        "content": "Her car needs repair."
+    },
+    {
+        "id": 641,
+        "questionId": 199,
+        "content": "She is a relative of Keegan's."
+    },
+    {
+        "id": 642,
+        "questionId": 199,
+        "content": "She is impulsive."
+    },
+    {
+        "id": 643,
+        "questionId": 199,
+        "content": "She is inconsiderate."
+    },
+    {
+        "id": 644,
+        "questionId": 199,
+        "content": "She is good friends with Diane."
+    },
+    {
+        "id": 645,
+        "questionId": 200,
+        "content": "5 percent"
+    },
+    {
+        "id": 646,
+        "questionId": 200,
+        "content": "10 percent"
+    },
+    {
+        "id": 647,
+        "questionId": 200,
+        "content": "15 percent"
+    },
+    {
+        "id": 648,
+        "questionId": 200,
+        "content": "20 percent"
+    },
+    {
+        "id": 653,
+        "questionId": 210,
+        "content": ""
+    },
+    {
+        "id": 654,
+        "questionId": 210,
+        "content": ""
+    },
+    {
+        "id": 655,
+        "questionId": 210,
+        "content": ""
+    },
+    {
+        "id": 656,
+        "questionId": 210,
+        "content": ""
+    },
+    {
+        "id": 657,
+        "questionId": 211,
+        "content": "a"
+    },
+    {
+        "id": 658,
+        "questionId": 211,
+        "content": "b"
+    },
+    {
+        "id": 659,
+        "questionId": 211,
+        "content": "c"
+    },
+    {
+        "id": 660,
+        "questionId": 211,
+        "content": "d"
+    }
+]

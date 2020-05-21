@@ -9,13 +9,13 @@
             class="wrap-input100 validate-input"
             data-validate="Valid email is required: ex@abc.xyz"
           >
-            <input class="input100" type="text" name="email" placeholder="Email" v-model="admin.email"/>
+            <input class="input100" type="text" id="email" name="email" placeholder="Email" v-model="admin.email"/>
             <span class="focus-input100-1"></span>
             <span class="focus-input100-2"></span>
           </div>
 
           <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-            <input class="input100" type="password" name="pass" placeholder="Password" v-model="admin.password" />
+            <input class="input100" type="password" id="password" name="password" placeholder="Password" v-model="admin.password" />
             <span class="focus-input100-1"></span>
             <span class="focus-input100-2"></span>
           </div>
@@ -79,8 +79,8 @@ export default {
             console.log(response);
             let admin = response.data;
             localStorage.setItem('admin', JSON.stringify(admin));
+            this.$store.dispatch("updateAdmin", Object.assign({}, admin));
             this.$store.dispatch("updateLoggedIn", true);
-            this.$store.dispatch("updateAdmin", admin);
             this.$router.push("/home");
           } else {
             alert("Response status not OK from server");

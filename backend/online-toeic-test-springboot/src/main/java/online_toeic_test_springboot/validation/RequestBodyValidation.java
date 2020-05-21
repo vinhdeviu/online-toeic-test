@@ -67,9 +67,9 @@ public class RequestBodyValidation {
         if(questionGroup.getPartId() == null || questionGroup.getPartId() <= 0) {
             badRequestBodyErrorMessage.append("partId is required. ");
         }
-        if(questionGroup.getTittle() == null || questionGroup.getTittle().equals("")) {
-            badRequestBodyErrorMessage.append("tittle is required. ");
-        }
+//        if(questionGroup.getTittle() == null || questionGroup.getTittle().equals("")) {
+//            badRequestBodyErrorMessage.append("tittle is required. ");
+//        }
         if(!badRequestBodyErrorMessage.toString().equals("")) {
             throw new BadRequestBodyException(badRequestBodyErrorMessage.toString());
         }

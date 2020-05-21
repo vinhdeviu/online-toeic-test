@@ -83,6 +83,15 @@ export default {
       }
     }
   },
+  watch:{
+    '$route' (to, from) {
+      console.log(to)
+      console.log(from)
+      if(to.name == from.name && to.params.testId != from.params.testId) {
+        this.$router.go(0);
+      }
+    }
+  },
   beforeRouteLeave(to, from, next) {
     if (this.loggedIn) {
       const confirm = window.confirm("Do you really want to leave?");

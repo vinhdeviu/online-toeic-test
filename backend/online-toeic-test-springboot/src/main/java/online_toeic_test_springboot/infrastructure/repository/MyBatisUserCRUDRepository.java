@@ -19,6 +19,11 @@ public class MyBatisUserCRUDRepository implements UserCRUDRepository {
   private final UserCRUDMapper userCRUDMapper;
 
   @Override
+  public List<User> getAllUsers() {
+    return userCRUDMapper.queryAllUsers();
+  }
+
+  @Override
   public List<User> getUsersByRole(int role) {
     return userCRUDMapper.queryUsersByRole(role);
   }
