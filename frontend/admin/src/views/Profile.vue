@@ -92,7 +92,7 @@ export default {
           if (response.status == 200) {
             this.saved = true;
             localStorage.setItem('admin', JSON.stringify(this.admin));
-            this.$store.dispatch("updateAdmin", this.admin);
+            this.$store.dispatch("updateAdmin", Object.assign({}, this.admin));
             alert("Saved");
           } else {
             alert("response status not OK from server");

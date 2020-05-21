@@ -7,26 +7,28 @@
       </div>
     </div>
     <div style="margin-top:80px"></div>
-    <div class="row">
-      <div class="col-sm-3">
-        <h3 style="color:#007bff">Date</h3>
-        <h4 v-for="(date,index) in dates" :key="'date'+index">{{date}}</h4>
-      </div>
-      <div class="col-sm-3">
-        <h3 style="color:#007bff">Test</h3>
-        <h4 v-for="(testName,index) in testNames" :key="'testName'+index">{{testName}}</h4>
-      </div>
-      <div class="col-sm-3">
-        <h3 style="color:#007bff">Correct Answer</h3>
-        <h4 v-for="(totalCorrectAnswer,index) in totalCorrectAnswers" :key="'totalCorrectAnswer'+index">{{totalCorrectAnswer}}</h4>
-      </div>
-      <div class="col-sm-3">
-        <h3 style="color:#007bff">Detail</h3>
-        <div v-for="achievement in achievements" :key="achievement.id">
-          <button @click="viewDetail(achievement)" class="btn btn-primary btn-sm">View</button>
-          <div style="margin-top:8px"></div>
-        </div>
-      </div>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar"
+      v-if="achievements.length>0"
+      :style="{height: (achievements.length>6?450:35+achievements.length*100*0.6) + 'px'}"
+    >
+      <table class="table table-striped mb-0">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Test Id</th>
+            <th>Total Correct Answer</th>
+            <th>Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="achievement in achievements" :key="achievement.id">
+            <td>{{achievement.date}}</td>
+            <td>{{achievement.testId}}</td>
+            <td>{{achievement.totalCorrectAnswer}}</td>
+            <td><button @click="viewDetail(achievement)" class="btn btn-primary btn-sm">View</button></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -38,9 +40,6 @@ import axios from "axios";
 export default {
   data() {
     return {
-      dates: [],
-      testNames: [],
-      totalCorrectAnswers: [],
       achievements: []
     };
   },
@@ -56,11 +55,6 @@ export default {
       axios.get(`${process.env.API_URL}/achievements/?examineeId=${JSON.parse(localStorage.getItem('examinee')).id}`).then(response => {
         console.log(response.data);
         this.achievements = response.data;
-        for(let achievement of this.achievements) {
-          this.dates.push(achievement.date);
-          this.testNames.push(achievement.testName);
-          this.totalCorrectAnswers.push(achievement.totalCorrectAnswer);
-        }
       });
     }
   },

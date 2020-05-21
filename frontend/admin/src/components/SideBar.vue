@@ -6,7 +6,7 @@
     </div>
 
     <ul class="list-unstyled components">
-      <p style="cursor:pointer" @click="toProfilePage()" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'"><b>{{admin.name}}</b></p>
+      <p style="cursor:pointer" @click="toProfilePage()" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='white'" v-if="admin!=null"><b>{{admin.name}}</b></p>
       <li>
         <a style="cursor:pointer" @click="toHomePage()">Home</a>
       </li>
