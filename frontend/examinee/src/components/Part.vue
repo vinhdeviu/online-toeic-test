@@ -57,10 +57,12 @@ export default {
   props: ['part', 'partData'],
   methods: {
     prevPart() {
+      this.$store.dispatch("updatePlayAudioFlag", false);
       this.$store.dispatch("updateTestProgress", this.part-1);
       window.scrollTo(0,0);
     },
     nextPart() {
+      this.$store.dispatch("updatePlayAudioFlag", false);
       this.$store.dispatch("updateTestProgress", this.part+1);
       window.scrollTo(0,0);
     },

@@ -5,5 +5,6 @@ export default {
     testReviewFlag: false,
     selectedOptions: [],
     answers: [],
-    examineeAnswers: []
+    examineeAnswers: [],
+    playAudioFlag: false
 }

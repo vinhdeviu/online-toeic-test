@@ -43,7 +43,8 @@ export default {
       loggedIn: "getLoggedIn",
       testProgress: "getTestProgress",
       testReviewFlag: "getTestReviewFlag",
-      testSubmitted: "getTestSubmitted"
+      testSubmitted: "getTestSubmitted",
+      playAudioFlag: "getPlayAudioFlag"
     })
   },
   created() {
@@ -51,6 +52,7 @@ export default {
       this.$router.push("/login");
     } else {
       this.$store.dispatch("updateTestProgress", 1);
+      this.$store.dispatch("updatePlayAudioFlag", true);
       if(this.testReviewFlag != 0) {
         this.audioStyle = 'width: 100%';
         axios.get(`${process.env.API_URL}/generate-test-achievement/${this.testReviewFlag}`).then(response => {
@@ -71,7 +73,7 @@ export default {
     }
   },
   updated() {
-    if(this.testReviewFlag == 0 && !this.testSubmitted) {
+    if(this.testReviewFlag == 0 && !this.testSubmitted && this.playAudioFlag) {
       let playPromise = document.getElementById("listeningAudio").play();
       var vm = this;
       if (playPromise !== undefined) {

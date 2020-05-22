@@ -43,5 +43,9 @@ export default {
     setExamineeAnswers(state, examineeAnswers) {
         state.examineeAnswers = examineeAnswers;
         console.log('state.examineeAnswers is set to ', examineeAnswers);
-    }
+    },
+    setPlayAudioFlag(state, playAudioFlag) {
+        state.playAudioFlag = playAudioFlag;
+        console.log('state.playAudioFlag is set to ', playAudioFlag);
+    },
 }

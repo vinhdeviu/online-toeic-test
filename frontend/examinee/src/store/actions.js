@@ -55,4 +55,8 @@ export default {
         console.log('action updateSingleExamineeAnswer is processing with indexAndData', indexAndData);
         commit('setExamineeAnswer', indexAndData);
     },
+    updatePlayAudioFlag({ commit }, playAudioFlag) {
+        console.log('action updatePlayAudioFlag is processing with playAudioFlag', playAudioFlag);
+        commit('setPlayAudioFlag', playAudioFlag);
+    },
 }
