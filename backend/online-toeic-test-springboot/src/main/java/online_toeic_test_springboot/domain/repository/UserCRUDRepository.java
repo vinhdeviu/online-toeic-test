@@ -12,7 +12,7 @@ public interface UserCRUDRepository {
 
     User getUserById(int id);
 
-    User login(String email, String password);
+    User login(String email, String password, int role);
 
     void updateUser(User user);
 

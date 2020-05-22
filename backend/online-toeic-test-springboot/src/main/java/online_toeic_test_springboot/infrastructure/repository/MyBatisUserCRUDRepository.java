@@ -38,8 +38,8 @@ public class MyBatisUserCRUDRepository implements UserCRUDRepository {
   }
 
   @Override
-  public User login(String email, String password) {
-    Optional<User> optionalUser = userCRUDMapper.queryUserByEmailAndPassword(email, password);
+  public User login(String email, String password, int role) {
+    Optional<User> optionalUser = userCRUDMapper.queryUserByEmailAndPasswordAndRole(email, password, role);
     if(!optionalUser.isPresent()) {
       throw new EntityNotFoundException("wrong email or password");
     }

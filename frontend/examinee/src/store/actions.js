@@ -11,10 +11,6 @@ export default {
         console.log('action updateTestSubmitted is processing with testSubmitted', testSubmitted);
         commit('setTestSubmitted', testSubmitted);
     },
-    updateTestReviewFlag({ commit }, testReviewFlag) {
-        console.log('action updateTestReviewFlag is processing with testReviewFlag', testReviewFlag);
-        commit('setTestReviewFlag', testReviewFlag);
-    },
     updateSelectedOptions({ commit }, selectedOptions) {
         console.log('action updateSelectedOptions is processing with selectedOptions', selectedOptions);
         commit('setSelectedOptions', selectedOptions);

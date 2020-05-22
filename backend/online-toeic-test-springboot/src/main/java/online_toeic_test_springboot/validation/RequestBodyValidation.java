@@ -118,6 +118,22 @@ public class RequestBodyValidation {
         }
     }
 
+    public void validateToLogin(User user) {
+        System.out.println(user);
+        StringBuilder badRequestBodyErrorMessage = new StringBuilder();
+        if(user.getEmail() == null || user.getEmail().equals("")) {
+            badRequestBodyErrorMessage.append("email is required. ");
+        } else if(!isValid(user.getEmail())) {
+            badRequestBodyErrorMessage.append("incorrect email format. ");
+        }
+        if(user.getPassword() == null || user.getPassword().equals("")) {
+            badRequestBodyErrorMessage.append("password is required. ");
+        }
+        if(!badRequestBodyErrorMessage.toString().equals("")) {
+            throw new BadRequestBodyException(badRequestBodyErrorMessage.toString());
+        }
+    }
+
     private boolean isValid(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                 "[a-zA-Z0-9_+&*-]+)*@" +

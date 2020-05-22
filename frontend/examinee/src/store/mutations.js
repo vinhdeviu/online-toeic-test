@@ -11,10 +11,6 @@ export default {
         state.testSubmitted = testSubmitted;
         console.log('state.testSubmitted is set to ', testSubmitted);
     },
-    setTestReviewFlag(state, testReviewFlag) {
-        state.testReviewFlag = testReviewFlag;
-        console.log('state.testReviewFlag is set to ', testReviewFlag);
-    },
     setSelectedOptions(state, selectedOptions) {
         state.selectedOptions = selectedOptions;
         console.log('state.selectedOptions is set to ', selectedOptions);

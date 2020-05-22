@@ -24,11 +24,15 @@ export default {
   },
   computed: {
     ...mapGetters({
+      loggedIn: "getLoggedIn",
       testProgress: "getTestProgress",
       testSubmitted: "getTestSubmitted"
     })
   },
   created() {
+    if (!this.loggedIn) {
+      return;
+    }
     let testId = this.$route.params.testId;
     this.initData(testId);
   },
@@ -37,7 +41,9 @@ export default {
         if (testId != null) {
           axios.get(`${process.env.API_URL}/test-information/${testId}`).then(response => {
             console.log(response.data);
-            this.timeInSecond = response.data.timeInSecond;
+            if(this.$route.params.achievementId == null) {
+              this.timeInSecond = response.data.timeInSecond;
+            }
             this.totalQuestions = response.data.totalQuestions;
           });
         } else {

@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     login() {
-      const API_URL = `${process.env.API_URL}/login`;
+      const API_URL = `${process.env.API_URL}/admin-login`;
       axios
         .post(API_URL, this.admin)
         .then(response => {

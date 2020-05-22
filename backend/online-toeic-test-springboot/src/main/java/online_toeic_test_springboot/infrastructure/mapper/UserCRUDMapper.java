@@ -21,8 +21,8 @@ public interface UserCRUDMapper {
   @Select("SELECT * FROM User WHERE email = #{email}")
   Optional<User> queryUserByEmail(String email);
 
-  @Select("SELECT * FROM User WHERE email = #{email} AND password = #{password}")
-  Optional<User> queryUserByEmailAndPassword(String email, String password);
+  @Select("SELECT * FROM User WHERE email = #{email} AND password = #{password} AND role = #{role}")
+  Optional<User> queryUserByEmailAndPasswordAndRole(String email, String password, int role);
 
   @Insert("INSERT INTO User (email,password,name,role) VALUES (#{email},#{password},#{name},#{role})")
   @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")

@@ -41,9 +41,16 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getUserById(userId));
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody User user) {
-        return ResponseEntity.ok().body(userService.login(user));
+    @PostMapping("/admin-login")
+    public ResponseEntity<User> adminLogin(@RequestBody User user) {
+        requestBodyValidation.validateToLogin(user);
+        return ResponseEntity.ok().body(userService.adminLogin(user));
+    }
+
+    @PostMapping("/examinee-login")
+    public ResponseEntity<User> examineeLogin(@RequestBody User user) {
+        requestBodyValidation.validateToLogin(user);
+        return ResponseEntity.ok().body(userService.examineeLogin(user));
     }
 
     @PostMapping("/register")

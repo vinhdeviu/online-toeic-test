@@ -8,7 +8,9 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    User login(User user);
+    User adminLogin(User user);
+
+    User examineeLogin(User user);
 
     void register(User user);
 

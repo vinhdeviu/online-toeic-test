@@ -16,6 +16,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final int EXAMINEE_ROLE_INT_VALUE = 1;
+    private final int ADMIN_ROLE_INT_VALUE = 2;
 
     @Autowired
     private final UserCRUDRepository userCRUDRepository;
@@ -26,8 +27,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(User user) {
-        return userCRUDRepository.login(user.getEmail(), user.getPassword());
+    public User examineeLogin(User user) {
+        return userCRUDRepository.login(user.getEmail(), user.getPassword(), EXAMINEE_ROLE_INT_VALUE);
+    }
+
+    @Override
+    public User adminLogin(User user) {
+        return userCRUDRepository.login(user.getEmail(), user.getPassword(), ADMIN_ROLE_INT_VALUE);
     }
 
     @Override
