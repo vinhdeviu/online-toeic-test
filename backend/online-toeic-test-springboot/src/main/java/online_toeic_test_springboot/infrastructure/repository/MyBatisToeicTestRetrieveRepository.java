@@ -36,6 +36,26 @@ public class MyBatisToeicTestRetrieveRepository implements ToeicTestRetrieveRepo
   }
 
   @Override
+  public List<Part> getAllParts() {
+    return partCRUDMapper.queryAllParts();
+  }
+
+  @Override
+  public List<QuestionGroup> getAllQuestionGroups() {
+    return questionGroupCRUDMapper.queryAllQuestionGroups();
+  }
+
+  @Override
+  public List<Question> getAllQuestions() {
+    return questionCRUDMapper.queryAllQuestions();
+  }
+
+  @Override
+  public List<Answer> getAllAnswers() {
+    return answerCRUDMapper.queryAllAnswers();
+  }
+
+  @Override
   public Test getTestById(int id) {
     Optional<Test> test = testCRUDMapper.queryTestById(id);
     if(!test.isPresent()) {
@@ -106,8 +126,8 @@ public class MyBatisToeicTestRetrieveRepository implements ToeicTestRetrieveRepo
   }
 
   @Override
-  public List<Achievement> getAchievementByExamineeId(int examineeId) {
-    return achievementCRUDMapper.queryAchievementByExamineeId(examineeId);
+  public List<Achievement> getAchievementsByExamineeId(int examineeId) {
+    return achievementCRUDMapper.queryAchievementsByExamineeId(examineeId);
   }
 
   @Override
@@ -116,13 +136,26 @@ public class MyBatisToeicTestRetrieveRepository implements ToeicTestRetrieveRepo
     if(!optionalAchievement.isPresent()) {
       throw new EntityNotFoundException("achievement not found");
     }
-    Achievement achievement = optionalAchievement.get();
-    achievement.setExamineeAnswers(examineeAnswerCRUDMapper.queryExamineeAnswersByAchievementId(achievement.getId()));
-    return achievement;
+    return optionalAchievement.get();
   }
 
   @Override
   public int qetTotalNumQuestionsByTestId(int testId) {
     return questionCRUDMapper.queryCountTotalQuestionsByTestId(testId);
+  }
+
+  @Override
+  public List<Achievement> getAllAchievements() {
+    return achievementCRUDMapper.queryAllAchievements();
+  }
+
+  @Override
+  public List<ExamineeAnswer> getExamineeAnswersByAchievementId(int achievementId) {
+    return examineeAnswerCRUDMapper.queryExamineeAnswersByAchievementId(achievementId);
+  }
+
+  @Override
+  public List<ExamineeAnswer> getAllExamineeAnswers() {
+    return examineeAnswerCRUDMapper.queryAllExamineeAnswers();
   }
 }

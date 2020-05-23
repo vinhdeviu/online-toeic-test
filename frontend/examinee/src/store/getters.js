@@ -9,9 +9,9 @@ export default {
         }
     },
     getTestProgress: state => state.testProgress,
-    getTestReviewFlag: state => state.testReviewFlag,
     getTestSubmitted: state => state.testSubmitted,
     getSelectedOptions: state => state.selectedOptions,
     getAnswers: state => state.answers,
-    getExamineeAnswers: state => state.examineeAnswers
+    getExamineeAnswers: state => state.examineeAnswers,
+    getPlayAudioFlag: state => state.playAudioFlag,
 }

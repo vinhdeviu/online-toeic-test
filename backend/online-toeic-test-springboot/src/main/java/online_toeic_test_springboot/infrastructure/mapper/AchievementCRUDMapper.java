@@ -17,7 +17,10 @@ public interface AchievementCRUDMapper {
   void insertAchievement(Achievement achievement);
 
   @Select("SELECT a.id, a.examinee_id, a.date, a.total_correct_answer, t.test_name, a.test_id FROM achievement a INNER JOIN test t ON a.test_id = t.id WHERE a.examinee_id = #{examineeId} ORDER BY id DESC")
-  List<Achievement> queryAchievementByExamineeId(int examineeId);
+  List<Achievement> queryAchievementsByExamineeId(int examineeId);
+
+  @Select("SELECT * FROM achievement ORDER BY examinee_id")
+  List<Achievement> queryAllAchievements();
 
   @Select("SELECT * FROM achievement WHERE id = #{id}")
   Optional<Achievement> queryAchievementById(int id);

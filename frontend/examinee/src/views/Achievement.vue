@@ -61,8 +61,7 @@ export default {
   methods: {
     viewDetail(achievement) {
       console.log(achievement);
-      this.$store.dispatch("updateTestReviewFlag", achievement.id);
-      this.$router.push(`/test/${achievement.testId}`);
+      this.$router.push(`/test/${achievement.testId}/achievement/${achievement.id}`);
     },
   }
 };

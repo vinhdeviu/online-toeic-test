@@ -12,6 +12,9 @@ public interface QuestionCRUDMapper {
   @Select("SELECT * FROM QUESTION WHERE id = #{id}")
   Optional<Question> queryQuestionById(int id);
 
+  @Select("SELECT * FROM QUESTION ORDER BY part_id, `index`")
+  List<Question> queryAllQuestions();
+
   @Select("SELECT * FROM QUESTION WHERE part_id = #{partId} ORDER BY `index`")
   List<Question> queryQuestionsByPartId(int partId);
 

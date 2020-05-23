@@ -62,7 +62,7 @@ export default {
         password: this.$refs.pwd.value
       }
       axios
-        .post(`${process.env.API_URL}/login`, user)
+        .post(`${process.env.API_URL}/examinee-login`, user)
         .then(response => {
           if(response.status == 200) {
             console.log(response);

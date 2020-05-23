@@ -27,18 +27,30 @@ public class UserController {
     private final RequestBodyValidation requestBodyValidation;
 
     @GetMapping("/examinees")
-    public ResponseEntity<List<User>> retrieveExaminees() {
+    public ResponseEntity<List<User>> getExaminees() {
         return ResponseEntity.ok().body(userService.getAllExaminees());
     }
 
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getUsers() {
+        return ResponseEntity.ok().body(userService.getAllUsers());
+    }
+
     @GetMapping("/users/{userId}")
-    public ResponseEntity<User> retrieveExamineeById(@PathVariable Integer userId) {
+    public ResponseEntity<User> getUsersById(@PathVariable Integer userId) {
         return ResponseEntity.ok().body(userService.getUserById(userId));
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody User user) {
-        return ResponseEntity.ok().body(userService.login(user));
+    @PostMapping("/admin-login")
+    public ResponseEntity<User> adminLogin(@RequestBody User user) {
+        requestBodyValidation.validateToLogin(user);
+        return ResponseEntity.ok().body(userService.adminLogin(user));
+    }
+
+    @PostMapping("/examinee-login")
+    public ResponseEntity<User> examineeLogin(@RequestBody User user) {
+        requestBodyValidation.validateToLogin(user);
+        return ResponseEntity.ok().body(userService.examineeLogin(user));
     }
 
     @PostMapping("/register")

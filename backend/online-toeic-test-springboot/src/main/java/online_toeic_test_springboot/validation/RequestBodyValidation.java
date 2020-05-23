@@ -67,9 +67,9 @@ public class RequestBodyValidation {
         if(questionGroup.getPartId() == null || questionGroup.getPartId() <= 0) {
             badRequestBodyErrorMessage.append("partId is required. ");
         }
-        if(questionGroup.getTittle() == null || questionGroup.getTittle().equals("")) {
-            badRequestBodyErrorMessage.append("tittle is required. ");
-        }
+//        if(questionGroup.getTittle() == null || questionGroup.getTittle().equals("")) {
+//            badRequestBodyErrorMessage.append("tittle is required. ");
+//        }
         if(!badRequestBodyErrorMessage.toString().equals("")) {
             throw new BadRequestBodyException(badRequestBodyErrorMessage.toString());
         }
@@ -112,6 +112,22 @@ public class RequestBodyValidation {
         }
         if(!user.getPassword().equals(user.getConfirmPassword())) {
             badRequestBodyErrorMessage.append("password confirm not match. ");
+        }
+        if(!badRequestBodyErrorMessage.toString().equals("")) {
+            throw new BadRequestBodyException(badRequestBodyErrorMessage.toString());
+        }
+    }
+
+    public void validateToLogin(User user) {
+        System.out.println(user);
+        StringBuilder badRequestBodyErrorMessage = new StringBuilder();
+        if(user.getEmail() == null || user.getEmail().equals("")) {
+            badRequestBodyErrorMessage.append("email is required. ");
+        } else if(!isValid(user.getEmail())) {
+            badRequestBodyErrorMessage.append("incorrect email format. ");
+        }
+        if(user.getPassword() == null || user.getPassword().equals("")) {
+            badRequestBodyErrorMessage.append("password is required. ");
         }
         if(!badRequestBodyErrorMessage.toString().equals("")) {
             throw new BadRequestBodyException(badRequestBodyErrorMessage.toString());

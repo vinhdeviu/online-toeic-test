@@ -6,7 +6,7 @@
         <audio controls :style="audioStyle" id="listeningAudio">
           <source
             :src="testData.audioLink"
-            type="audio/mpeg"
+            type="audio/mp3"
           />Your browser does not support the audio element.
         </audio>
       </div>
@@ -42,8 +42,8 @@ export default {
     ...mapGetters({
       loggedIn: "getLoggedIn",
       testProgress: "getTestProgress",
-      testReviewFlag: "getTestReviewFlag",
-      testSubmitted: "getTestSubmitted"
+      testSubmitted: "getTestSubmitted",
+      playAudioFlag: "getPlayAudioFlag"
     })
   },
   created() {
@@ -51,9 +51,10 @@ export default {
       this.$router.push("/login");
     } else {
       this.$store.dispatch("updateTestProgress", 1);
-      if(this.testReviewFlag != 0) {
+      this.$store.dispatch("updatePlayAudioFlag", true);
+      if(this.$route.params.achievementId != null) {
         this.audioStyle = 'width: 100%';
-        axios.get(`${process.env.API_URL}/generate-test-achievement/${this.testReviewFlag}`).then(response => {
+        axios.get(`${process.env.API_URL}/generate-test-achievement/${this.$route.params.achievementId}`).then(response => {
           this.testData = response.data;
           console.log(this.testData);
           this.storeAllAnswers();
@@ -71,7 +72,7 @@ export default {
     }
   },
   updated() {
-    if(this.testReviewFlag == 0 && !this.testSubmitted) {
+    if(this.$route.params.achievementId == null && !this.testSubmitted && this.playAudioFlag) {
       let playPromise = document.getElementById("listeningAudio").play();
       var vm = this;
       if (playPromise !== undefined) {
@@ -83,25 +84,41 @@ export default {
       }
     }
   },
+  watch: {
+    '$route' (to, from) {
+      console.log(to)
+      console.log(from)
+      if(to.name == from.name && to.params.testId != from.params.testId || to.params.achievementId != from.params.achievementId) {
+        this.$router.go(0);
+      }
+    }
+  },
   beforeRouteLeave(to, from, next) {
     if (this.loggedIn) {
-      const confirm = window.confirm("Do you really want to leave?");
-      if (confirm) {
-        this.$store.dispatch("updateTestProgress", 0);
-        this.$store.dispatch("updateTestSubmitted", false);
-        this.$store.dispatch("updateSelectedOptions", []);
-        this.$store.dispatch("updateAnswers", []);
-        this.$store.dispatch("updateExamineeAnswers", []);
-        this.$store.dispatch("updateTestReviewFlag", 0);
+      if(from.params.achievementId != null) {
+        this.reset();
         next();
       } else {
-        next(false);
+        const confirm = window.confirm("Do you really want to leave?");
+        if (confirm) {
+          this.reset();
+          next();
+        } else {
+          next(false);
+        }
       }
     } else {
       next();
     }
   },
   methods: {
+    reset() {
+      this.$store.dispatch("updateTestProgress", 0);
+      this.$store.dispatch("updateTestSubmitted", false);
+      this.$store.dispatch("updateSelectedOptions", []);
+      this.$store.dispatch("updateAnswers", []);
+      this.$store.dispatch("updateExamineeAnswers", []);
+    },
     storeAllAnswers() {
         this.$store.dispatch("updateAnswers", []);
         this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['1'].questions);

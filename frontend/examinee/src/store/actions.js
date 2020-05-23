@@ -11,10 +11,6 @@ export default {
         console.log('action updateTestSubmitted is processing with testSubmitted', testSubmitted);
         commit('setTestSubmitted', testSubmitted);
     },
-    updateTestReviewFlag({ commit }, testReviewFlag) {
-        console.log('action updateTestReviewFlag is processing with testReviewFlag', testReviewFlag);
-        commit('setTestReviewFlag', testReviewFlag);
-    },
     updateSelectedOptions({ commit }, selectedOptions) {
         console.log('action updateSelectedOptions is processing with selectedOptions', selectedOptions);
         commit('setSelectedOptions', selectedOptions);
@@ -54,5 +50,9 @@ export default {
     updateSingleExamineeAnswer({ commit }, indexAndData) {
         console.log('action updateSingleExamineeAnswer is processing with indexAndData', indexAndData);
         commit('setExamineeAnswer', indexAndData);
+    },
+    updatePlayAudioFlag({ commit }, playAudioFlag) {
+        console.log('action updatePlayAudioFlag is processing with playAudioFlag', playAudioFlag);
+        commit('setPlayAudioFlag', playAudioFlag);
     },
 }

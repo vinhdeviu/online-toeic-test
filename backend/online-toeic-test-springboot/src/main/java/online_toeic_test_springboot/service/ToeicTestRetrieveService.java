@@ -6,7 +6,15 @@ import java.util.List;
 
 public interface ToeicTestRetrieveService {
 
-    List<Test> retrieveAllTests();
+    List<Test> getAllTests();
+
+    List<Part> getAllParts();
+
+    List<QuestionGroup> getAllQuestionGroups();
+
+    List<Question> getAllQuestions();
+
+    List<Answer> getAllAnswers();
 
     Test getTestById(int id);
 
@@ -28,9 +36,15 @@ public interface ToeicTestRetrieveService {
 
     Test retrieveTestByAchievementIdAndShuffle(int achievementId);
 
-    List<Achievement> getAchievementByExamineeId(int examineeId);
+    List<Achievement> getAchievementsByExamineeId(int examineeId);
 
     TestInfor getTestInfor(int testId);
 
     QuestionGroup getQuestionGroupById(int id);
+
+    List<Achievement> getAllAchievements();
+
+    List<ExamineeAnswer> getAllExamineeAnswers();
+
+    Achievement getAchievementById(int id);
 }

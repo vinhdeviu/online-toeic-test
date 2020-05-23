@@ -19,8 +19,8 @@
       <div class="row">
         <div class="col-sm-12">
           <h4>Paragraph No.{{(indexGroup+1)}}:</h4>
-          <div  v-if="questionGroup.paragraph!==null&&questionGroup.paragraph!==''" style="white-space: pre-line">{{questionGroup.paragraph}}</div>
-          <img v-if="questionGroup.imageLink!==null&&questionGroup.imageLink!==''" class="img" :src="questionGroup.imageLink" alt="img" width="500px" height="500px" />
+          <div  v-if="questionGroup.paragraph!=undefined&&questionGroup.paragraph!==null&&questionGroup.paragraph!==''" style="white-space: pre-line">{{questionGroup.paragraph}}</div>
+          <img v-if="questionGroup.imageLink!=undefined&&questionGroup.imageLink!==null&&questionGroup.imageLink!==''" class="img" :src="questionGroup.imageLink" alt="img" width="500px" height="500px" />
         </div>
       </div>
       <div class="row" v-for="question in questionGroup.questions" :key="question.id">
@@ -43,7 +43,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-import axios from "axios";
 import Question from "./Question.vue";
 
 export default {
@@ -58,10 +57,12 @@ export default {
   props: ['part', 'partData'],
   methods: {
     prevPart() {
+      this.$store.dispatch("updatePlayAudioFlag", false);
       this.$store.dispatch("updateTestProgress", this.part-1);
       window.scrollTo(0,0);
     },
     nextPart() {
+      this.$store.dispatch("updatePlayAudioFlag", false);
       this.$store.dispatch("updateTestProgress", this.part+1);
       window.scrollTo(0,0);
     },

@@ -9,7 +9,7 @@
     </div>
     <div class="row">
       <div class="col-sm-4">
-        <img v-if="question.imageLink!==null && question.imageLink!==''" class="img" :src="question.imageLink" alt="img" width="280px" height="230px" />
+        <img v-if="question.imageLink!==undefined && question.imageLink!==null && question.imageLink!==''" class="img" :src="question.imageLink" alt="img" width="280px" height="230px" />
         <div style="margin-top:10px"></div>
       </div>
     </div>

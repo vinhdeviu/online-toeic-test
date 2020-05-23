@@ -20,7 +20,7 @@ public class ToeicTestRetrieveController {
 
   @GetMapping("/tests")
   public ResponseEntity<List<Test>> getTests() {
-    return ResponseEntity.ok().body(toeicTestRetrieveService.retrieveAllTests());
+    return ResponseEntity.ok().body(toeicTestRetrieveService.getAllTests());
   }
 
   @GetMapping("/tests/{id}")
@@ -30,17 +30,20 @@ public class ToeicTestRetrieveController {
 
   @GetMapping("/parts")
   public ResponseEntity<List<Part>> getParts(@RequestParam(required = false) Integer testId) {
+    List<Part> parts = null;
     if(testId == null) {
-      // get all parts
+      parts = toeicTestRetrieveService.getAllParts();
+    } else {
+      parts = toeicTestRetrieveService.getPartsByTestId(testId);
     }
-    return ResponseEntity.ok().body(toeicTestRetrieveService.getPartsByTestId(testId));
+    return ResponseEntity.ok().body(parts);
   }
 
   @GetMapping("/questions")
   public ResponseEntity<List<Question>> getQuestions(@RequestParam(required = false) Integer partId, @RequestParam(required = false) Integer groupId) {
     List<Question> questions = null;
     if(partId == null && groupId == null) {
-      // get all questions
+      questions = toeicTestRetrieveService.getAllQuestions();
     }
     if(partId != null && groupId == null) {
       questions = toeicTestRetrieveService.getQuestionsByPartId(partId);
@@ -53,18 +56,24 @@ public class ToeicTestRetrieveController {
 
   @GetMapping("/question-groups")
   public ResponseEntity<List<QuestionGroup>> getQuestionGroups(@RequestParam(required = false) Integer partId) {
+    List<QuestionGroup> questionGroups = null;
     if(partId == null) {
-      // get all questions
+      questionGroups = toeicTestRetrieveService.getAllQuestionGroups();
+    } else {
+      questionGroups = toeicTestRetrieveService.getQuestionGroupsByPartId(partId);
     }
-    return ResponseEntity.ok().body(toeicTestRetrieveService.getQuestionGroupsByPartId(partId));
+    return ResponseEntity.ok().body(questionGroups);
   }
 
   @GetMapping("/answers")
   public ResponseEntity<List<Answer>> getAnswers(@RequestParam(required = false) Integer questionId) {
+    List<Answer> answers = null;
     if(questionId == null) {
-      // get all answers
+      answers = toeicTestRetrieveService.getAllAnswers();
+    } else {
+      answers = toeicTestRetrieveService.getAnswersByQuestionId(questionId);
     }
-    return ResponseEntity.ok().body(toeicTestRetrieveService.getAnswersByQuestionId(questionId));
+    return ResponseEntity.ok().body(answers);
   }
 
   @GetMapping("/question-groups/{id}")
@@ -94,10 +103,23 @@ public class ToeicTestRetrieveController {
 
   @GetMapping("/achievements")
   public ResponseEntity<List<Achievement>> getAchievements(@RequestParam(required = false) Integer examineeId) {
+    List<Achievement> achivements = null;
     if(examineeId == null) {
-      // get all achievements
+      achivements = toeicTestRetrieveService.getAllAchievements();
+    } else {
+      achivements = toeicTestRetrieveService.getAchievementsByExamineeId(examineeId);
     }
-    return ResponseEntity.ok().body(toeicTestRetrieveService.getAchievementByExamineeId(examineeId));
+    return ResponseEntity.ok().body(achivements);
+  }
+
+  @GetMapping("/achievements/{id}")
+  public ResponseEntity<Achievement> getAchievementById(@PathVariable Integer id) {
+    return ResponseEntity.ok().body(toeicTestRetrieveService.getAchievementById(id));
+  }
+
+  @GetMapping("/examinee-answers")
+  public ResponseEntity<List<ExamineeAnswer>> getExamineeAnswers() {
+    return ResponseEntity.ok().body(toeicTestRetrieveService.getAllExamineeAnswers());
   }
 
   @GetMapping("/test-information/{testId}")

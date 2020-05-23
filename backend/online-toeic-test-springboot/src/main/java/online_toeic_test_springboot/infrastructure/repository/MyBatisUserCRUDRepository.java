@@ -19,6 +19,11 @@ public class MyBatisUserCRUDRepository implements UserCRUDRepository {
   private final UserCRUDMapper userCRUDMapper;
 
   @Override
+  public List<User> getAllUsers() {
+    return userCRUDMapper.queryAllUsers();
+  }
+
+  @Override
   public List<User> getUsersByRole(int role) {
     return userCRUDMapper.queryUsersByRole(role);
   }
@@ -33,8 +38,8 @@ public class MyBatisUserCRUDRepository implements UserCRUDRepository {
   }
 
   @Override
-  public User login(String email, String password) {
-    Optional<User> optionalUser = userCRUDMapper.queryUserByEmailAndPassword(email, password);
+  public User login(String email, String password, int role) {
+    Optional<User> optionalUser = userCRUDMapper.queryUserByEmailAndPasswordAndRole(email, password, role);
     if(!optionalUser.isPresent()) {
       throw new EntityNotFoundException("wrong email or password");
     }

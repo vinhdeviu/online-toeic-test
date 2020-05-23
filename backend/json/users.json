@@ -1,0 +1,44 @@
+[
+    {
+        "id": 2,
+        "email": "vinh1@gmail.com",
+        "name": "vinh1",
+        "role": 1,
+        "password": "123"
+    },
+    {
+        "id": 4,
+        "email": "vinh3@gmail.com",
+        "name": "vinh3",
+        "role": 1,
+        "password": "123"
+    },
+    {
+        "id": 5,
+        "email": "vinh4@gmail.com",
+        "name": "vinh4",
+        "role": 1,
+        "password": "123"
+    },
+    {
+        "id": 6,
+        "email": "vinh5@gmail.com",
+        "name": "vinh5",
+        "role": 1,
+        "password": "123"
+    },
+    {
+        "id": 1,
+        "email": "vinh@gmail.com",
+        "name": "vinh",
+        "role": 2,
+        "password": "123"
+    },
+    {
+        "id": 3,
+        "email": "vinh2@gmail.com",
+        "name": "vinh2",
+        "role": 2,
+        "password": "123"
+    }
+]

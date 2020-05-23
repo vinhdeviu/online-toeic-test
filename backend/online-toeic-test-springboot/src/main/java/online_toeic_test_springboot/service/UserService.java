@@ -5,7 +5,12 @@ import online_toeic_test_springboot.domain.model.User;
 import java.util.List;
 
 public interface UserService {
-    User login(User user);
+
+    List<User> getAllUsers();
+
+    User adminLogin(User user);
+
+    User examineeLogin(User user);
 
     void register(User user);
 

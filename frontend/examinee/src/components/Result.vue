@@ -17,8 +17,7 @@ export default {
     ...mapGetters({
       answers: "getAnswers",
       selectedOptions: "getSelectedOptions",
-      examineeAnswers: "getExamineeAnswers",
-      testReviewFlag: "getTestReviewFlag"
+      examineeAnswers: "getExamineeAnswers"
     })
   },
   created() {
@@ -33,7 +32,7 @@ export default {
         this.totalCorrectAnswer++;
       }
     }
-    if (this.testReviewFlag == 0) {
+    if (this.$route.params.achievementId == null) {
       let achievement = {
         examineeId: JSON.parse(localStorage.getItem('examinee')).id,
         testId: this.$route.params.testId,
