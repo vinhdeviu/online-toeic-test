@@ -10,11 +10,6 @@
         <div class="line"></div>
       </div>
       <div class="col-sm-8"></div>
-      <div class="col-sm-2">
-        <div class="md-form mt-0">
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search" />
-        </div>
-      </div>
     </div>
 
     <div class="table-wrapper-scroll-y my-custom-scrollbar"

@@ -11,6 +11,7 @@ import online_toeic_test_springboot.validation.RequestBodyValidation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -27,30 +28,50 @@ public class ToeicTestCreateController {
   private final RequestBodyValidation requestBodyValidation;
 
   @PostMapping("/achievements")
-  public ResponseEntity<Achievement> createArchivement(@RequestBody Achievement achievement) throws URISyntaxException {
-    System.out.println(achievement);
+  public ResponseEntity<Achievement> createAchievement(@RequestBody Achievement achievement, final UriComponentsBuilder builder) throws URISyntaxException {
+    requestBodyValidation.validateAchievement(achievement, HttpMethod.POST);
     toeicTestCreateService.createAchievement(achievement);
-    return ResponseEntity.created(new URI("/api/achievements")).body(achievement);
+    final URI location = builder
+        .path("achievements/{id}")
+        .buildAndExpand(achievement.getId())
+        .encode()
+        .toUri();
+    return ResponseEntity.created(location).body(achievement);
   }
 
   @PostMapping("/tests")
-  public ResponseEntity<Test> createNewToeicTest(@RequestBody Test test) throws URISyntaxException {
+  public ResponseEntity<Test> createNewToeicTest(@RequestBody Test test, final UriComponentsBuilder builder) throws URISyntaxException {
     requestBodyValidation.validateTest(test, HttpMethod.POST);
     toeicTestCreateService.createNewToeicTest(test);
-    return ResponseEntity.created(new URI("/api/tests")).body(test);
+    final URI location = builder
+        .path("tests/{id}")
+        .buildAndExpand(test.getId())
+        .encode()
+        .toUri();
+    return ResponseEntity.created(location).body(test);
   }
 
   @PostMapping("/question-groups")
-  public ResponseEntity<QuestionGroup> createNewQuestionGroup(@RequestBody QuestionGroup questionGroup) throws URISyntaxException {
+  public ResponseEntity<QuestionGroup> createNewQuestionGroup(@RequestBody QuestionGroup questionGroup, final UriComponentsBuilder builder) throws URISyntaxException {
     requestBodyValidation.validateQuestionGroup(questionGroup, HttpMethod.POST);
     toeicTestCreateService.createNewQuestionGroup(questionGroup);
-    return ResponseEntity.created(new URI("/api/question-groups")).body(questionGroup);
+    final URI location = builder
+        .path("question-groups/{id}")
+        .buildAndExpand(questionGroup.getId())
+        .encode()
+        .toUri();
+    return ResponseEntity.created(location).body(questionGroup);
   }
 
   @PostMapping("/questions")
-  public ResponseEntity<Question> createNewQuestion(@RequestBody Question question) throws URISyntaxException {
-    System.out.println(question);
+  public ResponseEntity<Question> createNewQuestion(@RequestBody Question question, final UriComponentsBuilder builder) throws URISyntaxException {
+    requestBodyValidation.validateQuestion(question, HttpMethod.POST);
     toeicTestCreateService.createNewQuestion(question);
-    return ResponseEntity.created(new URI("/api/questions")).body(question);
+    final URI location = builder
+        .path("questions/{id}")
+        .buildAndExpand(question.getId())
+        .encode()
+        .toUri();
+    return ResponseEntity.created(location).body(question);
   }
 }

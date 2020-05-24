@@ -174,6 +174,7 @@ export default {
     savePart() {
       let part = {
         id: this.partId,
+        testId: this.testId,
         partNum: this.partNum,
         tittle: this.tittle,
         type: this.type,

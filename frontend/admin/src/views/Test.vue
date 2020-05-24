@@ -146,7 +146,6 @@ export default {
       axios
         .post(`${process.env.API_URL}/tests`, test)
         .then(response => {
-          console.log(response);
           if(response.status == 201) {
             alert("Test Added");
             let newtest = response.data;
