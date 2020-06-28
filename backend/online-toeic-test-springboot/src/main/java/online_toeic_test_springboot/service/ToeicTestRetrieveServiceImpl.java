@@ -222,7 +222,7 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
   @Override
   public TestInfor getTestInfor(int testId) {
     int totalNumQuestions = toeicTestRetrieveRepository.qetTotalNumQuestionsByTestId(testId);
-    int totalTimeInSecond = TestConfig.TIME_PER_QUESTION_IN_SECOND*totalNumQuestions;
+    int totalTimeInSecond = TestConfig.TIME_PER_TEST_IN_SECOND;
     return new TestInfor(totalTimeInSecond, totalNumQuestions);
   }
 }

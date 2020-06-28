@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TestConfig {
-    public static final int TIME_PER_QUESTION_IN_SECOND = 120*60/200;
+    public static final int TIME_PER_TEST_IN_SECOND = 120*60;
     public static final int TOTAL_PARTS = 7;
     public static final int MAX_NUM_ANSWERS_PER_QUESTION = 4;
     public static final List<Character> ANSWERS_CHAR_VALUES = Arrays.asList('A','B','C','D');
