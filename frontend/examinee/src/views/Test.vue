@@ -1,6 +1,6 @@
 <template>
-  <div class="container" v-if="testData.audioLink != null">
-    <div class="row">
+  <div class="container">
+    <div class="row" v-if="testData.audioLink != null">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <audio controls :style="audioStyle" id="listeningAudio">

@@ -8,8 +8,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false;
 
-Vue.use(VueResource);
-
 new Vue({
   el: '#app',
   router,
