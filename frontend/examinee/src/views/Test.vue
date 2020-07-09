@@ -73,15 +73,7 @@ export default {
   },
   updated() {
     if(this.$route.params.achievementId == null && !this.testSubmitted && this.playAudioFlag) {
-      let playPromise = document.getElementById("listeningAudio").play();
-      var vm = this;
-      if (playPromise !== undefined) {
-        playPromise.then(function() {
-          // Automatic playback started!
-        }).catch(function(error) {
-          vm.$router.go(0);
-        });
-      }
+      document.getElementById("listeningAudio").play();
     }
   },
   watch: {
