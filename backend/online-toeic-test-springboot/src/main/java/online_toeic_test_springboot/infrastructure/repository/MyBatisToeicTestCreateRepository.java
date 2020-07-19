@@ -88,20 +88,29 @@ public class MyBatisToeicTestCreateRepository implements ToeicTestCreateReposito
 
   @Override
   public void createQuestion(Question question) {
-    questionCRUDMapper.insertQuestion(question);
     Optional<Part> optionalPart = partCRUDMapper.queryPartById(question.getPartId());
     if(!optionalPart.isPresent()) {
       throw new EntityNotFoundException("part not found");
     }
+    questionCRUDMapper.insertQuestion(question);
     int partNum = optionalPart.get().getPartNum();
-    if(TestConfig.PARTS_WITHOUT_ANSWERS_CONTENT.contains(partNum)) {
-      return;
+    if(TestConfig.PARTS_WITH_ANSWERS_CONTENT.contains(partNum)) {
+      boolean hasDefaultCorrectAnswer = false;
+      for(int i = 0; i < TestConfig.MAX_NUM_ANSWERS_PER_QUESTION; i++) {
+        Answer answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setContent("");
+        answerCRUDMapper.insertAnswer(answer);
+        if(!hasDefaultCorrectAnswer) {
+          question.setCorrectAnswerId(answer.getId());
+          hasDefaultCorrectAnswer = true;
+        }
+      }
+    } else {
+      if(question.getCorrectAnswer() == null || !TestConfig.ANSWERS_CHAR_VALUES.contains(question.getCorrectAnswer().charValue())) {
+        question.setCorrectAnswer(TestConfig.DEFAULT_ANSWER_CHAR_VALUE);
+      }
     }
-    for(int i = 0; i < TestConfig.MAX_NUM_ANSWERS_PER_QUESTION; i++) {
-      Answer answer = new Answer();
-      answer.setQuestionId(question.getId());
-      answer.setContent("");
-      answerCRUDMapper.insertAnswer(answer);
-    }
+    questionCRUDMapper.updateQuestion(question);
   }
 }

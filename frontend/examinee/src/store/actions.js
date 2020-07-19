@@ -56,3 +56,4 @@ export default {
         commit('setPlayAudioFlag', playAudioFlag);
     },
 }
+// Action doesn't change state so it calls mutation

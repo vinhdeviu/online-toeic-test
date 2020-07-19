@@ -51,10 +51,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      testSubmitted: "getTestSubmitted"
+      testSubmitted: "getTestSubmitted"  //use getter to get state
     })
   },
-  props: ['part', 'partData'],
+  props: ['part', 'partData'],//get part and partData from Test
   methods: {
     prevPart() {
       this.$store.dispatch("updatePlayAudioFlag", false);
@@ -69,7 +69,7 @@ export default {
     submitTest() {
       this.$store.dispatch("updateTestSubmitted", true);
       this.$store.dispatch("updateTestProgress", 1);
-      let audio = document.getElementById("listeningAudio");
+      let audio = document.getElementById("listeningAudio");// get the audio and pause 
       audio.pause();
       audio.currentTime = 0;
       window.scrollTo(0,0);

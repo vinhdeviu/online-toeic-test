@@ -34,13 +34,13 @@ export default {
   },
   data() {
     return {
-      testData: {},
-      audioStyle: ''
+      testData: {},//declare an object
+      audioStyle: ''//declare a string
     };
   },
   computed: {
     ...mapGetters({
-      loggedIn: "getLoggedIn",
+      loggedIn: "getLoggedIn",//use getter to get state.
       testProgress: "getTestProgress",
       testSubmitted: "getTestSubmitted",
       playAudioFlag: "getPlayAudioFlag"
@@ -50,9 +50,9 @@ export default {
     if (!this.loggedIn) {
       this.$router.push("/login");
     } else {
-      this.$store.dispatch("updateTestProgress", 1);
+      this.$store.dispatch("updateTestProgress", 1);//call action - parameter = 1
       this.$store.dispatch("updatePlayAudioFlag", true);
-      if(this.$route.params.achievementId != null) {
+      if(this.$route.params.achievementId != null) {//achievement
         this.audioStyle = 'width: 100%';
         axios.get(`${process.env.API_URL}/generate-test-achievement/${this.$route.params.achievementId}`).then(response => {
           this.testData = response.data;
@@ -61,7 +61,7 @@ export default {
           this.$store.dispatch("updateSelectedOptions", this.testData.examineeSelectedOptions);
           this.$store.dispatch("updateTestSubmitted", true);
         });
-      } else {
+      } else { //Test
         this.audioStyle = 'display: none';
         axios.get(`${process.env.API_URL}/generate-test/${this.$route.params.testId}`).then(response => {
           this.testData = response.data;
@@ -73,7 +73,16 @@ export default {
   },
   updated() {
     if(this.$route.params.achievementId == null && !this.testSubmitted && this.playAudioFlag) {
-      document.getElementById("listeningAudio").play();
+      let playPromise = document.getElementById("listeningAudio").play();
+      var vm = this;
+      if (playPromise !== undefined) {
+        playPromise.then(function() {
+          // Automatic playback started!
+        }).catch(function(error) {
+          vm.$router.go(0);
+        });
+      }
+      // test && not submitted -> playAudio
     }
   },
   watch: {
@@ -103,6 +112,7 @@ export default {
       next();
     }
   },
+  // If it is achievement user can move, if in the test ask before exit
   methods: {
     reset() {
       this.$store.dispatch("updateTestProgress", 0);

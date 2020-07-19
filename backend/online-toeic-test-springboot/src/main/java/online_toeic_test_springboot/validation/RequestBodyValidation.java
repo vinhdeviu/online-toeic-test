@@ -17,16 +17,13 @@ public class RequestBodyValidation {
                 badRequestBodyErrorMessage.append("id is required. ");
             }
         }
-        if(achievement.getDate() == null || achievement.getDate().equals("")) {
-            badRequestBodyErrorMessage.append("date is required. ");
-        }
         if(achievement.getExamineeId() == null || achievement.getExamineeId() <= 0) {
             badRequestBodyErrorMessage.append("examineeId is required. ");
         }
         if(achievement.getTestId() == null || achievement.getTestId() <= 0) {
             badRequestBodyErrorMessage.append("testId is required. ");
         }
-        if(achievement.getTotalCorrectAnswer() == null || achievement.getTotalCorrectAnswer() <= 0) {
+        if(achievement.getTotalCorrectAnswer() == null || achievement.getTotalCorrectAnswer() < 0) {
             badRequestBodyErrorMessage.append("totalCorrectAnswer is required. ");
         }
         if(!badRequestBodyErrorMessage.toString().equals("")) {

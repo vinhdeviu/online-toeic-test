@@ -7,6 +7,7 @@ export default {
         if(examinee != null) {
             return true;
         }
+        //check login by localStorage, if it is not null loggedIn is true.
     },
     getTestProgress: state => state.testProgress,
     getTestSubmitted: state => state.testSubmitted,
