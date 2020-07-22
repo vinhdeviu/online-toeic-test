@@ -13,7 +13,8 @@
         <div style="margin-top:10px"></div>
       </div>
     </div>
-    <div class="row" v-for="option in ['A','B','C','D']" :key="option">
+    <div class="row">
+      <div class="col-sm-3" v-for="option in ['A','B','C','D']" :key="option">
       <!-- loop the option A, B, C, D -->
       <div class="custom-control custom-radio">
         <input
@@ -30,10 +31,12 @@
         <!-- select the option when changing appears and checked -->
         <label class="custom-control-label" :for="'q'+(question.questionNo)+option">{{option}}. <span v-if="question.answers!=null && question.answers[option]!=null && question.answers[option].content!=null">{{question.answers[option].content}}</span></label>
         <!-- If the answer, option and content are not null display value on web-->
-        <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && selectedOptions[question.questionNo-1]!=null && selectedOptions[question.questionNo-1].toUpperCase()==question.correctAnswer.toUpperCase()" class="fas fa-check-circle" style="font-size:20px;color:green"></i>
+        <i v-if="testSubmitted && selectedOptions[question.questionNo-1]!=null && selectedOptions[question.questionNo-1].toUpperCase()!=question.correctAnswer.toUpperCase() && selectedOptions[question.questionNo-1].toUpperCase()==option.toUpperCase()" class="fa fa-close" style="font-size:20px;color:red"></i>
         <!-- If testSubmitted and option = correct answer and selected option = correct answer -->
-        <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && (selectedOptions[question.questionNo-1]== null || selectedOptions[question.questionNo-1].toUpperCase()!=question.correctAnswer.toUpperCase())" class="fa fa-close" style="font-size:20px;color:red"></i>
+        <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && selectedOptions[question.questionNo-1]!=null" class="fas fa-check-circle" style="font-size:20px;color:green"></i>
+        <i v-if="testSubmitted && option.toUpperCase()==question.correctAnswer.toUpperCase() && selectedOptions[question.questionNo-1]==null" class="fas fa-check-circle" style="font-size:20px;color:red"></i>
         <!-- If testSubmitted and option = correct answer and selected option >< correct answer -->
+      </div>
       </div>
     </div>
   </element>

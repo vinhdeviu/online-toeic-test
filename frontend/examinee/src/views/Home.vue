@@ -4,7 +4,7 @@
       <b-carousel
         id="carousel-1"
         v-model="slide"
-        :interval="1000"
+        :interval="2000"
         controls
         indicators
         background="#ababab"
@@ -78,7 +78,7 @@ export default {
   methods: {
     doTest(testId) {
       if (this.loggedIn) {
-        this.$router.push(`/test/${testId}`);
+        this.$router.push(`/pre-test/${testId}`);
       } else {
         alert("please login first");
         this.$router.push("/login");

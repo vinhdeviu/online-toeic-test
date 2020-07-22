@@ -105,21 +105,27 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
 
   private Part generatePartWithOnlyQuestions(int testId, int partNum, boolean shuffleQuestionsFlag, boolean shuffleAnswersFlag) {
     Part part = toeicTestRetrieveRepository.getPartByTestIdAndPartNum(testId, partNum);
+    //1> get the part from database by testID and PartNum
     List<Question> questions = toeicTestRetrieveRepository.getQuestionsByPartId(part.getId());
+    //2> get all question of this part
     part.setQuestions(shuffleQuestionsWithAnswers(questions, shuffleQuestionsFlag, shuffleAnswersFlag));
+    //3> shuffle questions and their answers
     return part;
   }
 
   private Part generatePartWithQuestionGroups(int testId, int partNum, boolean shuffleQuestionGroupsFlag, boolean shuffleQuestionsFlag, boolean shuffleAnswersFlag) {
     Part part = toeicTestRetrieveRepository.getPartByTestIdAndPartNum(testId, partNum);
+    //1> get the part from database by testID and PartNum
     List<QuestionGroup> questionGroups = toeicTestRetrieveRepository.getQuestionGroupsByPartId(part.getId());
     if(shuffleQuestionGroupsFlag) {
       Collections.shuffle(questionGroups);
     }
+    //2> get all question group and shuffle them if these group can be shuffled
     for(QuestionGroup questionGroup: questionGroups) {
       List<Question> questions = toeicTestRetrieveRepository.getQuestionsByGroupId(questionGroup.getId());
       questionGroup.setQuestions(shuffleQuestionsWithAnswers(questions, shuffleQuestionsFlag, shuffleAnswersFlag));
     }
+    //3> after, shuffle question and their answers
     part.setQuestionGroups(questionGroups);
     return part;
   }
@@ -127,9 +133,11 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
   private List<Question> shuffleQuestionsWithAnswers(List<Question> questions, boolean shuffleQuestionsFlag, boolean shuffleAnswersFlag) {
     if(shuffleQuestionsFlag) {
       Collections.shuffle(questions);
+      //1> shuffle question if possible
     }
     for(Question question: questions) {
       question.setQuestionNo(++questionNoIndex);
+      //2> set number index for question
       List<Answer> answers = toeicTestRetrieveRepository.getAnswersByQuestionId(question.getId());
       if(question.getCorrectAnswerId() == null && answers.isEmpty()) {
         question.setAnswers(null);
@@ -143,9 +151,11 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
         Answer answer = answers.get(i);
         char option = TestConfig.ANSWERS_CHAR_VALUES.get(i);
         answerMap.put(option, answer);
+        //3> put option to the answer
         if(answer.getId().equals(question.getCorrectAnswerId())) {
           question.setCorrectAnswer(option);
         }
+        //4> set the correct answer
       }
       question.setAnswers(answerMap);
     }
@@ -155,6 +165,7 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
   public Test retrieveTestByIdAndShuffle(int testId) {
     questionNoIndex = 0;
     Test test = toeicTestRetrieveRepository.getTestById(testId);
+    //get all the test by test id
     Map<Integer, Part> partMap = new HashMap<>();
     for(int partNum = 1; partNum <= TestConfig.TOTAL_PARTS; partNum++) {
       Part part = null;
@@ -163,10 +174,12 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
       if(TestConfig.PARTS_WITHOUT_QUESTION_GROUP.contains(partNum)) {
         part = generatePartWithOnlyQuestions(testId, partNum, shuffleQuestionsFlag, shuffleAnswersFlag);
       }
+      //get part 1, 2, 3, 4, 5
       if(TestConfig.PARTS_WITH_QUESTION_GROUP.contains(partNum)) {
         boolean shuffleQuestionGroupsFlag = TestConfig.SHUFFLE_QUESTION_GROUP_PARTS.contains(partNum);
         part = generatePartWithQuestionGroups(testId, partNum,shuffleQuestionGroupsFlag, shuffleQuestionsFlag, shuffleAnswersFlag);
       }
+      //get part 5, 7
       partMap.put(partNum, part);
     }
     test.setParts(partMap);
@@ -187,6 +200,7 @@ public class ToeicTestRetrieveServiceImpl implements ToeicTestRetrieveService {
           allQuestions.addAll(questionGroup.getQuestions());
         }
       }
+      //add questions to question group
       if(part.getQuestions() != null) {
         allQuestions.addAll(part.getQuestions());
       }

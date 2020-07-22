@@ -123,6 +123,7 @@ export default {
     },
     storeAllAnswers() {
         this.$store.dispatch("updateAnswers", []);
+        //clear answers
         this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['1'].questions);
         this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['2'].questions);
         this.$store.dispatch("addAnswersFromQuestions", this.testData.parts['3'].questions);

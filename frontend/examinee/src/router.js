@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from './views/Home.vue';
+import PreTest from './views/PreTest.vue';
 import Login from './views/Login.vue';
 import SignUp from './views/SignUp.vue';
 import Profile from './views/Profile.vue';
@@ -16,6 +17,7 @@ export default new VueRouter({
     routes: [
         { path: '/', redirect: '/home' },
         { path: '/home', component: Home },
+        { path: '/pre-test/:testId', component: PreTest },
         { path: '/login', component: Login },
         { path: '/sign-up', component: SignUp },
         { path: '/profile', component: Profile },

@@ -23,12 +23,12 @@
           <img v-if="questionGroup.imageLink!=undefined&&questionGroup.imageLink!==null&&questionGroup.imageLink!==''" class="img" :src="questionGroup.imageLink" alt="img" width="500px" height="500px" />
         </div>
       </div>
-      <div class="row" v-for="question in questionGroup.questions" :key="question.id">
+      <div v-for="question in questionGroup.questions" :key="question.id">
         <question style="margin-left:20px" :question="question"></question>
       </div>
       <hr />
     </div>
-    <div class="row">
+    <div class="row" style="margin-top:20px">
       <div class="col-sm-4"></div>
       <div class="col-sm-4">
         <button @click="prevPart()" style="width: 160px;" class="btn btn-primary btn-lg" :disabled="part==1">Previous</button>
